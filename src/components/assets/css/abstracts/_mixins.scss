@@ -1,0 +1,43 @@
+@mixin ralewayRegular {
+	font-family: $raleway-regular;
+}
+
+@mixin ralewayLight {
+	font-family: $raleway-light;
+}
+
+@mixin ralewayBold {
+	font-family: $raleway-bold;
+}
+
+@mixin element($element) {
+	&__#{$element} {
+		@content;
+	}
+}
+
+@mixin modifier($modifier) {
+	&--#{$modifier} {
+		@content;
+	}
+}
+
+@mixin fontPath($ttfFont) {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-weight: normal;
+	src: url($ttfFont) format("truetype");
+}
+
+@mixin ralewayRegular {
+	font-family: $raleway-regular;
+}
+
+@mixin ralewayLight {
+	font-family: $raleway-light;
+}
+
+@mixin ralewayBold {
+	font-family: $raleway-bold;
+}
