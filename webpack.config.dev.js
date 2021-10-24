@@ -43,7 +43,10 @@ module.exports = {
             "glob-import-loader",
           ],
         }, {
-            test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          test: /\.html$/i,
+          loader: 'html-loader'
+        }, {
+            test: /\.(png|svg|jpg|jpeg|gif|webp|jfif)$/i,
             type: 'asset/resource',
             generator: {
                 filename: './resources/img/[name][ext]'

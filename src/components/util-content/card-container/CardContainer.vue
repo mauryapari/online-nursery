@@ -23,7 +23,7 @@
     }
 
     @include element(desc-wrapper) {
-        text-align: justify;
+        text-align: center;
     }
 }
 </style>
