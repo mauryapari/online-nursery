@@ -33,10 +33,14 @@
     export default {
         methods: {
             scrollMeTo(refName) {
-                var element = this.$refs[refName];
-                var top = element.offsetTop;
+                const element = this.$parent.$children.find((item) => item.$refs[refName]);
+                console.log(element);
+                var top = element?.$el?.offsetTop;
 
-                window.scrollTo(0, top);
+                window.scrollTo({
+                    top: top,
+                    behavior: 'smooth'
+                });
             }
         }
     }
@@ -44,6 +48,7 @@
 <style lang="scss" scoped>
 .header-section {
     padding-top: 15px;
+    border-bottom: 1px solid #222222;
     @include element(navigation-bar) {
         display: flex;
         justify-content: space-between;
@@ -64,8 +69,13 @@
         display: inline-block;
         margin: 0px 10px;
         font-size: 18px;
+        font-weight: 500;
         line-height: 28px;
         text-transform: uppercase;
+        cursor: pointer;
+        &:hover {
+            color: $brand-green;
+        }
     }
     @include element(icon-container) {
         span.icon {

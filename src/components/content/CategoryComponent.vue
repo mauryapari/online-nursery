@@ -1,5 +1,5 @@
 <template>
-    <div class="categories-section container section-padding">
+    <div class="categories-section container section-padding" ref="categories">
         <section-header headingName="Categories"></section-header>
         <div class="categories-section__cards-wrapper">
             <template v-for="item in itemArray">
@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 .categories-section {
-
+    height: 1200px;
     @include element(cards-wrapper) {
         display: flex;
         justify-content: space-between;

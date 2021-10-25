@@ -1,5 +1,5 @@
 <template>
-    <div class="featured-section container section-padding">
+    <div class="featured-section container section-padding" ref="products">
         <section-header headingName="Featured"></section-header>
     </div>
 </template>
