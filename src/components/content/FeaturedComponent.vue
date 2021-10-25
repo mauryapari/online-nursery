@@ -2,9 +2,10 @@
     <div class="featured-section container section-padding" ref="products">
         <section-header headingName="Featured"></section-header>
         <div class="featured-section__carousel-wrapper">
-          <carousel :isContainerReq="true">
-            <template slot="card-carousel">
-              <div class="featured-section__card-wrapper">
+          <carousel :isContainerReq="true" 
+            @prev="prev" @next="next">
+            <template>
+              <div class="featured-section__card-wrapper" ref="featured-cards">
                 <template v-for="(item, index) in itemArray">
                     <div :key="index" class="featured-section__card-container">
                         <card-container>
@@ -59,9 +60,34 @@ export default {
         img: require('../../resources/img/Snake-Plant_1499169649515.jpg'),
         name: 'Snake Plant',
         price: '870'
-      }]
+      }],
+      card_index: 1
     }
-  }   
+  }, 
+  mounted() {
+    this.displayBanner(1);
+  },
+  methods: {
+    displayBanner(n) {
+        var slides = this.$refs['featured-cards'];
+        if (n > slides.length) { 
+            this.card_index = 1; 
+        }  
+        if (n < 1) {
+              this.card_index = slides.length;
+        } 
+        // for (let i=0; i<slides.length; i++) {
+        //     slides[i].style.display = 'none';
+        // }
+        // slides[this.card_index - 1].style.display = "block";   
+    },
+    prev() {
+      console.log('prev runnning');
+    },
+    next() {
+      console.log('next runnning');
+    }
+  }  
 }
 </script>
 
