@@ -1,13 +1,13 @@
 <template>
     <div>
-        <hello-component name="World"></hello-component>
+        <home-page></home-page>
     </div>
 </template>
 <script>
-    import HelloComponent from "./components/HelloComponent.vue";
+import HomePage from './components/pages/HomePage.vue';
     export default {
       components: {
-        HelloComponent,
+            HomePage,
       },
     };
 </script>

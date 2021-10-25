@@ -1,0 +1,98 @@
+$icomoon-font-family: "icomoon" !default;
+$icomoon-font-path: "../../../../resources/fonts/icon-font/fonts" !default;
+
+$icon-forward: "\f04e";
+$icon-shopping-cart: "\f07a";
+$icon-shopping-bag: "\f290";
+$icon-cart: "\e93a";
+$icon-user: "\e971";
+$icon-paragraph-right: "\ea79";
+$icon-paragraph-justify: "\ea7a";
+$icon-facebook2: "\ea91";
+$icon-instagram: "\ea92";
+$icon-whatsapp: "\ea93";
+$icon-twitter: "\ea96";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?6xu4r2');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?6xu4r2#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?6xu4r2') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?6xu4r2') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?6xu4r2##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-forward {
+  &:before {
+    content: $icon-forward; 
+  }
+}
+.icon-shopping-cart {
+  &:before {
+    content: $icon-shopping-cart; 
+  }
+}
+.icon-shopping-bag {
+  &:before {
+    content: $icon-shopping-bag; 
+  }
+}
+.icon-cart {
+  &:before {
+    content: $icon-cart; 
+  }
+}
+.icon-user {
+  &:before {
+    content: $icon-user; 
+  }
+}
+.icon-paragraph-right {
+  &:before {
+    content: $icon-paragraph-right; 
+  }
+}
+.icon-paragraph-justify {
+  &:before {
+    content: $icon-paragraph-justify; 
+  }
+}
+.icon-facebook2 {
+  &:before {
+    content: $icon-facebook2; 
+  }
+}
+.icon-instagram {
+  &:before {
+    content: $icon-instagram; 
+  }
+}
+.icon-whatsapp {
+  &:before {
+    content: $icon-whatsapp; 
+  }
+}
+.icon-twitter {
+  &:before {
+    content: $icon-twitter; 
+  }
+}
+
