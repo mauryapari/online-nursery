@@ -61,7 +61,7 @@ export default {
         name: 'Snake Plant',
         price: '870'
       }],
-      card_index: 1
+      currentIndex: 0
     }
   }, 
   mounted() {
@@ -70,39 +70,54 @@ export default {
   methods: {
     displayBanner(n) {
         var slides = this.$refs['featured-cards'].children;
-      
-        console.log(slides);
-        for (let i=0; i<n; i++) {
-            slides[i].classList.add('display');
-        }
-        for (let i=n; i<slides.length; i++) {
-            slides[i].classList.add('hide');
-        }
+        slides[0].classList.add('first');
+        slides[n].classList.add('last');
     },
     prev() {
-      console.log('prev runnning');
+      // console.log('prev runnning');
+      this.currentIndex -= 1;
     },
     next() {
-      const slides = this.$refs['featured-cards'].children;
+      var slides = this.$refs['featured-cards'].children;
       let firstEle = null;
-      let nextEle = null ;
-      for(let item of slides) {
-        if(item.classList.contains('display')) {
+      let lastEle = null ;
+        for(let item of slides) {
+        if(item.classList.contains('first')) {
           firstEle = item;
           break;
         }
       }
       for(let item of slides) {
-        if(item.classList.contains('hide')) {
-          nextEle = item;
+        if(item.classList.contains('last')) {
+          lastEle = item;
           break;
         }
       }
-      console.log(firstEle, nextEle);
-      firstEle.classList.remove('display');
-      firstEle.classList.add('hide');
-      nextEle.classList.add('display');
-      nextEle.classList.remove('hide');
+      console.log(slides, firstEle.nextSibling, lastEle);
+      firstEle.classList.remove('first');
+      lastEle.classList.remove('last');
+      // let nxtEle = firstEle.nextSibling;
+      // if(!nxtEle) {
+      //   nxtEle = firstEle
+      // }
+      // if(!firstEle.nextSibling) {
+      //   firstEle = slides[0];
+      //   firstEle.nextSibling.classList.add('first');
+      // } 
+      // if (!lastEle.nextSibling) {
+      //   lastEle = slides[0];
+      //   lastEle.nextSibling.classList.add('last');
+      // }
+      //   firstEle.nextSibling.classList.add('first');
+      //   lastEle.nextSibling.classList.add('last');
+      // }
+
+    
+      // console.log(firstEle, nextEle);
+      // firstEle.classList.remove('display');
+      // firstEle.classList.add('hide');
+      // nextEle.classList.add('display');
+      // nextEle.classList.remove('hide');
       
     }
   }  
