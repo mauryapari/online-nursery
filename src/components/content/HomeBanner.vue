@@ -1,12 +1,12 @@
 <template>
     <div class="home-banner">
         <carousel :isContainerReq="true" 
-            @prev="prev(-1)" @next="next(1)">
+            @prev="prev()" @next="next()">
             <template>
                 <div class="inner">
-                    <div class="home-banner__card-container" v-for="(card, index) in cards" :key="index">
+                    <div class="home-banner__card-container" v-for="i in [currentIndex]" :key="i">
                         <a href="#" class="home-banner__card" ref="carousel-image">
-                            <img :src="card.src" :alt="card.alt">
+                            <img :src="currentItem.src" :alt="currentItem.alt">
                         </a>
                     </div>
                 </div>
@@ -26,39 +26,33 @@ export default {
                 alt: 'Banner 1'
             }, {
                 src: require('../../resources/img/banner-img-2.webp'),
-                alt: 'Banner 1'
+                alt: 'Banner 2'
             }],
-            slide_index: 1,
+            currentIndex: 0,
             timer: null
         }
     },
+    computed: {
+        currentItem: function() {
+            return this.cards[Math.abs(this.currentIndex) % this.cards.length];
+        }
+    },
     mounted() {
-        this.displayBanner(1);
-        this.timer = setInterval(() => {
-            this.next(1);
-        }, 3000);
+        this.displayBanner();
+     
     },
     methods: {
-        displayBanner(n) {
-            var slides = this.$refs['carousel-image'];
-            if (n > slides.length) { 
-                this.slide_index = 1; 
-            }  
-            if (n < 1) {
-                 this.slide_index = slides.length;
-            } 
-            for (let i=0; i<slides.length; i++) {
-                slides[i].style.display = 'none';
-            }
-            slides[this.slide_index - 1].style.display = "block";   
+        displayBanner() {
+            this.timer = setInterval(() => {
+                this.next();
+            }, 3000);
         },
-        prev(n) {
-            this.displayBanner(this.slide_index += n);
-            this.timer = 2000;
+        prev() {
+            this.currentIndex -= 1;
+            this.timer = 0;
         },
-        next(n) {
-            this.displayBanner(this.slide_index += n);
-            this.timer = 2000;
+        next() {
+            this.currentIndex += 1;
         }
     }
 }

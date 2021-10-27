@@ -98,7 +98,4 @@ export default {
         }
     }
 }
-.img {
-    background-image: url('../../resources/img/cactus.webp');
-}
 </style>

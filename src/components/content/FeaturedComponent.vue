@@ -65,27 +65,45 @@ export default {
     }
   }, 
   mounted() {
-    this.displayBanner(1);
+    this.displayBanner(5);
   },
   methods: {
     displayBanner(n) {
-        var slides = this.$refs['featured-cards'];
-        if (n > slides.length) { 
-            this.card_index = 1; 
-        }  
-        if (n < 1) {
-              this.card_index = slides.length;
-        } 
-        // for (let i=0; i<slides.length; i++) {
-        //     slides[i].style.display = 'none';
-        // }
-        // slides[this.card_index - 1].style.display = "block";   
+        var slides = this.$refs['featured-cards'].children;
+      
+        console.log(slides);
+        for (let i=0; i<n; i++) {
+            slides[i].classList.add('display');
+        }
+        for (let i=n; i<slides.length; i++) {
+            slides[i].classList.add('hide');
+        }
     },
     prev() {
       console.log('prev runnning');
     },
     next() {
-      console.log('next runnning');
+      const slides = this.$refs['featured-cards'].children;
+      let firstEle = null;
+      let nextEle = null ;
+      for(let item of slides) {
+        if(item.classList.contains('display')) {
+          firstEle = item;
+          break;
+        }
+      }
+      for(let item of slides) {
+        if(item.classList.contains('hide')) {
+          nextEle = item;
+          break;
+        }
+      }
+      console.log(firstEle, nextEle);
+      firstEle.classList.remove('display');
+      firstEle.classList.add('hide');
+      nextEle.classList.add('display');
+      nextEle.classList.remove('hide');
+      
     }
   }  
 }
