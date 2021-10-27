@@ -60,7 +60,6 @@ export default {
 
 <style lang="scss" scoped>
 .categories-section {
-    height: 1200px;
     @include element(cards-wrapper) {
         display: flex;
         justify-content: space-between;
@@ -98,8 +97,5 @@ export default {
             flex-basis: 25%;
         }
     }
-}
-.img {
-    background-image: url('../../resources/img/cactus.webp');
 }
 </style>

@@ -48,7 +48,6 @@
 <style lang="scss" scoped>
 .header-section {
     padding-top: 15px;
-    border-bottom: 1px solid #222222;
     @include element(navigation-bar) {
         display: flex;
         justify-content: space-between;
