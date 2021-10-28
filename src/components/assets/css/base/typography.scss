@@ -5,3 +5,7 @@ html {
 body, input, textarea, select {
     @include ralewayRegular;
 }
+
+a {
+    text-decoration: none;
+}
