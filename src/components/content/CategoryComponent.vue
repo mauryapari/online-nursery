@@ -58,7 +58,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .categories-section {
     @include element(cards-wrapper) {
         display: flex;
@@ -83,6 +83,14 @@ export default {
         color: $brand-grey-700;
         font-size: 18px;
         line-height: 1.5;
+    }
+    .card-container {
+        @include element(img-wrapper) {
+            width: 250px;
+            height: 250px;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
     @include sm {
         @include element(card-container) {

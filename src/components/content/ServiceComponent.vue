@@ -1,5 +1,5 @@
 <template>
-    <div class="service-section container">
+    <div class="service-section container" ref="services">
         <section-header headingName="Services"></section-header>
         <div class="service-section__card-wrapper">
             <template v-for="(item, index) in itemArray">
@@ -68,14 +68,14 @@ export default {
     padding-bottom: 40px;
     @include element(card-wrapper) {
         display: flex;
-        flex-wrap: nowrap;
+        flex-flow: wrap;
     }
 
     @include element(card-container) {
-        flex-basis: 25%;
+        flex-basis: 100%;
         position: relative;
-        min-height: 500px;
-        padding: 0px 15px 30px;
+        min-height: 300px;
+        padding: 0px 15px 40px;
         &:hover {
             box-shadow: 0 0 17px rgb(23 84 116 / 18%);
         }
@@ -83,6 +83,10 @@ export default {
 
     @include element(img-wrapper) {
         padding: 20px;
+        width: 250px;
+        height: 250px;
+        margin-right: auto;
+        margin-left: auto;
     }
 
     @include element(card-img) {
@@ -103,7 +107,7 @@ export default {
         color: $brand-grey-700;
         margin-top: 10px;
         margin-bottom: 10px;
-        min-height: 180px;
+        min-height: 100px;
         padding: 10px 0px;
     }
 
@@ -124,6 +128,21 @@ export default {
         &:hover {
             transition: 0.3s;
             background-color: $brand-green;
+        }
+    }
+    @include sm {
+        @include element(card-container) {
+            flex-basis: 50%;
+            min-height: 500px;
+        }
+    }
+    @include lg {
+        @include element(card-container) {
+            flex-basis: 25%;
+            padding-bottom: 30px;
+        }
+          @include element(card-desc) {
+            min-height: 180px;
         }
     }
 }

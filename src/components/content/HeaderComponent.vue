@@ -4,12 +4,13 @@
             <div class="header-section__logo-wrapper">
                 <router-link to="/"><img src="../../resources/img/logo.webp" alt="Company Logo"></router-link>
             </div>
-            <nav class="header-section__navigation">
+            <nav class="header-section__navigation" v-if="!areSmallDevices">
                 <ul class="header-section__navigation-list">
                     <li><a class="header-section__navigation-list-item" @click="scrollMeTo('home')">Home</a></li>
                     <li><a class="header-section__navigation-list-item" @click="scrollMeTo('categories')">Categories</a></li>
                     <li><a class="header-section__navigation-list-item" @click="scrollMeTo('products')">Products</a></li>
                     <li><a class="header-section__navigation-list-item" @click="scrollMeTo('services')">Services</a></li>
+                    <li><a class="header-section__navigation-list-item" @click="scrollMeTo('contact')">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-section__icon-container">
@@ -19,11 +20,17 @@
                 <span class="header-section__log-in">Log In</span>
                 <span class="icon icon-cart"></span>
                 <span class="icon icon-shopping-bag"></span>
+                <span class="icon icon-paragraph-justify" @click="showMobileNavigation" v-if="areSmallDevices"></span>
             </div>
-        </div>
-        <div class="header-section__top-header">
-            <div class="header-section__need-help">
-                <a href="tel:124-456-7890">Need Help ?</a>
+            <div class="header-section__mobile-navigation" v-if="isMobileNavigationVisible">
+                  <ul class="header-section__mobile-navigation-list">
+                    <li><a class="header-section__mobile-navigation-list-item" @click="scrollMeTo('home')">Home</a></li>
+                    <li><a class="header-section__mobile-navigation-list-item" @click="scrollMeTo('categories')">Categories</a></li>
+                    <li><a class="header-section__mobile-navigation-list-item" @click="scrollMeTo('products')">Products</a></li>
+                    <li><a class="header-section__mobile-navigation-list-item" @click="scrollMeTo('services')">Services</a></li>
+                    <li><a class="header-section__mobile-navigation-list-item" @click="scrollMeTo('contact')">Contact</a></li>
+                    <li><router-link class="header-section__mobile-navigation-list-item" to="/plant">Plants</router-link></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -31,6 +38,16 @@
 </template>
 <script>
     export default {
+        data() {
+            return {
+                isMobileNavigationVisible: false
+            }
+        },
+        computed: {
+            areSmallDevices() {
+                return (this.$store?.getters?.isMobile || this.$store?.getters?.isSmallTablet);
+            }
+        },
         methods: {
             scrollMeTo(refName) {
                 const element = this.$parent.$children.find((item) => item.$refs[refName]);
@@ -41,8 +58,12 @@
                     top: top,
                     behavior: 'smooth'
                 });
+                this.isMobileNavigationVisible = false;
+            },
+            showMobileNavigation() {
+                this.isMobileNavigationVisible = !this.isMobileNavigationVisible;
             }
-        }
+        },
     }
 </script>
 <style lang="scss" scoped>
@@ -80,6 +101,24 @@
         span.icon {
             padding: 0px 5px;
             font-size: 18px;
+        }
+    }
+    @include element(mobile-navigation) {
+        position: absolute;
+        right: 15px;
+        background-color: $white;
+        top: 90px;
+        z-index: 2;
+        border: 1px solid $brand-grey-700;
+        padding: 10px;
+
+    }
+
+    @include element(mobile-navigation-list-item) {
+        display: inline-block;
+        padding-bottom: 10px;
+        :last-child {
+            padding-bottom: 0px;
         }
     }
 }

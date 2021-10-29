@@ -16,9 +16,14 @@ export default {
 
 .section-heading {
     text-align: center;
-    font-size: 40px;
-    line-height: 1.4;
+    font-size: 35px;
+    line-height: 1.2;
     @include ralewayRegular;
     margin-bottom: 10px;
+
+    @include sm {
+        font-size: 40px;
+        line-height: 1.4;
+    }
 }
 </style>

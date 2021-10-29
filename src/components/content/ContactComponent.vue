@@ -1,5 +1,5 @@
 <template>
-    <div class="contact-form container">
+    <div class="contact-form container" ref="contact">
         <section-header headingName="Contact"></section-header>
         <div class="contact-form__form-wrapper">
             <form>
@@ -58,6 +58,8 @@ export default {
 
 <style lang="scss">
 .contact-form {
+    padding-top: 40px;
+    padding-bottom: 40px;
     @include element(form-wrapper) {
         max-width: 992px;
         margin-right: auto;
@@ -71,6 +73,7 @@ export default {
     }
 
     @include element(input-container) {
+        margin-bottom: 30px;
         .input-field {
             @include element(container) {
                 input {
@@ -104,6 +107,8 @@ export default {
             border: 1px solid #eeeeee;
             box-shadow: none;
             padding: 12px;
+            width: 100%;
+            height: 200px;
             
             &:active,
             &:focus {
@@ -124,10 +129,12 @@ export default {
         @include element(input-container) {
             flex-basis: 50%;
             padding: 0px 10px;
+            margin-bottom: 0px;
         }
         @include element(textarea-container) {
             padding: 0px 10px;
             flex-basis: 50%;
+            height: auto;
             textarea {
                 width: 100%;
                 height: 100%;

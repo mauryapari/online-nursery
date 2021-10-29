@@ -58,12 +58,23 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .home-banner {
+    // .container {
+    //     padding-right: 0;
+    //     padding-left: 0;
+    // }
+
     @include element(card) {
         img{
             max-width: 100%;
         }
     }
+    // @include sm {
+    //     .container {
+    //         padding-right: initial;
+    //         padding-left: initial;
+    //     }
+    // }
 }
 </style>
