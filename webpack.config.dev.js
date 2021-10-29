@@ -64,6 +64,7 @@ module.exports = {
       path: path.join(__dirname, "./dist"),
       filename: "clientlib-[name]/[name].js"
     },
+    devtool: 'source-map',
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new MiniCSSExtractPlugin({

@@ -18,7 +18,7 @@
                         </template>
                         <template slot="card-footer">
                             <div class="service-section__card-footer">
-                                <a href="#" class="service-section__footer-btn">Enquire Now</a>    
+                                <clickables :btnSize="'md'">{{'Enquire Now'}}</clickables>
                             </div>
                         </template>    
                     </card-container>    
@@ -30,9 +30,10 @@
 
 <script>
 import CardContainer from '../util-content/card-container/CardContainer.vue'
+import Clickables from '../util-content/clickables/clickables.vue'
 import SectionHeader from '../util-content/section-header/SectionHeader.vue'
 export default {
-  components: { SectionHeader, CardContainer },
+  components: { SectionHeader, CardContainer, Clickables },
   data() {
       return {
           itemArray: [{
