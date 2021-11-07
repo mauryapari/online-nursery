@@ -60,10 +60,6 @@ export default {
 
 <style lang="scss">
 .home-banner {
-    // .container {
-    //     padding-right: 0;
-    //     padding-left: 0;
-    // }
 
     @include element(card) {
         img{

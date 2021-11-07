@@ -2,7 +2,7 @@
     <div class="contact-form container" ref="contact">
         <section-header headingName="Contact"></section-header>
         <div class="contact-form__form-wrapper">
-            <form>
+            <form @submit.prevent="submitContactData">
                 <fieldset>
                     <div class="contact-form__field-wrappers">
                         <div class="contact-form__input-container">
@@ -11,7 +11,9 @@
                                     :fieldLabel="item.fieldLabel"
                                     :fieldPlaceholder="item.fieldPlaceholder"
                                     :value="item.value"
-                                    :isRequired="item.isRequired"></input-component>
+                                    :isRequired="item.isRequired"
+                                    :errorMsg="item.errorMsg"
+                                    @onChange="getInputValue"></input-component>
                             </template>
                         </div>
                         <div class="contact-form__textarea-container">
@@ -39,20 +41,94 @@ export default {
               fieldLabel: 'Name',
               fieldPlaceholder: 'Name',
               isRequired: true,
-              value: ''
+              value: '',
+              errorMsg: '',
+              type: 'text'
           }, {
               fieldLabel: 'Mobile Number',
               fieldPlaceholder: 'Mobile Number',
               isRequired: true,
-              value: ''
+              value: '',
+              errorMsg: '',
+              type: 'tel'
           }, {
               fieldLabel: 'Email ID',
               fieldPlaceholder: 'Email ID',
               isRequired: true,
-              value: ''
-          }]
+              value: '',
+              errorMsg: '',
+              type: 'email'
+          }],
       }
-  }
+    },
+    watch: {
+        itemArray: {
+            deep: true,
+            handler() {
+                this.isFormTouched();
+            }
+        },
+    },
+    methods: {
+        isFormTouched() {
+            this.itemArray.forEach((item) => {
+                if(item.value) {
+                    item.errorMsg = '' 
+                }
+            })
+        },
+        checkFormData() {
+            let flag = true;
+            this.itemArray.forEach((item) => {
+                if (item.isRequired && !item.value) {
+                    item.errorMsg = `Please fill correct value in ${item.fieldLabel}.`;
+                    flag = false;
+                } else if(!this.checkData(item)){
+                    console.log('second check');
+                    item.errorMsg = 'Value is wrong';
+                    flag = false;
+                }
+            });
+            return flag;
+        },
+        submitContactData() {
+            const isDataCorrect = this.checkFormData();
+            if(isDataCorrect) {
+                let formData = {}
+                this.itemArray.forEach((item) => {
+                    formData[`${item.fieldLabel}`] = item.value
+                })
+                console.log(formData);
+            }
+        },
+        getInputValue(val) {
+            const item = this.itemArray.find((item) => {
+                return item.fieldLabel === val.fieldLabel;
+            });
+            item.value = val.value;
+        },
+        checkData(item) {
+            const inputType = item.type;
+            const value = item.value;
+            console.log(item);
+            switch(inputType) {
+                case 'email': {
+                    const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return reg.test(value);
+                }
+
+                case 'tel': {
+                    const numReg = /^[0]?[789]\d{9}$/;
+                    return numReg.test(value);
+                }
+                default: {
+                    if(value) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
 }
 </script>
 

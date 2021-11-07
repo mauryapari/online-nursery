@@ -9,15 +9,13 @@
             ref="inputField"
             :id="inputFieldId" 
             :name="fieldLabel" 
-            class="input-field__elem input-error__highlight" 
+            class="input-field__elem "
+            :class="{ 'input-error__highlight': errorMsg }" 
             :placeholder="fieldPlaceholder"
             :disabled="isDisabled" 
             :value="value" 
             @input="onValueEnter">
-        <!-- <div v-if="errorMsg" class="input-error__message" role="alert" v-html="errorMsg"></div>
-        <div v-if="showErrorMsg" class="input-error__message" role="alert">
-            <slot name="error-msgs"></slot>
-        </div>   -->
+        <div v-if="errorMsg" class="input-error__message" role="alert" v-html="errorMsg"></div>
     </div>
 </template>
 
@@ -64,17 +62,38 @@ export default {
         }
     },
     methods: {
-        preventAlphabet() {
-
+        preventAlphabet(e) {
+             if (this.numeric) {
+                if (e.keyCode !== 13) { // if not enter
+                    // disallow something that is not a number. space is a number. And only 5 numbers needs to be present
+                    if (isNaN(Number(e.key)) || e.key === ' ') {
+                        e.preventDefault();
+                    }
+                }
+            }
         },
 
-        onValueEnter() {
-
+        onValueEnter(e) {
+            this.inputValue = e.target.value;
+            const value = {
+                fieldLabel: this.fieldLabel,
+                value: e.target.value
+            }
+            this.$emit('onChange', value);
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+.input-error {
+    @include element(message) {
+        margin-top: 10px;
+        color: red;
+    }
 
+    @include element(highlight) {
+        border: 1px solid red !important;
+    }
+}
 </style>
