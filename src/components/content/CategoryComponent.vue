@@ -78,11 +78,13 @@ export default {
         line-height: 1.4;
         font-weight: 500;
         margin-bottom: 10px;
+        text-align: center;
     }
     @include element(card-desc) {
         color: $brand-grey-700;
         font-size: 18px;
         line-height: 1.5;
+        text-align: center;
     }
     .card-container {
         @include element(img-wrapper) {

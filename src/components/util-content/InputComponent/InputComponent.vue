@@ -1,6 +1,6 @@
 <template>
     <div class="input-field__container input-error" :class="{'input-error--show': errorMsg || showErrorMsg}">
-        <div class="input-field__label-container">
+        <div class="input-field__label-container" v-if="showFieldLabel">
             <label :for="inputFieldId" class="input-field__label input-error__label"
                 :class="{'input-field__label--required': isRequired}">{{fieldLabel}}</label>
         </div>
@@ -52,6 +52,10 @@ export default {
         },
         numeric: {
             type: Boolean,
+        },
+        showFieldLabel: {
+            type: Boolean,
+            default: true
         }
     },
     data() {

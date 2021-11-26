@@ -5,18 +5,18 @@ Vue.use(VueRouter);
 
 import HomePage from './pages/HomePage.vue';
 import AccountPage from './pages/AccountPage.vue';
+import PlantPage from './pages/SearchPage.vue';
+import PlantPdpPage from './pages/Plant.vue';
 
 const router = new VueRouter({
     routes: [
         { path:'/', component: HomePage },
-        { path: '/account', component: AccountPage }
-        // beforeEnter: (to, enter, next)=> {
-        //     if(true) {
-        //         next('/account');
-        //     } else {
-        //         next();
-        //     }
-        // }}
+        { path: '/account', component: AccountPage },
+        { path: '/plant', component:  PlantPage },
+        {   path: '/plant/:id',
+            name:'plant',
+            component: PlantPdpPage
+        }
     ]
 });
 

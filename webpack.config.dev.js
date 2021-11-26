@@ -7,8 +7,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     entry: {
-      site: path.join(__dirname, './src/app.js'),
-      dependencies: path.join(__dirname,'./src/components/assets/index.js')
+      dependencies: path.join(__dirname,'./src/components/assets/index.js'),
+      site: path.join(__dirname, './src/app.js')
     },
     mode: "development",
     module: {

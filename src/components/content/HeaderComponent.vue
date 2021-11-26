@@ -11,7 +11,7 @@
                     <li><a class="header-section__navigation-list-item" @click="scrollMeTo('products')">Products</a></li>
                     <li><a class="header-section__navigation-list-item" @click="scrollMeTo('services')">Services</a></li>
                     <li><a class="header-section__navigation-list-item" @click="scrollMeTo('contact')">Contact</a></li>
-                    <li><router-link class="header-section__navigation-list-item" to="/account">Plants</router-link></li>
+                    <li><router-link class="header-section__navigation-list-item" to="/plant">Plants</router-link></li>
                 </ul>
             </nav>
             <div class="header-section__icon-container">
@@ -67,7 +67,8 @@
                 const element = this.$parent.$children.find((item) => item.$refs[refName]);
                 if(!element) {
                     this.$router.push('/');
-                    return;
+                    // return;
+                    // const ele = this.$parent.$children.find((item) => item.$refs[refName]);
                 }
                 var top = element?.$el?.offsetTop;
 

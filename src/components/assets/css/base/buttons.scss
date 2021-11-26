@@ -5,8 +5,31 @@
         color: $white;
         border-radius: 30px;
         &:hover {
+            cursor: pointer;
             transition: 0.3s;
             background-color: $brand-green;
+        }
+    }
+
+    @include modifier(secondary) {
+        padding: 10px 24px;
+        background-color: $brand-light-green;
+        color: $white;
+        border-radius: 5px;
+        &:hover {
+            cursor: pointer;
+            background-color: $brand-green;
+        }
+    }
+
+    @include modifier(tertiary) {
+        padding: 10px 24px;
+        background-color: $brand-grey-500;
+        color: $white;
+        &:hover {
+            transition: 0.5s;
+            background-color: $brand-grey-700;
+            cursor: pointer;
         }
     }
 

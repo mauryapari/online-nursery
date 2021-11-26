@@ -4,7 +4,7 @@
         <div class="service-section__card-wrapper">
             <template v-for="(item, index) in itemArray">
                 <div :key="index" class="service-section__card-container">
-                    <card-container :isFooter="true">
+                    <card-container :isFooter="true" :showHoverEffect="true">
                         <template slot="card-image">
                             <div class="service-section__img-wrapper">
                                 <img :src="item.src" :alt="item.alt" class="service-section__card-img"/>
@@ -75,10 +75,6 @@ export default {
         flex-basis: 100%;
         position: relative;
         min-height: 300px;
-        padding: 0px 15px 40px;
-        &:hover {
-            box-shadow: 0 0 17px rgb(23 84 116 / 18%);
-        }
     }
 
     @include element(img-wrapper) {
@@ -100,6 +96,7 @@ export default {
         margin-bottom: 10px;
         font-weight: 500;
         color: $brand-grey-600;
+        text-align: center;
     }
 
     @include element(card-desc) {
@@ -109,27 +106,14 @@ export default {
         margin-bottom: 10px;
         min-height: 100px;
         padding: 10px 0px;
+        text-align: center;
     }
 
     @include element(card-footer) {
-        position: absolute;
-        bottom: 20px;
-        left: 0;
         width: 100%;
         text-align: center;
     }
 
-    @include element(footer-btn) {
-        font-size: 12px;
-        padding: 10px 24px;
-        background-color: $brand-light-green;
-        color: $white;
-        border-radius: 30px;
-        &:hover {
-            transition: 0.3s;
-            background-color: $brand-green;
-        }
-    }
     @include sm {
         @include element(card-container) {
             flex-basis: 50%;

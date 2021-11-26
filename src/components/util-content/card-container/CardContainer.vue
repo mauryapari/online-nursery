@@ -1,5 +1,5 @@
 <template>
-    <div class="card-container">
+    <div class="card-container" :class="{'card-container--hover': showHoverEffect}">
         <div class="card-container__img-wrapper">
             <slot name="card-image"></slot>
         </div>
@@ -21,6 +21,10 @@ export default {
         isFooter: {
             type: Boolean,
             default: false
+        },
+        showHoverEffect: {
+            type: Boolean,
+            default: false
         }
     }
 }
@@ -28,16 +32,15 @@ export default {
 
 <style lang="scss" scoped>
 .card-container {
-    @include element(img-wrapper) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
 
-    }
-
-    @include element(text-wrapper) {
-        text-align: center;
-    }
-
-    @include element(desc-wrapper) {
-        text-align: center;
+    @include modifier(hover) {
+        &:hover {
+            box-shadow: 0 0 17px rgb(23 84 116 / 18%);
+        }
     }
 }
 </style>
