@@ -15,20 +15,20 @@
                 </ul>
             </nav>
             <div class="header-section__icon-container">
-                <span class="icon icon-user" @click="showUserInfo"></span>
+                <span class="icon icon-user" @click="showUserInfo" v-if="isMobile"></span>
                 <span class= "header-section__mobile-user" v-if="isUserInfoVisible">
                     <ul class="header-section__mobile-user-list">
-                        <li><a class="header-section__mobile-user-list-item">Login</a></li>
-                        <li><a class="header-section__mobile-user-list-item">Sign In</a></li>
+                        <li><a href="#" class="header-section__mobile-user-list-item" @click.prevent="showModal('login-form')">Login</a></li>
+                        <li><a href="#" class="header-section__mobile-user-list-item" @click.prevent="showModal('signin-form')">Sign In</a></li>
                     </ul>
                 </span>
                 <span v-if="!isMobile">
-                    <span class="header-section__sign-in">Sign In</span>
+                    <span class="header-section__sign-in" @click.prevent="showModal('signin-form')">Sign In</span>
                     <span>|</span>
-                    <span class="header-section__log-in">Log In</span>
+                    <span class="header-section__log-in" @click.prevent="showModal('login-form')">Log In</span>
                 </span>
                 <span class="icon icon-cart"></span>
-                <span class="icon icon-shopping-bag"></span>
+                <router-link to="/cart"><span class="icon icon-shopping-bag"></span></router-link>
                 <span class="icon icon-paragraph-justify" @click="showMobileNavigation" v-if="areSmallDevices"></span>
             </div>
             <div class="header-section__mobile-navigation" v-if="isMobileNavigationVisible">
@@ -91,6 +91,9 @@
                         this.isMobileNavigationVisible = false;
                     }
                 }
+            },
+            showModal(value) {
+                this.$store.dispatch('setModalName', value);
             }
         },
     }
@@ -169,17 +172,40 @@
         :last-child {
             padding-bottom: 0px;
         }
+        
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
+    @include element(sign-in) {
+        &:hover {
+            cursor: pointer;
+            color: $brand-green;
+        }
+
+        &:active {
+            color: $brand-green;
+        }
+    }
+
+    @include element(log-in) {
+        &:hover {
+            cursor: pointer;
+            color: $brand-green;
+        }
+
+        &:active {
+            color: $brand-green;
+        }
     }
 
     .router-link-active {
-        // border-bottom: 2px solid $brand-green;
         color: $brand-green;
     }
 
     @include sm {
-         @include element(icon-container) {
-            text-align: right;
-        }
+       
          @include element(logo-wrapper) {
             img{
                 max-width: 250px;

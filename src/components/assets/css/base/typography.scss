@@ -8,4 +8,9 @@ body, input, textarea, select {
 
 a {
     text-decoration: none;
+    color: $brand-grey-700;
+    &:active,
+    &:visited {
+        color: $brand-grey-700;
+    }
 }

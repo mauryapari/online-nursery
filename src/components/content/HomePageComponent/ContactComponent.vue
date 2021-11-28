@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import Clickables from '../util-content/clickables/clickables.vue'
-import InputComponent from '../util-content/InputComponent/InputComponent.vue'
-import SectionHeader from '../util-content/section-header/SectionHeader.vue'
+import Clickables from '../../util-content/clickables/clickables.vue'
+import InputComponent from '../../util-content/InputComponent/InputComponent.vue'
+import SectionHeader from '../../util-content/section-header/SectionHeader.vue'
 export default {
   components: { SectionHeader, InputComponent, Clickables },
   data() {
@@ -113,13 +113,11 @@ export default {
             console.log(item);
             switch(inputType) {
                 case 'email': {
-                    const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                    return reg.test(value);
+                    return window?.globalFun?.util?.emailValidation(value); //reg.test(value);
                 }
 
                 case 'tel': {
-                    const numReg = /^[0]?[789]\d{9}$/;
-                    return numReg.test(value);
+                    return window?.globalFun?.util?.telValidation(value); 
                 }
                 default: {
                     if(value) {

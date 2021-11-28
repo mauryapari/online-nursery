@@ -34,8 +34,8 @@
                            </div>
                         </div>
                         <div class="plant-detail__cta-wrapper">
-                           <clickables :btnSize="'lg'" :btnType="'secondary'">{{'Add to Cart'}}</clickables>
-                           <clickables :btnSize="'lg'" :btnType="'secondary'">{{'Buy Now'}}</clickables>
+                           <clickables :btnSize="'lg'" :btnType="'secondary'" @click.native="buyProduct()">{{'Add to Cart'}}</clickables>
+                           <clickables :btnSize="'lg'" :btnType="'secondary'" @click.native="buyProduct('now')">{{'Buy Now'}}</clickables>
                         </div>
                      </div>
                   </div>
@@ -80,6 +80,12 @@ export default {
      getInputValue(data) {
         // write code to check pincode
       //   Please Enter a Valid Pincode
+     },
+     buyProduct(val) {
+        this.$store.dispatch('addToCart', { payload: this.getPlantData, quantity: 2 });
+        if(val === 'now') {
+           this.$router.push('/cart');
+        }
      }
   }
 }
@@ -87,7 +93,7 @@ export default {
 
 <style lang="scss">
 .plant-detail {
-   margin: 20px;
+   margin: 20px 0px;
    @include element(wrapper) {
       display: flex;
    }

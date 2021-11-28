@@ -1,4 +1,5 @@
 .btn {
+    display: inline-block;
     @include modifier(primary) {
         padding: 10px 24px;
         background-color: $brand-light-green;

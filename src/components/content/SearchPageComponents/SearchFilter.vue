@@ -1,14 +1,14 @@
 <template>
     <div class="search-filters">
-        <div class="search-filters__heading">
-            <span>filters</span>
+        <div class="search-filters__heading-wrapper">
+            <div class="search-filters__heading-title">Filters</div>
         </div>
-        <div class="search-filters__filters-section">
+        <!-- <div class="search-filters__filters-section">
             <div class="search-filters__filters-type" v-for="(value, key, index) in filter" :key="index">
                 <div class="search-fiter__filters-heading">{{key}}</div>
                 <div class="search-filters__filters-list">
                     <!-- <div class="search-filters__filters-item" :key="index">{{item.value}}</div> -->
-                    <div class="search-filters__filters-item" v-for="(item,itemIndex) in value" :key="itemIndex">
+                    <!-- <div class="search-filters__filters-item" v-for="(item,itemIndex) in value" :key="itemIndex">
                         <input :id="key + item.name + itemIndex" type="checkbox" :value="item.name" v-model="brandName">
                         <div class="search-filter__label-container">
                             <label :for="key + item.name + itemIndex" class="search-filter__label">
@@ -19,12 +19,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
-const brand = require('../../resources/json/brands.json');
+const brand = require('../../../resources/json/brands.json');
 export default {
     data() {
         return {
@@ -49,7 +49,15 @@ export default {
 
 <style lang="scss">
 .search-filters {
-    
+    padding: 20px;
+    @include element(heading-wrapper) {
+        padding: 10px 0px;
+    }
+
+    @include element(heading-title) {
+        font-size: 18px;
+        font-weight: 400;
+    }
 }
 
 </style>

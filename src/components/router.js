@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage.vue';
 import AccountPage from './pages/AccountPage.vue';
 import PlantPage from './pages/SearchPage.vue';
 import PlantPdpPage from './pages/Plant.vue';
+import CartPage from './pages/Cart.vue';
 
 const router = new VueRouter({
     routes: [
@@ -16,7 +17,8 @@ const router = new VueRouter({
         {   path: '/plant/:id',
             name:'plant',
             component: PlantPdpPage
-        }
+        },
+        { path: '/cart', component: CartPage }
     ]
 });
 

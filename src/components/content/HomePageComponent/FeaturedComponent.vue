@@ -29,35 +29,35 @@
 </template>
 
 <script>
-import SectionHeader from '../util-content/section-header/SectionHeader.vue'
-import Carousel from '../util-content/carousel/Carousel.vue';
-import CardContainer from '../util-content/card-container/CardContainer.vue';
+import SectionHeader from '../../util-content/section-header/SectionHeader.vue'
+import Carousel from '../../util-content/carousel/Carousel.vue';
+import CardContainer from '../../util-content/card-container/CardContainer.vue';
 export default {
   components: { SectionHeader, Carousel, CardContainer },
   data() {
     return {
       itemArray: [{
-        img: require('../../resources/img/Beautiful-Yellow-Daffodils_1499169127126.jpg'),
+        img: require('../../../resources/img/Beautiful-Yellow-Daffodils_1499169127126.jpg'),
         name: 'Beautiful Yellow Daffodils',
         price: '870'
       }, {
-        img: require('../../resources/img/Campanula-Flowers-Plants_1499169413504.jpg'),
+        img: require('../../../resources/img/Campanula-Flowers-Plants_1499169413504.jpg'),
         name: 'Campula Flower Plant',
         price: '870'
       }, {
-        img: require('../../resources/img/young-Schefflera-Plant_1499169220643.jpg'),
+        img: require('../../../resources/img/young-Schefflera-Plant_1499169220643.jpg'),
         name: 'Young Schefflera Plant',
         price: '870'
       }, {
-        img: require('../../resources/img/Madagascar-Periwinkle-Flower-Plant_1499169348075.jpg'),
+        img: require('../../../resources/img/Madagascar-Periwinkle-Flower-Plant_1499169348075.jpg'),
         name: 'Madagascar Periwinkle Flower Plant',
         price: '870'
       }, {
-        img: require('../../resources/img/Petunia-Flowering-Plant_1499169561997.jpg'),
+        img: require('../../../resources/img/Petunia-Flowering-Plant_1499169561997.jpg'),
         name: 'Petunia Flowring Plant',
         price: '870'
       }, {
-        img: require('../../resources/img/Snake-Plant_1499169649515.jpg'),
+        img: require('../../../resources/img/Snake-Plant_1499169649515.jpg'),
         name: 'Snake Plant',
         price: '870'
       }],

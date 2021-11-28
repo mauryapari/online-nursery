@@ -76,7 +76,7 @@ export default {
   @include element(heading) {
     h2 {
       font-size: 22px;
-      margin-bottom: 15px;
+      margin-bottom: 30px;
       font-weight: 500;
     }
   }

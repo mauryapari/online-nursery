@@ -16,16 +16,16 @@
 </template>
 
 <script>
-import Carousel from '../util-content/carousel/Carousel.vue';
+import Carousel from '../../util-content/carousel/Carousel.vue';
 export default {
     components: { Carousel },
     data() {
         return {
             cards: [{
-                src: require('../../resources/img/banner-img-1.webp'),
+                src: require('../../../resources/img/banner-img-1.webp'),
                 alt: 'Banner 1'
             }, {
-                src: require('../../resources/img/banner-img-2.webp'),
+                src: require('../../../resources/img/banner-img-2.webp'),
                 alt: 'Banner 2'
             }],
             currentIndex: 0,

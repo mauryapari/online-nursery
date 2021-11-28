@@ -9,7 +9,7 @@
         <div class="card-container__desc-wrapper">
             <slot name="card-description"></slot>
         </div>
-        <div class="card-container__footer" v-if="isFooter">
+        <div class="card-container__footer" v-if="hasFooter">
             <slot name="card-footer"></slot>
         </div>
     </div>
@@ -18,7 +18,7 @@
 <script>
 export default {
     props: {
-        isFooter: {
+        hasFooter: {
             type: Boolean,
             default: false
         },
