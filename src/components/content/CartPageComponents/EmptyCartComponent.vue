@@ -1,5 +1,5 @@
 <template>
-   <section-component>
+   <section-component :showContainer="true">
       <template slot="page-content">
          <div class="empty-cart">
             <card-container :hasFooter="true">

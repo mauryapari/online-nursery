@@ -18,7 +18,7 @@ const router = new VueRouter({
             name:'plant',
             component: PlantPdpPage
         },
-        { path: '/cart', component: CartPage }
+        { path: '/cart', component:  CartPage }
     ]
 });
 

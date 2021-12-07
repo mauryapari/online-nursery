@@ -1,5 +1,5 @@
 <template>
-   <div class="container">
+   <div :class="{'container': showContainer }">
       <slot name="page-breadcrumb" v-if="hasBreadCrumb"></slot>
       <div class="page-section">
          <slot name="page-content"></slot>
@@ -11,6 +11,10 @@
 export default {
    props: {
       hasBreadCrumb: {
+         type: Boolean,
+         default: false
+      },
+      showContainer: {
          type: Boolean,
          default: false
       }

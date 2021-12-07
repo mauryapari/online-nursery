@@ -39,7 +39,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .user-form {
    display: flex;
    justify-content: center;

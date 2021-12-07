@@ -1,5 +1,5 @@
 <template>
-  <section-component v-if="getRandomProducts.length">
+  <section-component v-if="getRandomProducts.length" :showContainer="true">
     <template slot="page-content">
       <div class="similar-products">
         <div class="similar-products__heading">

@@ -6,7 +6,13 @@ const cartStore = {
    },
    getters: {
       getCartItems(state) {
+         return state.cartItemsID.length;
+      },
+      getCartData(state) {
          return state.cartItems;
+      },
+      getCartItemObj(state) {
+         return state.cartItemsObj;
       }
    },
    mutations: {
@@ -15,18 +21,24 @@ const cartStore = {
          const obj = {
             itemName: data.itemName,
             itemPrice: data.itemPrice,
-            totalAmount: data.itemPrice * data.quantity
+            totalPrice: data.itemPrice * data.quantity,
+            quantity: data?.quantity,
+            imgSrc: data?.item?.imgpath,
+            itemId: data?.itemId
          }
          if(itemIndex < 0) {
             state.cartItemsID.push(data.itemId);  
             state.cartItems.push(obj);
+            state.cartItemsObj.push(data?.item);
             return;
          }
+         // state.cartItemsObj[itemIndex] = data/
          state.cartItems[itemIndex] = obj;
       }
    },
    actions: {
       addToCart(context, data) {
+         console.log(data);
          const itemOBj = {
             item: data?.payload,
             itemId: data?.payload?.variantId,

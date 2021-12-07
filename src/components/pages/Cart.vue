@@ -3,22 +3,35 @@
       <header-component></header-component>
       <div class="background-page">
             <empty-cart-component v-if="!getCartItems"></empty-cart-component>
-         <div class="cart-page" v-else>
-            <cart-list-compoenent></cart-list-compoenent>
-            <cart-invoice-compoenent></cart-invoice-compoenent>
+         <div class="container" v-else>
+            <div class="cart-page">
+               <div class="cart-page__list">
+                  <cart-list-component></cart-list-component>
+               </div>
+               <div class="cart-page__invoice">
+                  <cart-invoice-component></cart-invoice-component>
+               </div>
+            </div>
          </div>
       </div>
     </div>
 </template>
 <script>
 import HeaderComponent from '../content/HeaderComponent.vue';
-import SectionComponent from '../util-content/page-background/SectionComponent.vue';
 import EmptyCartComponent from '../content/CartPageComponents/EmptyCartComponent.vue';
+import CartListComponent from '../content/CartPageComponents/CartListComponent.vue';
+import CartInvoiceComponent from '../content/CartPageComponents/CartInvoiceComponent.vue';
+
 export default {
-  components: { HeaderComponent, SectionComponent, EmptyCartComponent },
+  components: { HeaderComponent, EmptyCartComponent, CartListComponent, CartInvoiceComponent },
   computed: {
      getCartItems() {
-        return this.$store?.getters?.getCartData?.length;
+        return this.$store?.getters?.getCartItems;
+     }
+  },
+  watch: {
+     getCartItems(){
+        //
      }
   }
 }
@@ -27,5 +40,18 @@ export default {
 <style lang="scss" scoped>
 .cart-page {
    margin: 20px 0px;
+   display: flex;
+   flex-direction: column;
+   @include sm {
+      flex-direction: row;
+      @include element(list) {
+         flex-basis: 75%;
+      }
+
+      @include element(invoice) {
+         flex-basis: 25%;
+         margin-left: 20px;
+      }
+   }
 }
 </style>

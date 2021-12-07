@@ -1,6 +1,6 @@
 <template>
     <div class="background-page">
-        <section-component :hasBreadCrumb="true">
+        <section-component :hasBreadCrumb="true" :showContainer="true">
             <template slot="page-breadcrumb">
                 <breadcrumb-component></breadcrumb-component>
             </template>
