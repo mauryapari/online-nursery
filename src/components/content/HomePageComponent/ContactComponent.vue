@@ -84,7 +84,6 @@ export default {
                     item.errorMsg = `Please fill correct value in ${item.fieldLabel}.`;
                     flag = false;
                 } else if(!this.checkData(item)){
-                    console.log('second check');
                     item.errorMsg = 'Value is wrong';
                     flag = false;
                 }

@@ -16,6 +16,9 @@ import LoginForm from './components/content/Forms/LoginForm.vue';
           getModalName() {
               return this.$store?.getters?.getModalName;
           }
+      },
+      mounted() {
+          this.$store.dispatch('isUserRegistered');
       }
     };
 </script>

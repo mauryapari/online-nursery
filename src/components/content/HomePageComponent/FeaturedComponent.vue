@@ -74,7 +74,6 @@ export default {
         slides[n].classList.add('last');
     },
     prev() {
-      // console.log('prev runnning');
       this.currentIndex -= 1;
     },
     next() {

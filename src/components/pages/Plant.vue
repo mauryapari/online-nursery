@@ -19,6 +19,15 @@
                            <h1>{{getPlantData.itemname}}</h1>
                         </div>
                         <div class="plant-detail__price-wrapper"><p v-html="getPlantPrice"></p></div>
+                        <div class="plant-detail__quantity">
+                           <input-component
+                              :fieldLabel="'Quantity'"
+                              :fieldPlaceholder="'quantity'"
+                              :value="this.quantity"
+                              :isRequired="true"
+                              :errorMsg="''"
+                              @onChange="getQuantity"></input-component>
+                        </div>
                         <div class="plant-detail__delivery-wrapper">
                            <div class="plant-detail__delivery-title">Delivery</div>
                            <div class="plant-detail__delivery-desc">
@@ -28,7 +37,7 @@
                                     :fieldLabel="'Pincode'"
                                     :fieldPlaceholder="'Enter Pincode'"
                                     :errorMsg="pincodeErrorMsg"
-                                    @onChange="getInputValue"></input-component>
+                                    @onChange="getPincodeValue"></input-component>
                                  <clickables class="plant-detail__pincode-check" :btnSize="'sm'" :btnType="'tertiary'">{{'Check'}}</clickables>
                               </div>
                            </div>
@@ -57,7 +66,8 @@ export default {
   components: { HeaderComponent, BreadcrumbComponent, Clickables, InputComponent, SimilarProductsComponent, SectionComponent },
   data() {
      return {
-        pincodeErrorMsg: ''
+        pincodeErrorMsg: '',
+        quantity: 1
      }
   },
   computed: {
@@ -77,12 +87,15 @@ export default {
         const data = window?.globalFun?.util?.getPlantDetail(id);
         this.$store.dispatch('setPlantDetail', data); 
      },
-     getInputValue(data) {
+     getPincodeValue(data) {
         // write code to check pincode
       //   Please Enter a Valid Pincode
      },
+     getQuantity(data) {
+        this.quantity = Number(data.value);
+     },
      buyProduct(val) {
-        this.$store.dispatch('addToCart', { payload: this.getPlantData, quantity: 2 });
+        this.$store.dispatch('addToCart', { payload: this.getPlantData, quantity: this.quantity });
         if(val === 'now') {
            this.$router.push('/cart');
         }

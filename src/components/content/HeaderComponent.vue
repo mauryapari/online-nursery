@@ -16,19 +16,25 @@
             </nav>
             <div class="header-section__icon-container">
                 <span class="icon icon-user" @click="showUserInfo" v-if="isMobile"></span>
-                <span class= "header-section__mobile-user" v-if="isUserInfoVisible">
+                <span class= "header-section__mobile-user" v-if="isUserInfoVisible && !isUserLoggedIn">
                     <ul class="header-section__mobile-user-list">
                         <li><a href="#" class="header-section__mobile-user-list-item" @click.prevent="showModal('login-form')">Login</a></li>
                         <li><a href="#" class="header-section__mobile-user-list-item" @click.prevent="showModal('signin-form')">Sign In</a></li>
                     </ul>
                 </span>
-                <span v-if="!isMobile">
+                <span v-if="!isMobile && !isUserLoggedIn">
                     <span class="header-section__sign-in" @click.prevent="showModal('signin-form')">Sign In</span>
                     <span>|</span>
                     <span class="header-section__log-in" @click.prevent="showModal('login-form')">Log In</span>
                 </span>
+                <span class="header-section__log-in" @click="logout" v-if="isUserLoggedIn">Sign Out</span>
                 <span class="icon icon-cart"></span>
-                <router-link to="/cart"><span class="icon icon-shopping-bag"></span></router-link>
+                <span class="header-section__cart-container">
+                    <router-link to="/cart"><span class="icon icon-shopping-bag"></span></router-link>
+                    <span class="header-section__cart-item-count-bg" v-if="getCartItems">
+                        <span class="header-section__cart-item-count">{{getCartItems}}</span>
+                    </span>
+                </span>
                 <span class="icon icon-paragraph-justify" @click="showMobileNavigation" v-if="areSmallDevices"></span>
             </div>
             <div class="header-section__mobile-navigation" v-if="isMobileNavigationVisible">
@@ -60,6 +66,16 @@
             },
             areSmallDevices() {
                 return (this.$store?.getters?.isMobile || this.$store?.getters?.isSmallTablet);
+            },
+            isUserLoggedIn() {
+                return this.$store?.getters?.getUserLoggedIn;
+            },
+            getCartItems() {
+                // const items = 
+                // if(items.length) {
+                //     return items.length
+                // }
+                return this.$store?.getters?.getCartItems;
             }
         },
         methods: {
@@ -94,6 +110,12 @@
             },
             showModal(value) {
                 this.$store.dispatch('setModalName', value);
+            },
+            logout() {
+                const isDestroyed = window?.globalFun?.util.setCookie('auth-token', '', 0,'/');
+                if(isDestroyed) {
+                    this.$store.dispatch('isUserRegistered');
+                }
             }
         },
     }
@@ -133,7 +155,7 @@
         position: relative;
         span.icon {
             padding: 0px 5px;
-            font-size: 18px;
+            font-size: 22px;
         }
     }
     @include element(mobile-navigation) {
@@ -179,6 +201,7 @@
     }
     
     @include element(sign-in) {
+        font-size: 18px;
         &:hover {
             cursor: pointer;
             color: $brand-green;
@@ -190,6 +213,7 @@
     }
 
     @include element(log-in) {
+        font-size: 18px;
         &:hover {
             cursor: pointer;
             color: $brand-green;
@@ -202,6 +226,31 @@
 
     .router-link-active {
         color: $brand-green;
+    }
+
+    @include element(cart-container) {
+        position: relative;
+    }
+
+    @include element(cart-item-count-bg) {
+        &::before {
+            content: '';
+            background-color: $brand-grey-200;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            height: 15px;
+            width: 15px;
+            top: 5px;
+            right: 0px;
+        }
+    }
+    @include element(cart-item-count) {
+        font-size: 14px;
+        color: black;
+        position: absolute;
+        top: 4px;
+        right: 5px;
     }
 
     @include sm {

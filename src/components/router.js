@@ -13,7 +13,7 @@ const router = new VueRouter({
     routes: [
         { path:'/', component: HomePage },
         { path: '/account', component: AccountPage },
-        { path: '/plant', component:  PlantPage },
+        { path: '/plant', component: PlantPage },
         {   path: '/plant/:id',
             name:'plant',
             component: PlantPdpPage

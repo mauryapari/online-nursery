@@ -1,7 +1,7 @@
 <template>
    <user-form :modalTitle="title" :modalSubTitle="subTitle">
       <template>
-         <form @submit.prevent="submitSignInForm">
+         <form @submit.prevent="submitLogInForm">
             <fieldset>
                <div class="user-form__field-wrappers">
                   <div class="user-form__input-container">
@@ -11,14 +11,14 @@
                            :value="email"
                            :isRequired="true"
                            :errorMsg="mailErrorMsg"
-                           v-model="email"></input-component>
+                           @onChange="getInputValue"></input-component>
                         <input-component
                            :fieldLabel="'password'"
                            :fieldPlaceholder="'Password'"
                            :value="password"
                            :isRequired="true"
                            :errorMsg="passErrorMsg"
-                           v-model="password"></input-component>
+                           @onChange="getInputValue"></input-component>
                   </div>                  
                </div>
             </fieldset>
@@ -50,19 +50,26 @@ export default {
       }
    },
    methods: {
+      getInputValue(data) {
+         if(data.fieldLabel === 'email') {
+            this.email = data.value
+         }
+         if(data.fieldLabel === 'password') {
+            this.password = data.value
+         }
+      },
       showSignInForm() {
          this.$store.dispatch('setModalName', 'signin-form');
       },
-      submitSignInForm() {
+      submitLogInForm() {
          const emailCheck = window?.globalFun?.util?.emailValidation(this.email);
-         if(emailCheck && this.password.length > 6) {
+         if(emailCheck) {
             //action call for signin
-            return;
-         } else if(!emailCheck) {
-            this.mailErrorMsg = 'Please provide a correct mail ID';
+            this.$store.dispatch('logIn', { email: this.email , password: this.password });
+            this.mailErrorMsg = '';
             return;
          } else {
-            this.passErrorMsg = 'Please enter the correct password';
+            this.mailErrorMsg = 'Please provide a correct mail ID';
          }
       }
    }

@@ -24,7 +24,16 @@
          telValidation(val) {
             const numReg = /^[0]?[789]\d{9}$/;
             return numReg.test(value);
-         }
+         },
+
+         setCookie(cname, cvalue, exdays, path) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=" + path;
+            return true;
+        }
+        
       };
 
       return {

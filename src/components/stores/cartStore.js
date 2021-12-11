@@ -21,24 +21,32 @@ const cartStore = {
          const obj = {
             itemName: data.itemName,
             itemPrice: data.itemPrice,
-            totalPrice: data.itemPrice * data.quantity,
             quantity: data?.quantity,
-            imgSrc: data?.item?.imgpath,
+            totalPrice: data.itemPrice * data.quantity,
+            imgSrc: data.imgSrc || data?.item?.imgpath,
             itemId: data?.itemId
          }
-         if(itemIndex < 0) {
-            state.cartItemsID.push(data.itemId);  
-            state.cartItems.push(obj);
-            state.cartItemsObj.push(data?.item);
+         if(itemIndex >= 0) {
+            const item = state.cartItems[itemIndex]
+            obj.quantity+=item.quantity
+            obj.totalPrice= obj.quantity * item.itemPrice
+            state.cartItems[itemIndex] = obj;
             return;
          }
-         // state.cartItemsObj[itemIndex] = data/
-         state.cartItems[itemIndex] = obj;
+         state.cartItemsID.push(data.itemId);  
+         state.cartItems.push(obj);
+         state.cartItemsObj.push(data?.item);
+      },
+      removeCartItem(state, id) {
+         const itemIndex = state.cartItemsID.findIndex(item => item === id);
+         console.log(id, itemIndex);
+         state.cartItemsID.splice(itemIndex, 1);
+         state.cartItems.splice(itemIndex, 1);
+         state.cartItemsObj.splice(itemIndex, 1);
       }
    },
    actions: {
       addToCart(context, data) {
-         console.log(data);
          const itemOBj = {
             item: data?.payload,
             itemId: data?.payload?.variantId,
@@ -47,6 +55,13 @@ const cartStore = {
             itemName: data?.payload?.itemname
          };
          context.commit('addToCart', itemOBj);
+      },
+      changeQuantity(context, data) {
+         console.log(data);
+         context.commit('addToCart', data);
+      },
+      removeCartItem(context, id) {
+         context.commit('removeCartItem',id)
       }
    }
 }

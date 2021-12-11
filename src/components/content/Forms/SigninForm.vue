@@ -59,7 +59,6 @@ export default {
    },
    methods: {
       getInputValue(data) {
-         // console.log(data);
          if(data.fieldLabel === 'email') {
             this.email = data.value
          }
@@ -74,6 +73,7 @@ export default {
          const emailCheck = window?.globalFun?.util?.emailValidation(this.email);
          if(emailCheck && this.password.length > 6) {
             //action call for signin
+            this.$store.dispatch('signUp', { email: this.email , password: this.password });
             this.mailErrorMsg = '';
             this.passErrorMsg = '';
             return;
@@ -83,6 +83,7 @@ export default {
          } else {
             this.passErrorMsg = 'Please enter the correct password';
          }
+
       }
    },
 }

@@ -16,41 +16,33 @@
                <template v-for="(item, index) in getCartItems">
                   <div class="cart-list__item" :key="index">
                      <div class="cart-list__item-detail">
-                        <router-link :to="{ name: 'plant', params: {id:`${item.itemId}`} }">
                            <div class="cart-list__product-wrapper">
-                              <div class="cart-list__image-wrapper">
-                                 <img :src="item.imgSrc" :alt="item.itemName"/>
-                              </div>
+                              <router-link :to="{ name: 'plant', params: {id:`${item.itemId}`} }">
+                                 <div class="cart-list__image-wrapper">
+                                    <img :src="item.imgSrc" :alt="item.itemName"/>
+                                 </div>
+                              </router-link>
                               <div class="cart-list__product-details">
                                  <div class="cart-list__product-name"><p v-html="item && item.itemName"></p></div>
                                  <div class="cart-list__product-price"><p v-html="item.itemPrice"></p></div>
                                  <div class="cart-list__options-wrapper">
-
+                                    <div class="cart-list__wishlist">Move to Wishist</div>
+                                    <div class="cart-list__remove" @click.prevent="removeItem(item.itemId)">X Remove</div>
                                  </div>
                               </div>
                            </div>
-                        </router-link>
                      </div>
                      <div class="cart-list__item-quantity">
-                        <input-component
-                        :fieldLabel="`quan`"
-                        :fieldPlaceholder="'quan'"
-                        :value="item.quantity"
-                        :isRequired="true"
-                        :errorMsg="''"
-                        @onChange="getInputValue"></input-component>
-                        <!-- <select v-model="itemQuantity" @change="quantitySelector(item.itemId)">
-                           <template v-for="index in 10" >
-                              <option :key="index" :value="index" :selected="item.quantity" >{{index}}</option>
-                           </template>
-                        </select> -->
+                        <p v-html="item && item.quantity"></p>
                      </div>
-                     <div class="cart-list__item-amount"><p v-html="item && item.totalPrice"></p></div>
+                     <div class="cart-list__item-amount"><p>{{item.totalPrice}}</p></div>
                   </div>
                </template>
             </div>
          </div>
-         <clickables :btnType="'secondary'" class="cart-list__btn">Continue Shopping</clickables>
+         <clickables :btnType="'secondary'" class="cart-list__btn">
+            <router-link class="cart-list__btn-link" to="#/plant">Continue Shopping</router-link>
+         </clickables>
       </template>
    </section-component>
 </template>
@@ -64,12 +56,15 @@ export default {
    components: { SectionComponent, Clickables, InputComponent },
    data() {
       return {
-      // InputComponenturn {
-         itemQuantity: 1
+         cartItems:[],
       }
+   },
+   watch:{
+      getCartItems(){}
    },
    computed: {
       getCartItems() {
+         this.cartItems = this.$store?.getters?.getCartData;
          return this.$store?.getters?.getCartData;
       },
       getCartItemObj() {
@@ -77,16 +72,14 @@ export default {
       }
    },
    methods: {
-      quantitySelector(data) {
-         const index = this.getCartItems.findIndex(item => item.itemId === data);
-         console.log(index);
-         this.$store.dispatch('addToCart', {payload: this.getCartItemObj[index], quantity: this.itemQuantity})
+      removeItem(id) {
+         this.$store.dispatch('removeCartItem', id);
       }
    }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .cart-list {
 
    @include element(header) {
@@ -112,17 +105,9 @@ export default {
       width: 15%;
       font-size: 14px;
       font-weight: 500;
-      .input-field {
-         @include element(container) {
-            width: 30px;
-         }
-         @include element(label-container) {
-            display: none;
-         }
-         @include element(elem) {
-            width: 40px;
-            text-align: center;
-         }
+      p {
+         padding-left: 25px;
+         font-size: 16px;
       }
    }
 
@@ -131,10 +116,13 @@ export default {
       font-size: 14px;
       font-weight: 500;
       text-align: right;
+      p {
+         font-size: 16px;
+      }
    }
 
    @include element(item-content) {
-      padding: 20px;
+      padding: 20px 20px 10px;
    }
 
    @include element(item) {
@@ -158,11 +146,47 @@ export default {
 
    @include element(product-details) {
       padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+   }
+
+   @include element(product-name) {
+      
+   }
+
+   @include element(product-price) {
+      font-size: 18px;
+      font-weight: 700;
+   }
+
+   @include element(options-wrapper) {
+      display: flex;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+   }
+
+   @include element(wishlist) {
+      padding-right: 40px;
+   }
+
+   @include element(remove) {
+      &:hover {
+         color: $brand-blue;
+      }
    }
 
    @include element(btn) {
       margin-left: 20px;
       margin-bottom: 20px;
+   }
+
+   @include element(btn-link) {
+      color: $white;
+      &:visited {
+         color: $white;
+      }
    }
 }
 </style>

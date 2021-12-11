@@ -4,14 +4,15 @@ import globalStore from './globalStore';
 import PlantPdpStore from './plantPdpStore';
 import CartStore from './cartStore';
 import UtilStore from './utilStore';
-
+import AuthStore from './authStore';
 Vue.use(Vuex);
 
 const storeModules = {
     globalStore,
     PlantPdpStore,
     CartStore,
-    UtilStore
+    UtilStore,
+    AuthStore
 };
 
 const vueXStore = new Vuex.Store({
