@@ -170,6 +170,8 @@
     }
     @include element(icon-container) {
         position: relative;
+        display: flex;
+        align-items: center;
         span.icon {
             padding: 0px 5px;
             font-size: 22px;

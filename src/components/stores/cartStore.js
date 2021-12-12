@@ -43,6 +43,11 @@ const cartStore = {
          state.cartItemsID.splice(itemIndex, 1);
          state.cartItems.splice(itemIndex, 1);
          state.cartItemsObj.splice(itemIndex, 1);
+      },
+      removeAll(state) {
+         state.cartItemsID = [];
+         state.cartItems = [];
+         state.cartItemsObj = [];
       }
    },
    actions: {
@@ -61,7 +66,11 @@ const cartStore = {
          context.commit('addToCart', data);
       },
       removeCartItem(context, id) {
-         context.commit('removeCartItem',id)
+         if(id) {
+            context.commit('removeCartItem',id);
+            return;
+         } 
+         context.commit('removeAll');
       }
    }
 }

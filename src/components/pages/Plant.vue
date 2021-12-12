@@ -25,7 +25,7 @@
                               :fieldPlaceholder="'quantity'"
                               :value="this.quantity"
                               :isRequired="true"
-                              :errorMsg="''"
+                              :errorMsg="quanErrorMsg"
                               @onChange="getQuantity"></input-component>
                         </div>
                         <div class="plant-detail__delivery-wrapper">
@@ -67,7 +67,13 @@ export default {
   data() {
      return {
         pincodeErrorMsg: '',
-        quantity: 1
+        quantity: 1,
+        quanErrorMsg: ''
+     }
+  },
+  watch: {
+     quantity() {
+        this.quanErrorMsg = '';
      }
   },
   computed: {
@@ -92,6 +98,10 @@ export default {
       //   Please Enter a Valid Pincode
      },
      getQuantity(data) {
+        if(data.value < 1) {
+           this.quanErrorMsg = 'Quantity cannot be less than 1';
+           return;
+        }
         this.quantity = Number(data.value);
      },
      buyProduct(val) {
@@ -143,10 +153,36 @@ export default {
       }
    }
    @include element(price-wrapper) {
-      padding: 20px 20px 30px;
+      padding: 20px 10px 10px 20px;
       font-size: 28px;
       font-weight: 500;
       line-height: 25px;
+   }
+
+   @include element(quantity) {
+      padding: 20px 0px 20px 20px;
+      .input-field {
+         @include element(container) {
+            display: flex;
+            align-items: center;
+         }
+
+         @include element(label-container) {
+            padding-right: 20px;
+         }
+
+         @include element(elem) {
+            width: 50px;
+            text-align: center;
+            font-size: 15px;
+         }
+      }
+      .input-error {
+         @include element(message) {
+            margin: 0;
+            padding-left: 20px;
+         }
+      }
    }
 
    @include element(delivery-wrapper) {

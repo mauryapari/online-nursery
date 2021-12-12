@@ -4,6 +4,7 @@
          <div class="cart-list">
             <div class="cart-list__header">
                <h1>My Cart</h1>
+               <span class="cart-list__clear-cart" @click="clearCart">Clear Cart</span>
             </div>
             <div class="cart-list__item-header">
                <div class="cart-list__container">
@@ -13,8 +14,8 @@
                </div>
             </div>
             <div class="cart-list__item-content">
-               <template v-for="(item, index) in getCartItems">
-                  <div class="cart-list__item" :key="index">
+               <template v-for="(item) in getCartItems">
+                  <div class="cart-list__item" :key="item.itemId">
                      <div class="cart-list__item-detail">
                            <div class="cart-list__product-wrapper">
                               <router-link :to="{ name: 'plant', params: {id:`${item.itemId}`} }">
@@ -40,9 +41,7 @@
                </template>
             </div>
          </div>
-         <clickables :btnType="'secondary'" class="cart-list__btn">
-            <router-link class="cart-list__btn-link" to="#/plant">Continue Shopping</router-link>
-         </clickables>
+         <clickables class="cart-list__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="'#/plant'">{{'Continue Shopping'}}</clickables>
       </template>
    </section-component>
 </template>
@@ -74,6 +73,9 @@ export default {
    methods: {
       removeItem(id) {
          this.$store.dispatch('removeCartItem', id);
+      },
+      clearCart() {
+         this.$store.dispatch('removeCartItem', '');
       }
    }
 }
@@ -84,6 +86,18 @@ export default {
 
    @include element(header) {
       padding: 20px;
+      display: flex;
+      align-items: center;
+   }
+
+   @include element(clear-cart) {
+      margin-left: 15px;
+      font-size: 14px;
+      color: $brand-blue;
+      border-bottom: 1px solid $brand-blue;
+      &:hover {
+         cursor: pointer;
+      }
    }
 
    @include element(item-header) {
@@ -169,20 +183,21 @@ export default {
 
    @include element(wishlist) {
       padding-right: 40px;
+      &:hover {
+         cursor: pointer;
+      }
    }
 
    @include element(remove) {
       &:hover {
          color: $brand-blue;
+         cursor: pointer;
       }
    }
 
    @include element(btn) {
       margin-left: 20px;
       margin-bottom: 20px;
-   }
-
-   @include element(btn-link) {
       color: $white;
       &:visited {
          color: $white;
