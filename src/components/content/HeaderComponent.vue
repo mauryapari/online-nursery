@@ -15,7 +15,7 @@
                 </ul>
             </nav>
             <div class="header-section__icon-container">
-                <span class="icon icon-user" @click="showUserInfo" v-if="isMobile"></span>
+                <span class="icon icon-user" @click="showUserInfo" v-if="isMobile && !isUserLoggedIn"></span>
                 <span class= "header-section__mobile-user" v-if="isUserInfoVisible && !isUserLoggedIn">
                     <ul class="header-section__mobile-user-list">
                         <li><a href="#" class="header-section__mobile-user-list-item" @click.prevent="showModal('login-form')">Login</a></li>
@@ -27,7 +27,17 @@
                     <span>|</span>
                     <span class="header-section__log-in" @click.prevent="showModal('login-form')">Log In</span>
                 </span>
-                <span class="header-section__log-in" @click="logout" v-if="isUserLoggedIn">Sign Out</span>
+                <span class="header-section__account-info" @click="showAccountInfo"  v-if="isUserLoggedIn">
+                    <span class="icon icon-user" v-if="isMobile"></span>
+                    <span class="header-section__log-in">Hi {{ this.getUserName }}
+                        <span class="header-section__account-navigation" v-if="isAccountInfoVisible">
+                            <ul class="header-section__mobile-navigation-list">
+                                <li><a href="#" class="header-section__mobile-navigation-list-item">Account</a></li>
+                                <li><a href="#" class="header-section__mobile-navigation-list-item" @click="logout">Sign Out</a></li>
+                            </ul>
+                        </span>
+                    </span>
+                </span>
                 <span class="icon icon-cart"></span>
                 <span class="header-section__cart-container">
                     <router-link to="/cart"><span class="icon icon-shopping-bag"></span></router-link>
@@ -40,7 +50,6 @@
             <div class="header-section__mobile-navigation" v-if="isMobileNavigationVisible">
                   <ul class="header-section__mobile-navigation-list">
                     <li><router-link class="header-section__mobile-navigation-list-item" to="/" exact>Home</router-link></li>
-                    <li><a class="header-section__mobile-navigation-list-item" @click="scrollMeTo('home')">Home</a></li>
                     <li><a class="header-section__mobile-navigation-list-item" @click="scrollMeTo('categories')">Categories</a></li>
                     <li><a class="header-section__mobile-navigation-list-item" @click="scrollMeTo('products')">Products</a></li>
                     <li><a class="header-section__mobile-navigation-list-item" @click="scrollMeTo('services')">Services</a></li>
@@ -57,7 +66,8 @@
         data() {
             return {
                 isMobileNavigationVisible: false,
-                isUserInfoVisible: false
+                isUserInfoVisible: false,
+                isAccountInfoVisible: false
             }
         },
         computed: {
@@ -71,11 +81,12 @@
                 return this.$store?.getters?.getUserLoggedIn;
             },
             getCartItems() {
-                // const items = 
-                // if(items.length) {
-                //     return items.length
-                // }
                 return this.$store?.getters?.getCartItems;
+            },
+            getUserName() {
+                let name = this.$store?.getters?.getUserDetails?.users;
+                    name = name?.length ? name[0]?.displayName : '';
+                return  name;
             }
         },
         methods: {
@@ -108,14 +119,20 @@
                     }
                 }
             },
+            showAccountInfo() {
+                this.isAccountInfoVisible = !this.isAccountInfoVisible;
+                if(this.isMobileNavigationVisible) {
+                    this.isMobileNavigationVisible = false;
+                }
+            },
             showModal(value) {
                 this.$store.dispatch('setModalName', value);
             },
             logout() {
-                const isDestroyed = window?.globalFun?.util.setCookie('auth-token', '', 0,'/');
-                if(isDestroyed) {
-                    this.$store.dispatch('isUserRegistered');
-                }
+                window?.globalFun?.util.setCookie('auth-token', '', 0,'/');
+                window?.globalFun?.util.setCookie('user-id', '', 0,'/');
+                this.$store.dispatch('logoutUser');
+                this.$store.dispatch('removeUserInfo');
             }
         },
     }
@@ -224,6 +241,20 @@
         }
     }
 
+    @include element(account-info) {
+        position: relative;
+    }
+
+    @include element(account-navigation) {
+        position: absolute;
+        right: 0px;
+        background-color: $white;
+        top: 25px;
+        z-index: 2;
+        border: 1px solid $brand-grey-700;
+        padding: 10px;
+
+    }
     .router-link-active {
         color: $brand-green;
     }

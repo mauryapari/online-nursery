@@ -6,6 +6,13 @@
                <div class="user-form__field-wrappers">
                   <div class="user-form__input-container">
                      <input-component
+                        :fieldLabel="'name'"
+                        :fieldPlaceholder="'Name'"
+                        :value="name"
+                        :isRequired="true"
+                        :errorMsg="nameErrorMsg"
+                        @onChange="getInputValue"></input-component>
+                     <input-component
                         :fieldLabel="'email'"
                         :fieldPlaceholder="'Email'"
                         :value="email"
@@ -43,10 +50,12 @@ export default {
       return {
          title: 'Sign Up',
          subTitle: 'We do not share your personal details with anyone',
+         name:'',
          email: '',
          password: '',
          passErrorMsg: '',
-         mailErrorMsg: ''
+         mailErrorMsg: '',
+         nameErrorMsg: ''
       }
    },
    watch: {
@@ -55,6 +64,9 @@ export default {
       },
       password() {
          this.passErrorMsg = '';
+      },
+      name() {
+         this.nameErrorMsg = '';
       }
    },
    methods: {
@@ -65,17 +77,24 @@ export default {
          if(data.fieldLabel === 'password') {
             this.password = data.value
          }
+         if(data.fieldLabel === 'name') {
+            this.name = data.value
+         }
       },
       showSignInForm() {
          this.$store.dispatch('setModalName', 'login-form');
       },
       submitSignInForm() {
          const emailCheck = window?.globalFun?.util?.emailValidation(this.email);
-         if(emailCheck && this.password.length > 6) {
+         if(this.name && emailCheck && this.password.length > 6) {
             //action call for signin
-            this.$store.dispatch('signUp', { email: this.email , password: this.password });
+            this.$store.dispatch('signUp', { name: this.name , email: this.email , password: this.password });
             this.mailErrorMsg = '';
             this.passErrorMsg = '';
+            this.nameErrorMsg = '';
+            return;
+         } else if(!this.name) {
+            this.nameErrorMsg = 'Please Provide a name';
             return;
          } else if(!emailCheck) {
             this.mailErrorMsg = 'Please provide a correct mail ID';

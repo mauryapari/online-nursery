@@ -31,7 +31,6 @@
             d.setTime(d.getTime() + (exdays*1000));
             var expires = "expires=" + d.toUTCString();
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=" + path;
-            return true;
         }
         
       };

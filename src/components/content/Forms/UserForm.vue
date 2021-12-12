@@ -87,10 +87,13 @@ export default {
    @include sm {
       flex-direction: row;
 
-        @include element(form-description) {
+      @include element(form-description) {
          flex-basis: 40%;
-         border-right: 1px solid $brand-grey-200;
          align-self: center;
+      }
+
+      @include element(form-fields) {
+         border-left: 1px solid $brand-grey-200;
       }
    }
 
