@@ -1,7 +1,6 @@
 <template>
     <div>
       <header-component></header-component>
-      <div class="background-page">
             <empty-cart-component v-if="!getCartItems"></empty-cart-component>
          <div class="container" v-else>
             <div class="cart-page">
@@ -9,12 +8,11 @@
                   <cart-list-component></cart-list-component>
                </div>
                <div class="cart-page__invoice">
-                  <cart-invoice-component></cart-invoice-component>
+                  <cart-invoice-component :isCart="true"></cart-invoice-component>
                </div>
             </div>
          </div>
       </div>
-    </div>
 </template>
 <script>
 import HeaderComponent from '../content/HeaderComponent.vue';

@@ -51,7 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 .search-results{
-    padding: 20px;
+    padding: 10px;
     
     @include element(header-container) {
       border-bottom: 1px solid $brand-grey-200;
@@ -67,7 +67,7 @@ export default {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: flex-start;
     }
 
     @include element(product) {
@@ -78,6 +78,7 @@ export default {
     @include element(img-wrapper) {
       border: 1px solid $brand-grey-200;
       margin-bottom: 20px;
+      text-align: center;
     }
 
     @include element(card-title) {

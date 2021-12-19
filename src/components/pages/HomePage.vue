@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home-page">
       <header-component></header-component>
       <home-banner></home-banner>
       <category-component></category-component>
@@ -25,3 +25,9 @@ export default {
     
 }
 </script>
+
+<style lang="scss" scoped>
+.home-page{
+  background-color: $white;
+}
+</style>

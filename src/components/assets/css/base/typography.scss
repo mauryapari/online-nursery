@@ -6,6 +6,10 @@ body, input, textarea, select {
     @include ralewayRegular;
 }
 
+body {
+    background-color: #f2f4f8;
+}
+
 a {
     text-decoration: none;
     color: $brand-grey-700;

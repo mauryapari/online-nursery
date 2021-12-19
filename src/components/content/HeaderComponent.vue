@@ -268,22 +268,22 @@
     @include element(cart-item-count-bg) {
         &::before {
             content: '';
-            background-color: $brand-grey-200;
+            background-color: $brand-red;
             border-radius: 50%;
             display: block;
             position: absolute;
-            height: 15px;
-            width: 15px;
-            top: 5px;
+            height: 18px;
+            width: 18px;
+            top: 11px;
             right: 0px;
         }
     }
     @include element(cart-item-count) {
         font-size: 14px;
-        color: black;
+        color: $white;
         position: absolute;
-        top: 4px;
-        right: 5px;
+        top: 11px;
+        right: 6px;
     }
 
     @include sm {

@@ -8,8 +8,32 @@
 .hide {
     display: none;
 }
+.accordian-container {
+    @include element(icon-container) {
+       &::before {
+          content: '';
+          width: 35px;
+          height: 35px;
+          position: absolute;
+          top: 30px;
+          left: -35px;
+          background: #282c3f;
+          border-radius: 6px;
+          box-shadow: 0 2px 8px 0 rgb(40 44 63 / 40%);
+          z-index: 2;
+       }
 
-.background-page {
-    background-color: #f2f4f8;
-    padding: 20px 0px;
-}
+       .icon {
+           position: relative;
+           top: 25px;
+       }
+    }
+
+    @include element(placeholder-text) {
+        font-size: 18px;
+        text-transform: uppercase;
+        padding: 20px 25px;
+        font-weight: 700;
+        color: $brand-grey-400;
+    }
+ }

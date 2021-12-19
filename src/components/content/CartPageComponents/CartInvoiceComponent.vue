@@ -12,7 +12,7 @@
                   <div class="invoice-container__cost">2300</div>
                </div>
             </div>
-            <clickables :btnType="'secondary'">Checkout</clickables>
+            <clickables v-if="isCart" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="'#/checkout'">{{'Continue Shopping'}}</clickables>
          </div>
       </template>
    </section-component>
@@ -22,6 +22,12 @@
 import Clickables from '../../util-content/clickables/clickables.vue';
 import SectionComponent  from '../../util-content/page-background/SectionComponent.vue';
 export default {
+   props: {
+      isCart: {
+         type: Boolean,
+         default: false
+      }
+   },
    components: { SectionComponent, Clickables },
    computed: {
       getCartData() {
@@ -45,6 +51,13 @@ export default {
       display: flex;
       justify-content: space-between;
       padding: 7px 0px;
+   }
+
+   @include element(btn) {
+      color: $white;
+      &:visited {
+         color: $white;
+      }
    }
 
    @include sm {
