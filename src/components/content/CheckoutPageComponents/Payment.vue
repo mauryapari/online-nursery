@@ -14,15 +14,7 @@
                </div>
                <div class="checkout-step__payment-body">
                   <div class="checkout-step__payment-options">
-                     <form>
-                        <input-component
-                        :fieldLabel="'cod'"
-                        :fieldPlaceholder="'COD'"
-                        :inputType="'radio'"
-                        :value="name"
-                        :errorMsg="''"
-                        @onChange="getInputValue"></input-component>
-                     </form>
+                     <div class="checkout-step__payment-method">Cash On Delivery</div>
                   </div>
                   <div class="checkout-step__payment-description">
                      <card-component :hasFooter="true">
@@ -35,7 +27,7 @@
                            </div>
                         </template>
                         <template slot="card-footer">
-                           <clickables :btnType="'secondary'" @click.native="submitOrder">{{'CONFIRM ORDER'}}</clickables>
+                           <clickables :isDisabled="isBtnDisabled" :btnType="'secondary'" @click.native="submitOrder">{{'CONFIRM ORDER'}}</clickables>
                         </template>
                      </card-component>
                   </div>
@@ -66,7 +58,7 @@ export default {
   },
   methods: {
      submitOrder() {
-
+        
      }
   }
 }

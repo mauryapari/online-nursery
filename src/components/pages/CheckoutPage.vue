@@ -134,6 +134,37 @@ export default {
          margin-top: 15px;
       }
 
+      @include element(delivery-method) {
+         font-weight: 700;
+         font-size: 16px;
+         margin-bottom: 10px;
+         line-height: 18px;
+      }
+
+      @include element(user-name) {
+         font-size: 12px;
+         font-weight: 700;
+         line-height: 18px;
+      }
+
+      @include element(user-address) {
+         font-size: 12px;
+         font-weight: 500;
+         line-height: 20px;
+      }
+
+      @include element(delivery-date) {
+         font-size: 14px;
+         font-weight: 700;
+         line-height: 18px;
+      }
+
+      @include element(delivery-time) {
+         font-size: 12px;
+         font-weight: 500;
+         line-height: 20px;
+      }
+
       @include element(make-payment-btn) {
          text-align: right;
       }
@@ -143,11 +174,11 @@ export default {
       }
 
       @include element(payment-options) {
-         width: 30%;
+         width: 20%;
       }
 
       @include element(payment-description) {
-         width: 70%;
+         width: 80%;
          text-align: center;
       }
 

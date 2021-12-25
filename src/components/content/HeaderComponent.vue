@@ -194,6 +194,11 @@
         :last-child {
             padding-bottom: 0px;
         }
+
+        &:hover {
+            cursor: pointer;
+            color: $brand-green;
+        }
     }
 
     @include element(mobile-user) {
@@ -255,6 +260,7 @@
         z-index: 2;
         border: 1px solid $brand-grey-700;
         padding: 10px;
+        width: max-content;
 
     }
     .router-link-active {

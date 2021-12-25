@@ -84,9 +84,9 @@
                      </div>
                   </form>
                   <div class="checkout-step__address-container" v-else>
-                     <div class="checkbox-step__delivery-method">HOME DELIVERY</div>
-                     <div class="checkbox-step__user-name"><p>{{userAddress.name}}</p></div>
-                     <div class="checkbox-step__user-address">{{userAddress.flat}} {{userAddress.street}} {{userAddress.town}} {{userAddress.pincode}} {{userAddress.state}}</div>
+                     <div class="checkout-step__delivery-method">Home Delivery</div>
+                     <div class="checkout-step__user-name"><p>{{userAddress.name}}</p></div>
+                     <div class="checkout-step__user-address">{{userAddress.flat}} {{userAddress.street}} {{userAddress.town}} {{userAddress.pincode}} {{userAddress.state}}</div>
                   </div>
                </div>
             </div>
