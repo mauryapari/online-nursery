@@ -8,6 +8,7 @@
                         <input-component
                            :fieldLabel="'email'"
                            :fieldPlaceholder="'Email'"
+                           :inputType="'email'"
                            :value="email"
                            :isRequired="true"
                            :errorMsg="mailErrorMsg"
@@ -15,6 +16,7 @@
                         <input-component
                            :fieldLabel="'password'"
                            :fieldPlaceholder="'Password'"
+                           :inputType="'password'"
                            :value="password"
                            :isRequired="true"
                            :errorMsg="passErrorMsg"

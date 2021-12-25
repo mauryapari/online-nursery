@@ -89,7 +89,6 @@ const authStore = {
                idToken: payload.idToken,
                displayName: payload.name,
                photoUrl:'',
-               deleteAttribute:['DISPLAY_NAME'],
                returnSecureToken: true,
             })
         })

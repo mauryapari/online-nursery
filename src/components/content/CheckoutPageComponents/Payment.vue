@@ -18,6 +18,7 @@
                         <input-component
                         :fieldLabel="'cod'"
                         :fieldPlaceholder="'COD'"
+                        :inputType="'radio'"
                         :value="name"
                         :errorMsg="''"
                         @onChange="getInputValue"></input-component>
@@ -65,7 +66,7 @@ export default {
   },
   methods: {
      submitOrder() {
-        
+
      }
   }
 }

@@ -22,6 +22,7 @@
                            <input-component
                               :fieldLabel="'Quantity'"
                               :fieldPlaceholder="'quantity'"
+                              :inputType="'number'"
                               :value="this.quantity"
                               :isRequired="true"
                               :errorMsg="quanErrorMsg"
@@ -35,6 +36,7 @@
                                     :showFieldLabel="false"
                                     :fieldLabel="'Pincode'"
                                     :fieldPlaceholder="'Enter Pincode'"
+                                    :inputType="'number'"
                                     :errorMsg="pincodeErrorMsg"
                                     @onChange="getPincodeValue"></input-component>
                                  <clickables class="plant-detail__pincode-check" :btnSize="'sm'" :btnType="'tertiary'">{{'Check'}}</clickables>

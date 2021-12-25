@@ -29,6 +29,7 @@
                            <input-component
                               :fieldLabel="'email'"
                               :fieldPlaceholder="'Email'"
+                              :inputType="'email'"
                               :value="address.email"
                               :isRequired="true"
                               :errorMsg="errorMsgs.email"
@@ -36,6 +37,7 @@
                            <input-component
                               :fieldLabel="'pincode'"
                               :fieldPlaceholder="'Pincode'"
+                              :inputType="'number'"
                               :value="address.pincode"
                               :isRequired="true"
                               :errorMsg="errorMsgs.pincode"

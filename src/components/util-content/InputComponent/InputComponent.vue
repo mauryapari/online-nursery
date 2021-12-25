@@ -13,7 +13,8 @@
             :class="{ 'input-error__highlight': errorMsg }" 
             :placeholder="fieldPlaceholder"
             :disabled="isDisabled" 
-            :value="value" 
+            :value="value"
+            :type="inputType"
             @input="onValueEnter">
         <div v-if="errorMsg" class="input-error__message" role="alert" v-html="errorMsg"></div>
     </div>
@@ -56,6 +57,10 @@ export default {
         showFieldLabel: {
             type: Boolean,
             default: true
+        },
+        inputType: {
+            type: String,
+            default: 'text'
         }
     },
     data() {
