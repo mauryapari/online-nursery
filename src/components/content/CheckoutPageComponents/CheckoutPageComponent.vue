@@ -3,6 +3,7 @@
    <address-component></address-component>
    <delivery-status></delivery-status>
    <review-order></review-order>
+   <payment></payment>
 </div>
 </template>
 
@@ -10,9 +11,10 @@
 import SectionComponent from '../../util-content/page-background/SectionComponent.vue'
 import AddressComponent from './AddressComponent.vue';
 import DeliveryStatus from './DeliveryStatus.vue';
+import Payment from './Payment.vue';
 import ReviewOrder from './ReviewOrder.vue';
 export default {
-  components: { SectionComponent, AddressComponent, DeliveryStatus, ReviewOrder },
+  components: { SectionComponent, AddressComponent, DeliveryStatus, ReviewOrder, Payment },
    
 }
 </script>

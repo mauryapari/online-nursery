@@ -5,6 +5,8 @@ import PlantPdpStore from './plantPdpStore';
 import CartStore from './cartStore';
 import UtilStore from './utilStore';
 import AuthStore from './authStore';
+import checkoutStore from './checkoutStore';
+
 Vue.use(Vuex);
 
 const storeModules = {
@@ -12,7 +14,8 @@ const storeModules = {
     PlantPdpStore,
     CartStore,
     UtilStore,
-    AuthStore
+    AuthStore,
+    checkoutStore
 };
 
 const vueXStore = new Vuex.Store({

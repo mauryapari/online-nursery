@@ -113,9 +113,9 @@ export default {
             input {
                width: 100%;
                height: 50px;
-               background-color: #eeeeee;
+               background-color: $brand-grey-300;
                border-radius: 8px;
-               border: 1px solid #eeeeee;
+               border: 1px solid $brand-grey-300;
                box-shadow: none;
                padding: 6px 12px;
                

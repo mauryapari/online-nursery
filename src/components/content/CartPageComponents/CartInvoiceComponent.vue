@@ -12,7 +12,7 @@
                   <div class="invoice-container__cost">2300</div>
                </div>
             </div>
-            <clickables v-if="isCart" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="'#/checkout'">{{'Continue Shopping'}}</clickables>
+            <clickables v-if="isCart" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="'#/checkout'">{{'Checkout'}}</clickables>
          </div>
       </template>
    </section-component>

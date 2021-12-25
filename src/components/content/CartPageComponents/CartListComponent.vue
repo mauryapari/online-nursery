@@ -81,7 +81,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .cart-list {
 
    @include element(header) {
