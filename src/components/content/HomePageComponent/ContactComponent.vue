@@ -97,7 +97,6 @@ export default {
                 this.itemArray.forEach((item) => {
                     formData[`${item.fieldLabel}`] = item.value
                 })
-                console.log(formData);
             }
         },
         getInputValue(val) {
@@ -109,7 +108,6 @@ export default {
         checkData(item) {
             const inputType = item.type;
             const value = item.value;
-            console.log(item);
             switch(inputType) {
                 case 'email': {
                     return window?.globalFun?.util?.emailValidation(value); //reg.test(value);

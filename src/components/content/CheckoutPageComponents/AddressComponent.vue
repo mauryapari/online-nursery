@@ -155,7 +155,6 @@ export default {
         let flag = false;
         for(let key in this.address) {
            if(!this.address[key]) {
-              console.log(key);
                this.errorMsgs[key] = 'Please enter correct value';
                flag = true;
                return;
@@ -169,7 +168,6 @@ export default {
         }
         if(isMailValid && !flag) {
               this.$store.dispatch('setUserBillingAddress', { type: 'Billing', data: this.address })
-            // console.log('submiting');
          }
      },
      showForm() {
