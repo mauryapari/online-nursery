@@ -19,6 +19,7 @@ import LoginForm from './components/content/Forms/LoginForm.vue';
       },
       mounted() {
           this.$store.dispatch('isUserRegistered');
+          this.$store.dispatch('isCartAvailable');
       }
     };
 </script>

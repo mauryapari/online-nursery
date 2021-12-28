@@ -131,8 +131,11 @@
             logout() {
                 window?.globalFun?.util.setCookie('auth-token', '', 0,'/');
                 window?.globalFun?.util.setCookie('user-id', '', 0,'/');
+                window?.globalFun?.util.setCookie('cart-id', '', 0,'/');
+                this.$store.dispatch('removeLocalCartItem'); // Adding removeLocalCartItem so that items in cart in database are not removed on logout.
                 this.$store.dispatch('logoutUser');
                 this.$store.dispatch('removeUserInfo');
+                this.$store.dispatch('isCartAvailable');
             }
         },
     }

@@ -9,19 +9,16 @@ export const API = {
    loginURL: ':signInWithPassword?key=',
    setUserData: ':update?key=',
    getUserData: ':lookup?key=',
+   databaseURL: 'https://plant-nursery-53d6b-default-rtdb.firebaseio.com/',
    AUTHTOKEN: readCookie('auth-token') ? readCookie('auth-token'): '',
-   userID: readCookie('user-id'),
+   userID: readCookie('user-id') ? readCookie('user-id') : '',
    WISHLISTID:  readCookie('ct-wishlist-id') ? readCookie('ct-wishlist-id'): '',
-   cartID_Public: readCookie('ct_cart_id_public'),
-   cartVariant_Public: readCookie('ct_cart_version_public'),
-   cartID_Private: readCookie('ct_cart_id_private'),
-   cartVariant_Private: readCookie('ct_cart_version_private'),
+   cartID: readCookie('cart-id') ? readCookie('cart-id') : '',
 };
 
 function readCookie(name) {
    var value = "; " + document.cookie;
    var parts = value.split("; " + name + "=");
-   // console.log(parts);
    if (parts.length == 2) {
       return parts.pop().split(";").shift();
    } else {

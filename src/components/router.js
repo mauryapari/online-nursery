@@ -9,6 +9,7 @@ import PlantPage from './pages/SearchPage.vue';
 import PlantPdpPage from './pages/Plant.vue';
 import CartPage from './pages/Cart.vue';
 import CheckoutPage from './pages/CheckoutPage.vue';
+import store from '../components/stores/index';
 
 const router = new VueRouter({
     routes: [
@@ -20,7 +21,15 @@ const router = new VueRouter({
             component: PlantPdpPage
         },
         { path: '/cart', component:  CartPage },
-        { path: '/checkout', component:  CheckoutPage }
+        { path:'/checkout', component: CheckoutPage, beforeEnter: (to, from, next)=> {
+            console.log(store.getters.getUserLoggedIn);
+            if(!store.getters.getUserLoggedIn) {
+                store.dispatch('setModalName', 'login-form');
+                next(false);
+            } else {
+                next();
+            }
+        }},
     ]
 });
 

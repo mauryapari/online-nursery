@@ -68,14 +68,25 @@ export default {
       },
       getCartItemObj() {
          return this.$store?.getters?.getCartItemObj;
+      },
+      isUserLogedIn() {
+         return this.$store?.getters?.getUserLoggedIn;
       }
    },
    methods: {
       removeItem(id) {
-         this.$store.dispatch('removeCartItem', id);
+         if(this.isUserLogedIn) {
+            this.$store.dispatch('removeCartItem', id);
+         } else {
+            this.$store.dispatch('removeLocalCartItem', id);
+         }
       },
       clearCart() {
-         this.$store.dispatch('removeCartItem', '');
+         if(this.isUserLogedIn) {
+            this.$store.dispatch('removeCartItem', '');
+         } else {
+            this.$store.dispatch('removeLocalCartItem', '');
+         }
       }
    }
 }

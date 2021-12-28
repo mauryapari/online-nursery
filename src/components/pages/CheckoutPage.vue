@@ -195,7 +195,7 @@ export default {
       @include sm {
          .input-field {
             @include element(container) {
-               width: calc(50% - 30px);
+               width: calc(50% - 15px);
                margin-right: 15px;
             }
          }

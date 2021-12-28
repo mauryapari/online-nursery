@@ -44,8 +44,8 @@
                            </div>
                         </div>
                         <div class="plant-detail__cta-wrapper">
-                           <clickables :btnSize="'lg'" :btnType="'secondary'" @click.native="buyProduct()">{{'Add to Cart'}}</clickables>
-                           <clickables :btnSize="'lg'" :btnType="'secondary'" @click.native="buyProduct('now')">{{'Buy Now'}}</clickables>
+                           <clickables :btnSize="'lg'" :btnType="'secondary'" @click.native="addToCart()">{{'Add to Cart'}}</clickables>
+                           <clickables :btnSize="'lg'" :btnType="'secondary'" @click.native="buyProduct()">{{'Buy Now'}}</clickables>
                         </div>
                      </div>
                   </div>
@@ -82,6 +82,9 @@ export default {
      },
      getPlantPrice() {
         return this.getPlantData && this.getPlantData.offerprice && this.getPlantData.offerprice[0];
+     },
+     isUserLoggedIn() {
+        return this.$store.getters?.getUserLoggedIn;
      }
   },
   mounted() {
@@ -104,11 +107,20 @@ export default {
         }
         this.quantity = Number(data.value);
      },
-     buyProduct(val) {
-        this.$store.dispatch('addToCart', { payload: this.getPlantData, quantity: this.quantity });
-        if(val === 'now') {
+     buyProduct() {
+        if(this.isUserLoggedIn) {
+           this.$store.dispatch('addToCart', { payload: this.getPlantData, quantity: this.quantity });
            this.$router.push('/cart');
+        } else {
+            this.$store.dispatch('setModalName', 'login-form');
         }
+     },
+     addToCart() {
+        if(this.isUserLoggedIn) {
+            this.$store.dispatch('addToCart', { payload: this.getPlantData, quantity: this.quantity });
+         } else {
+            this.$store.dispatch('addToLocalCart', { payload: this.getPlantData, quantity: this.quantity });
+         }
      }
   }
 }
