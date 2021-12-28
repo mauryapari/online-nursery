@@ -129,6 +129,7 @@ const authStore = {
       },
       removeUserInfo(context) {
          context.commit('setUserInfo', {});
+         this.dispatch('isCartAvailable');
       },
       addUserToDatabase(context, id) {
          const generatedCartID = window?.globalFun?.util?.getRandomString(28);

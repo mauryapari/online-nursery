@@ -135,7 +135,6 @@
                 this.$store.dispatch('removeLocalCartItem'); // Adding removeLocalCartItem so that items in cart in database are not removed on logout.
                 this.$store.dispatch('logoutUser');
                 this.$store.dispatch('removeUserInfo');
-                this.$store.dispatch('isCartAvailable');
             }
         },
     }
