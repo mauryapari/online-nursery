@@ -27,6 +27,7 @@ const cartStore = {
       sortData(state, data) {
          for(let key in data) {
             const itemIndex = state.cartItemsID.findIndex(item => item === data[key].itemId);
+            const hasQuanChanges = state.cartItems[itemIndex]?.quantity !== data[key]?.quantity;
             if(itemIndex < 0) {
                state.cartItemsID.push(data[key].itemId);
                let obj = {
@@ -45,6 +46,17 @@ const cartStore = {
                state.cartItemsObj.push(data[key]?.item);
                state.itemKeyMap.push(pair);
             }
+            if(hasQuanChanges) {
+               let obj = {
+                  itemName: data[key].itemName,
+                  itemPrice: data[key].itemPrice,
+                  quantity: data[key]?.quantity,
+                  totalPrice: data[key].itemPrice * data[key].quantity,
+                  imgSrc: data[key]?.item?.imgpath,
+                  itemId: data[key]?.itemId
+               }
+               state.cartItems[itemIndex] = obj;
+            }
          }
       },
       sortLocalData(state, data) {
@@ -54,6 +66,7 @@ const cartStore = {
       },
       addToLocalCart(state, data) {
          const itemIndex = state.cartItemsID.findIndex(item => item === data.itemId);
+         const hasQuanChanges = state.cartItems[itemIndex]?.quantity !== data?.quantity;
          const obj = {
             itemName: data.itemName,
             itemPrice: data.itemPrice,
@@ -62,16 +75,16 @@ const cartStore = {
             imgSrc: data.imgSrc || data?.item?.imgpath,
             itemId: data?.itemId
          }
-         if(itemIndex >= 0) {
+         if(itemIndex >= 0 || hasQuanChanges) {
             const item = state.cartItems[itemIndex]
             obj.quantity+=item.quantity
             obj.totalPrice= obj.quantity * item.itemPrice
             state.cartItems[itemIndex] = obj;
-            return;
+         } else if (itemIndex <0) {
+            state.cartItemsID.push(data.itemId);  
+            state.cartItems.push(obj);
+            state.cartItemsObj.push(data?.item);
          }
-         state.cartItemsID.push(data.itemId);  
-         state.cartItems.push(obj);
-         state.cartItemsObj.push(data?.item);
          const localStorageData = {
             cartItemsID : state.cartItemsID,
             cartItems: state.cartItems,

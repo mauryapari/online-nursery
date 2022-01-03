@@ -59,7 +59,13 @@ export default {
       }
    },
    watch:{
-      getCartItems(){}
+      getCartItems: {
+         deep: true,
+         immediate: true,
+         handler(oldval, newVal) {
+            console.log(oldval, 'changed to ', newVal);
+         }
+      }
    },
    computed: {
       getCartItems() {

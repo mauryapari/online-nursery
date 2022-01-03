@@ -1,7 +1,7 @@
 <template>
     <div>
       <header-component></header-component>
-            <empty-cart-component v-if="!getCartItems"></empty-cart-component>
+            <empty-cart-component v-if="!cartItemsLength"></empty-cart-component>
          <div class="container" v-else>
             <div class="cart-page">
                <div class="cart-page__list">
@@ -23,12 +23,12 @@ import CartInvoiceComponent from '../content/CartPageComponents/CartInvoiceCompo
 export default {
   components: { HeaderComponent, EmptyCartComponent, CartListComponent, CartInvoiceComponent },
   computed: {
-     getCartItems() {
+     cartItemsLength() {
         return this.$store?.getters?.getCartItems;
      }
   },
   watch: {
-     getCartItems(){
+     cartItemsLength(){
         //
      }
   }
