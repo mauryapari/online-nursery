@@ -178,16 +178,18 @@ export default {
    }
 
    @include element(product-name) {
-      
+      margin-bottom: 15px;
    }
 
    @include element(product-price) {
+      margin-bottom: 15px;
       font-size: 18px;
       font-weight: 700;
    }
 
    @include element(options-wrapper) {
       display: flex;
+      flex-direction: column;
       text-transform: uppercase;
       font-size: 12px;
       font-weight: 700;
@@ -195,6 +197,7 @@ export default {
 
    @include element(wishlist) {
       padding-right: 40px;
+      margin-bottom: 20px;
       &:hover {
          cursor: pointer;
       }
@@ -213,6 +216,16 @@ export default {
       color: $white;
       &:visited {
          color: $white;
+      }
+   }
+
+   @include sm {
+      @include element(options-wrapper) {
+         flex-direction: row;
+      }
+
+      @include element(wishlist) {
+         margin-bottom: 0px;
       }
    }
 }

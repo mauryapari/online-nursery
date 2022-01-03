@@ -58,7 +58,7 @@ export default {
   },
   methods: {
      submitOrder() {
-        
+      this.$store.dispatch('setOrder');  
      }
   }
 }

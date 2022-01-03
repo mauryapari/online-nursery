@@ -89,6 +89,10 @@ export default {
   },
   mounted() {
      this.fetchUrlPlantData();
+     window.scrollTo({
+         top: 0,
+         behavior: 'smooth'
+      });
   },
   methods: {
      fetchUrlPlantData() {
@@ -131,6 +135,7 @@ export default {
    margin: 20px 0px;
    @include element(wrapper) {
       display: flex;
+      flex-direction: column;
    }
 
    @include element(image-section) {
@@ -140,9 +145,10 @@ export default {
    @include element(image-wrapper) {
       flex-basis: 35%;
       padding: 20px;
+      text-align: center;
       img {
          border: 1px solid $brand-grey-200;
-         width: 100%;
+         width: 50%;
       }
    }
 
@@ -198,7 +204,6 @@ export default {
    }
 
    @include element(delivery-wrapper) {
-      display: flex;
       background-color: $brand-grey-100;
       align-items: center;
       padding: 20px;
@@ -207,6 +212,8 @@ export default {
 
    @include element(delivery-title) {
       flex-basis: 25%;
+      margin-right: 15px;
+      margin-bottom: 20px;
    }
 
    @include element(delivery-desc) {
@@ -239,6 +246,20 @@ export default {
       button {
          width: 200px;
          margin-left: 20px;
+      }
+   }
+
+   @include sm {
+      @include element(wrapper) {
+         flex-direction: row;
+      }
+      @include element(image-wrapper) {
+         img {
+            width: 100%;
+         }
+      }
+      @include element(delivery-wrapper) {
+         display: flex;
       }
    }
 }

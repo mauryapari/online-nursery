@@ -46,6 +46,9 @@ const checkoutStore = {
       },
       showPayment(context) {
          context.commit('showPayment');
+      },
+      setOrder(context, data) {
+         
       }
    }
 };

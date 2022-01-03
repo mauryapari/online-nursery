@@ -18,10 +18,13 @@ const authStore = {
          return state.userDetails;
       },
       getUserName(state) {
-         return state.userDetails?.users?.displayName;
+         return state.userDetails?.users[0]?.displayName;
       },
       getUserUUID(state) {
          return state.UUID;
+      },
+      getUserCartID(state) {
+         return state.userDetails?.userDatabaseInfo.cartID;
       }
    },
    mutations: {
@@ -81,7 +84,6 @@ const authStore = {
               context.commit('setUserStatus', true);
               this.dispatch('removeLocalCartItem');
               this.dispatch('getUserInfo', data.idToken);
-              this.dispatch('getCartDetailsFromUser', data.localId);
               this.dispatch('setModalName', '');
            })
          } catch (error) {
@@ -112,7 +114,7 @@ const authStore = {
         .then(data => data.json())
         .then(() => {
          this.dispatch('getUserInfo', payload.idToken);
-      })
+         })
       }, 
       getUserInfo(context, id) {
          fetch(apiConfig.API.baseURL + apiConfig.API.getUserData + apiKey, {
@@ -125,6 +127,7 @@ const authStore = {
         .then(data => {
          data['idToken'] = id;
          context.commit('setUserInfo', data);
+         this.dispatch('getCartDetailsFromUser', data.users[0].localId);
         })
       },
       removeUserInfo(context) {
