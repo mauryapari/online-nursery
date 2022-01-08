@@ -13,12 +13,20 @@ import store from '../components/stores/index';
 
 const router = new VueRouter({
     routes: [
-        { path:'/', component: HomePage },
-        { path: '/account', component: AccountPage },
-        { path: '/plant', component: PlantPage },
+        { path:'/', component: HomePage, meta: { breadcrumb: [{ name: 'Home' }]} },
+        { path: '/account', component: AccountPage, meta: { breadcrumb: [{ name: 'Home', link: '/' }, { name:'Account' }]} },
+        { path: '/plant', component: PlantPage, meta: { breadcrumb: [{ name: 'Home', link:'/' }, { name: 'Plants' }]} },
         {   path: '/plant/:id',
             name:'plant',
-            component: PlantPdpPage
+            component: PlantPdpPage,
+            meta: { 
+                breadcrumb: [{ 
+                    name: 'Home',
+                    link: '/'
+                }, {
+                    name: 'Plants',
+                    link: '/plant'
+                }]}
         },
         { path: '/cart', component: CartPage },
         { path:'/checkout', component: CheckoutPage, beforeEnter: (to, from, next)=> {

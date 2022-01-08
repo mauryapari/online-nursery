@@ -60,6 +60,10 @@ export default {
   methods: {
      setNewPlantData(data) {
         this.$store.dispatch('setPlantDetail', data);
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
      }
   }
 };

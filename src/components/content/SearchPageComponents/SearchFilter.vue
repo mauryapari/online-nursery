@@ -49,7 +49,7 @@ export default {
 
 <style lang="scss">
 .search-filters {
-    padding: 20px;
+    padding: 10px 20px 20px;
     @include element(heading-wrapper) {
         padding: 10px 0px;
     }
