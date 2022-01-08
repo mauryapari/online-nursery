@@ -61,6 +61,8 @@ export default {
 .footer {
 	width: 100%;
 	display: block;
+   background-color: $white;
+   margin: 20px 0px 0px;
    
    @include element(inner) {
       padding: 80px 10px 30px;
@@ -77,7 +79,7 @@ export default {
    }
 
    @include element(items) {
-      width: 25%;
+      width: 50%;
       padding: 10px 20px;
       box-sizing: border-box;
    }
@@ -164,6 +166,12 @@ export default {
       @include element(logo) {
          max-width: 250px;
          max-height: 95px;
+      }
+   }
+   
+   @include md {
+      @include element(items) {
+         width: 25%;
       }
    }
 }

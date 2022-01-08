@@ -36,6 +36,7 @@ export default {
 .empty-cart {
    margin-right: auto;
    margin-left: auto;
+   margin-top: 30px;
    .card-container {
       text-align: center;
    }

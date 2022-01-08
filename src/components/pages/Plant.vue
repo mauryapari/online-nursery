@@ -53,6 +53,7 @@
             </template>
          </section-component>
          <similar-products-component></similar-products-component>
+         <footer-component></footer-component>
     </div>
 </template>
 <script>
@@ -62,8 +63,9 @@ import Clickables from '../util-content/clickables/clickables.vue';
 import InputComponent  from '../util-content/InputComponent/InputComponent.vue';
 import SimilarProductsComponent from '../content/SimilarProductsComponent.vue';
 import SectionComponent from '../util-content/page-background/SectionComponent.vue';
+import FooterComponent from '../content/FooterComponent.vue';
 export default {
-  components: { HeaderComponent, BreadcrumbComponent, Clickables, InputComponent, SimilarProductsComponent, SectionComponent },
+  components: { HeaderComponent, BreadcrumbComponent, Clickables, InputComponent, SimilarProductsComponent, SectionComponent, FooterComponent },
   data() {
      return {
         pincodeErrorMsg: '',
