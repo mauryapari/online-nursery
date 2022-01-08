@@ -32,16 +32,50 @@ const checkoutStore = {
          state.showDeliveryStatus = true
          state.showPayment = false
       },
+      setDeliveryStatus(state) {
+         state.showDeliveryStatus = true;
+      },
       showReviewStatus(state, payload) {
          state.showReviewDetails = payload;
       },
       showPayment(state) {
          state.showPayment = !state.showPayment;
+      },
+      clearCheckoutPage(state) {
+         state.showDeliveryStatus = false;
+         state.showReviewDetails = false;
+         state.showPayment = false;
       }
    },
    actions: {
       setUserBillingAddress(context, payload) {
-         context.commit('setAddress', payload);
+         const userId = context?.getters?.getUserUUID;
+         const existingOrderID = context?.getters?.getUserOrders || [];
+         const wishlistItemID = context?.getters?.getWishlistID || [];
+         const cartId = context?.getters?.getUserCartID || '';
+         const userDetails = {
+            orderID: existingOrderID,
+            wishlistItemID: wishlistItemID,
+            address: payload.data,
+            cartID: cartId
+         };
+         fetch(apiConfig.API.databaseURL + `users/${userId}.json`, {
+            method: 'PUT',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userDetails),
+         })
+         .then(data => data.json())
+         .then(data => {
+            console.log(data);
+            context.commit('setDatabaseInfo', {data: data, id: payload.id });
+            context.commit('setAddress', payload);
+         });
+      },
+      setDeliveryStatus(context) {
+         context.commit('setDeliveryStatus');
+         context.commit('showReviewStatus', true);
       },
       showReviewStatus(context, payload) {
          context.commit('showReviewStatus', payload);
@@ -76,6 +110,9 @@ const checkoutStore = {
             // context.commit('setDatabaseInfo', {data: data, id: payload.customerID });
          });
       },
+      clearCheckoutPage(context) {
+         context.commit('clearCheckoutPage');
+      }
    }
 };
 

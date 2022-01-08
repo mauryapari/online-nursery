@@ -15,11 +15,21 @@ import LoginForm from './components/content/Forms/LoginForm.vue';
       computed: {
           getModalName() {
               return this.$store?.getters?.getModalName;
+          },
+          getUserCartID() {
+            return this.$store?.getters?.getUserCartID;
+          }
+      },
+      watch: {
+          getUserCartID: {
+              immediate: true,
+              handler() {
+                this.$store.dispatch('isCartAvailable');
+              }
           }
       },
       mounted() {
           this.$store.dispatch('isUserRegistered');
-          this.$store.dispatch('isCartAvailable');
       }
     };
 </script>

@@ -70,7 +70,6 @@ const cartStore = {
       },
       addToLocalCart(state, data) {
          const itemIndex = state.cartItemsID.findIndex(item => item === data.itemId);
-         const hasQuanChanges = state.cartItems[itemIndex]?.quantity !== data?.quantity;
          const obj = {
             itemName: data.itemName,
             itemPrice: data.itemPrice,
@@ -208,14 +207,15 @@ const cartStore = {
 
       },
       isCartAvailable(context) {
-         const id  = context?.getters?.getUserCartID;
-         if (id) {
+         const isUserLoggedIn  = context?.getters?.getUserLoggedIn;
+         if (apiConfig.API.cartID) {
             this.dispatch('fetchCartItems', apiConfig.API.cartID)
             return;
          }
-         const data = localStorage.getItem('cartDetails');
-         // context.commit('addToLocalCart');
-         context.commit('sortLocalData', JSON.parse(data));
+         if(!isUserLoggedIn) {
+            const data = localStorage.getItem('cartDetails');
+            context.commit('sortLocalData', JSON.parse(data));
+         }
       }
    }
 }

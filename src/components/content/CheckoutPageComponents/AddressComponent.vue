@@ -12,11 +12,11 @@
                      Delivery Adddress
                   </div>
                   <div class="checkout-step__change-button" v-if="userAddress">
-                     <clickables :btnType="'secondary'" :btnSize="'sm'" @click.native="showForm">{{'Change'}}</clickables>
+                     <clickables :btnType="'secondary'" :btnSize="'sm'" @click.native="showForm">{{this.btnValue}}</clickables>
                   </div>
                </div>
                <div class="checkout-step__body">
-                  <form @submit.prevent="submitAddressData" v-if="(!userAddress)">
+                  <form @submit.prevent="submitAddressData" v-if="(!userAddress || isAddressChanging)">
                      <fieldset>
                         <div class="checkout-step__field-wrappers">
                            <input-component
@@ -124,7 +124,7 @@ export default {
            town: '',
            state: '',
         },
-        isValueEmpty:''
+        isAddressChanging: false
      }
   },
   computed: {
@@ -133,6 +133,9 @@ export default {
      },
      userAddress() {
         return this.$store?.getters?.getUserAddress;
+     },
+     btnValue() {
+        return this.isAddressChanging ? 'Close' : 'Change';
      }
   },
   watch: {
@@ -146,13 +149,15 @@ export default {
      },
      userAddress: {
         deep: true,
-        handler() {
+        immediate: true,
+        handler(oldValue, newValue) {
+           console.log('watcher',oldValue, newValue);
            for(let key in this.userAddress) {
               this.address[key] = this.userAddress[key]
            }
-           this.$nextTick(() => {
-              this.$store.dispatch('setUserBillingAddress', { type: 'Billing', data: this.address })
-            });
+           if(oldValue && oldValue.name){
+              this.$store.dispatch('setDeliveryStatus');
+           }
         }
      }
   },
@@ -179,10 +184,11 @@ export default {
         }
         if(isMailValid && !flag) {
               this.$store.dispatch('setUserBillingAddress', { type: 'Billing', data: this.address })
+              this.isAddressChanging = false;
          }
      },
      showForm() {
-         this.$store.dispatch('setUserBillingAddress', { type: 'Billing', data: '' });
+        this.isAddressChanging = !this.isAddressChanging
      }
   }
    

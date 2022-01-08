@@ -62,9 +62,7 @@ export default {
       getCartItems: {
          deep: true,
          immediate: true,
-         handler(oldval, newVal) {
-            console.log(oldval, 'changed to ', newVal);
-         }
+         handler() {}
       }
    },
    computed: {
