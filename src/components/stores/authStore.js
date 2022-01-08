@@ -52,7 +52,8 @@ const authStore = {
          if(payload?.data?.cartID) {
             state.userDatabaseInfo = payload?.data;
          } else {
-            state.userDatabaseInfo = payload?.data[payload.id];
+            const data = payload.data? payload.data[payload.id] : {};
+            state.userDatabaseInfo = data;
          }
       }
    },
@@ -149,6 +150,7 @@ const authStore = {
       },
       removeUserInfo(context) {
          context.commit('setUserInfo', {});
+         context.commit('setDatabaseInfo', {});
          this.dispatch('isCartAvailable');
       },
       setUserDatabaseInfo(context, payload) {
