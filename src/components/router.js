@@ -22,7 +22,17 @@ const router = new VueRouter({
         },
         { path: '/cart', component: CartPage },
         { path:'/checkout', component: CheckoutPage, beforeEnter: (to, from, next)=> {
-            if(!store.getters.getUserLoggedIn) {
+            if(store?.getters?.getUserLoggedIn === null) {
+                const watcher = store.watch(() => store.getters.getUserLoggedIn, isLoggedIn => {
+                    watcher();
+                    if (isLoggedIn) next();
+                    else {
+                        store.dispatch('setModalName', 'login-form');
+                        next(false);
+                    }
+                });
+            }
+            else if(!store.getters.getUserLoggedIn) {
                 store.dispatch('setModalName', 'login-form');
                 next(false);
             } else {

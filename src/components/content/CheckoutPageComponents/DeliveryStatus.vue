@@ -42,7 +42,7 @@ export default {
   },
   watch: {
      getDeliveryStatus() {
-        this.$store.dispatch('showReviewStatus');
+        this.$store.dispatch('showReviewStatus', true);
      }
   }
 }

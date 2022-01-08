@@ -5,12 +5,16 @@
             <div class="invoice-container__details">
                <div class="invoice-container__details-item">
                   <div class="invoice-container__text">Item(s) Total</div>
-                  <div class="invoice-container__cost">2300</div>
+                  <div class="invoice-container__cost">{{ getTotalCartPrice }}</div>
                </div>
                <div class="invoice-container__details-item">
-                  <div class="invoice-container__text">Account Payable</div>
-                  <div class="invoice-container__cost">2300</div>
+                  <div class="invoice-container__text">Delivery Charges</div>
+                  <div class="invoice-container__cost">Free</div>
                </div>
+            </div>
+            <div class="invoice-container__details-item">
+               <div class="invoice-container__text">Account Payable</div>
+               <div class="invoice-container__cost">{{ getTotalCartPrice }}</div>
             </div>
             <clickables v-if="isCart" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="'#/checkout'">{{'Checkout'}}</clickables>
          </div>
@@ -30,9 +34,10 @@ export default {
    },
    components: { SectionComponent, Clickables },
    computed: {
-      getCartData() {
-         return this.$store?.getters.getCartData;
-      }
+      getTotalCartPrice() {
+         return this.$store?.getters?.getTotalCartPrice;
+      },
+
    }
 }
 </script>
@@ -51,6 +56,7 @@ export default {
       display: flex;
       justify-content: space-between;
       padding: 7px 0px;
+      border-bottom: 1px dotted $brand-grey-100;
    }
 
    @include element(btn) {

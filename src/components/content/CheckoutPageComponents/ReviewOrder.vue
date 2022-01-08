@@ -83,6 +83,11 @@ export default {
          return this.$store?.getters?.getShowPayment;
       }
    },
+   watch: {
+      getReviewDetails: {
+         handler(){}
+      }
+   },
    methods: {
        removeItem(id) {
          this.$store.dispatch('removeCartItem', id);

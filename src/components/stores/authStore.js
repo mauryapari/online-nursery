@@ -8,6 +8,7 @@ const authStore = {
       isAdmin: false,
       isUserLoggedIn: null,
       userDetails: {},
+      userDatabaseInfo:{},
       UUID: ''
    },
    getters: {
@@ -24,7 +25,16 @@ const authStore = {
          return state.UUID;
       },
       getUserCartID(state) {
-         return state.userDetails?.userDatabaseInfo.cartID;
+         return state?.userDatabaseInfo?.cartID;
+      },
+      getUserOrders(state) {
+         return state?.userDatabaseInfo?.orderID;
+      },
+      getUserAddress(state) {
+         return state?.userDatabaseInfo?.address;
+      },
+      getWishlistID(state) {
+         return state?.userDatabaseInfo?.wishlistItemID;
       }
    },
    mutations: {
@@ -36,12 +46,13 @@ const authStore = {
          const UUID = userInfo.localId;
          state.UUID = UUID;
          state.userDetails = payload
+         return true;
       },
       setDatabaseInfo(state, payload) {
          if(payload?.data?.cartID) {
-            state.userDetails.userDatabaseInfo = payload?.data;
+            state.userDatabaseInfo = payload?.data;
          } else {
-            state.userDetails.userDatabaseInfo = payload?.data[payload.id];
+            state.userDatabaseInfo = payload?.data[payload.id];
          }
       }
    },
@@ -60,10 +71,16 @@ const authStore = {
            window.globalFun.util.setCookie('auth-token', data.localId, Number(data.expiresIn), '/');
            window.globalFun.util.setCookie('user-id', data.idToken, Number(data.expiresIn), '/');
            data['name'] = payload.name;
+           const newPayload = {
+              orderID: [],
+              cartID: '',
+              wishlistItemID:[],
+              address: {}
+           }
            context.commit('setUserStatus', true);
            this.dispatch('removeLocalCartItem');
            this.dispatch('setUserInfo', data);
-           this.dispatch('addUserToDatabase', data.localId);
+           this.dispatch('setUserDatabaseInfo', { data: newPayload, id: data.localId });
            this.dispatch('setModalName', '');
         })
       },
@@ -134,32 +151,42 @@ const authStore = {
          context.commit('setUserInfo', {});
          this.dispatch('isCartAvailable');
       },
-      addUserToDatabase(context, id) {
+      setUserDatabaseInfo(context, payload) {
          const generatedCartID = window?.globalFun?.util?.getRandomString(28);
-         const data = {
-            orderIds: [],
-            address: {},
-            wishlistItemIds: [],
+         const userDetails = {
+            orderID: payload.data.orderID,
+            wishlistItemID: payload.data.wishlistItemID,
+            address: payload.data.address,
             cartID: generatedCartID,
          };
-         fetch(apiConfig.API.databaseURL + `users/${id}.json`, {
+         // for(let key in userDetails) {
+         //    userDetails[key] = payload[key]
+         // }
+         fetch(apiConfig.API.databaseURL + `users/${payload.id}.json`, {
             method: 'PUT',
             headers: {
                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(userDetails),
          })
          .then(data => data.json())
          .then(data => {
             window.globalFun.util.setCookie('cart-id', generatedCartID, 3600, '/');
-            context.commit('setDatabaseInfo', {data: data, id: id });
+            context.commit('setDatabaseInfo', {data: data, id: payload.id });
          });
       },
-      // getUser(context, id) {
-      //    fetch(apiConfig.API.databaseURL + `users.json?orderBy="wishlistItemIds"&print=pretty`)
+      // setUserDatabaseInfo(context, payload) {
+      //    const id = context?.state?.UUID;
+      //    fetch(apiConfig.API.databaseURL + `users/${id}.json`, {
+      //       method: 'PUT',
+      //       headers: {
+      //          'Content-Type': 'application/json',
+      //       },
+      //       body: JSON.stringify(payload),
+      //    })
       //    .then(data => data.json())
       //    .then(data => {
-      //       console.log(data);
+      //       context.commit('setDatabaseInfo', {data: data, id: id});
       //    });
       // },
       getCartDetailsFromUser(context, id) {
@@ -170,7 +197,6 @@ const authStore = {
             for(let key in data) {
                generatedCartID = data[key].cartID;
             }
-            console.log(generatedCartID);
             window.globalFun.util.setCookie('cart-id', generatedCartID, 3600, '/');
             context.commit('setDatabaseInfo', {data: data, id: id });
             this.dispatch('fetchCartItems', generatedCartID);

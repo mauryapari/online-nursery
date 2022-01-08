@@ -21,6 +21,10 @@ const cartStore = {
       },
       getCartItemObj(state) {
          return state.cartItemsObj;
+      },
+      getTotalCartPrice(state) {
+         const totalPrice = state.cartItems.reduce((sum, item) => { return sum + item.totalPrice }, 0);
+         return totalPrice;
       }
    },
    mutations: {
@@ -75,10 +79,10 @@ const cartStore = {
             imgSrc: data.imgSrc || data?.item?.imgpath,
             itemId: data?.itemId
          }
-         if(itemIndex >= 0 || hasQuanChanges) {
+         if(itemIndex >= 0) {
             const item = state.cartItems[itemIndex]
-            obj.quantity+=item.quantity
-            obj.totalPrice= obj.quantity * item.itemPrice
+            obj.quantity+=item?.quantity
+            obj.totalPrice= obj.quantity * item?.itemPrice
             state.cartItems[itemIndex] = obj;
          } else if (itemIndex <0) {
             state.cartItemsID.push(data.itemId);  
@@ -97,6 +101,7 @@ const cartStore = {
          state.cartItemsID.splice(itemIndex, 1);
          state.cartItems.splice(itemIndex, 1);
          state.cartItemsObj.splice(itemIndex, 1);
+         state.itemKeyMap.splice(itemIndex, 1);
          const isLoggedIn = data.isUserLoggedIn;
          if(!isLoggedIn) {
             const localStorageData = {
@@ -111,6 +116,7 @@ const cartStore = {
          state.cartItemsID = [];
          state.cartItems = [];
          state.cartItemsObj = [];
+         state.itemKeyMap = [];
          const isLoggedIn = data.isUserLoggedIn;
          if(!isLoggedIn) {
             const localStorageData = {
@@ -125,7 +131,7 @@ const cartStore = {
    actions: {
       addToCart(context, data) {
          const itemIndex = context.state.cartItemsID.findIndex(item => item ===  data?.payload?.variantId);
-         const cartID = apiConfig.API.cartID;
+         const cartID = context.getters?.getUserCartID;
          let method = 'POST';
          let url = apiConfig.API.databaseURL + `carts/${cartID}.json`;
          const itemOBj = {
@@ -169,7 +175,7 @@ const cartStore = {
          context.commit('addToLocalCart', itemOBj)
       },
       removeCartItem(context, id) {
-         const cartID = apiConfig.API.cartID;
+         const cartID = context.getters?.getUserCartID;
          if(id) {
             const itemIndex = context.state.cartItemsID.findIndex(item => item ===  id);
             const key = context.state.itemKeyMap[itemIndex].key;
@@ -202,7 +208,8 @@ const cartStore = {
 
       },
       isCartAvailable(context) {
-         if (apiConfig.API.cartID) {
+         const id  = context?.getters?.getUserCartID;
+         if (id) {
             this.dispatch('fetchCartItems', apiConfig.API.cartID)
             return;
          }

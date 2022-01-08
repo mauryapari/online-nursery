@@ -6,6 +6,7 @@
       <featured-component></featured-component>
       <service-component></service-component>
       <contact-component></contact-component>
+      <footer-component></footer-component>
     </div>
 </template>
 <script>
@@ -15,8 +16,9 @@ import FeaturedComponent from '../content/HomePageComponent/FeaturedComponent.vu
 import HeaderComponent from '../content/HeaderComponent.vue';
 import HomeBanner from '../content/HomePageComponent/HomeBanner.vue';
 import ServiceComponent from '../content/HomePageComponent/ServiceComponent.vue';
+import FooterComponent from '../content/FooterComponent.vue';
 export default {
-  components: { CategoryComponent, HeaderComponent, FeaturedComponent, HomeBanner, ServiceComponent, ContactComponent },
+  components: { CategoryComponent, HeaderComponent, FeaturedComponent, HomeBanner, ServiceComponent, ContactComponent, FooterComponent },
   data() {
     return {
       isCarousalContainerReq: true,

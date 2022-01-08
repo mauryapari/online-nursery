@@ -144,6 +144,17 @@ export default {
             }
         }
      },
+     userAddress: {
+        deep: true,
+        handler() {
+           for(let key in this.userAddress) {
+              this.address[key] = this.userAddress[key]
+           }
+           this.$nextTick(() => {
+              this.$store.dispatch('setUserBillingAddress', { type: 'Billing', data: this.address })
+            });
+        }
+     }
   },
   methods: {
      getInputValue(data) {
@@ -172,9 +183,6 @@ export default {
      },
      showForm() {
          this.$store.dispatch('setUserBillingAddress', { type: 'Billing', data: '' });
-         // for(let key in this.address) {
-         //    this.address[key] = '';
-         // }
      }
   }
    

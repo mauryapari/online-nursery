@@ -27,7 +27,7 @@
                            </div>
                         </template>
                         <template slot="card-footer">
-                           <clickables :isDisabled="isBtnDisabled" :btnType="'secondary'" @click.native="submitOrder">{{'CONFIRM ORDER'}}</clickables>
+                           <clickables :btnType="'secondary'" @click.native="submitOrder">{{'CONFIRM ORDER'}}</clickables>
                         </template>
                      </card-component>
                   </div>
@@ -49,6 +49,15 @@ export default {
   computed: {
      showPayment() {
         return this.$store?.getters?.getShowPayment;
+     },
+     getUserAddress() {
+        return this.$store?.getters?.getUserAddress;
+     },
+     getUserUUID() {
+        return this.$store?.getters?.getUserUUID;
+     },
+     getTotalCartPrice() {
+        return this.$store?.getters?.getTotalCartPrice;
      }
   },
   watch: {
@@ -58,7 +67,14 @@ export default {
   },
   methods: {
      submitOrder() {
-      this.$store.dispatch('setOrder');  
+        const orderData = {
+           address: this.getUserAddress,
+           customerID: this.getUserUUID,
+           paymentType: 'COD',
+           totalPrice: this.getTotalCartPrice,
+           createdAt: + new Date()
+        };
+      this.$store.dispatch('setOrderId', orderData);  
      }
   }
 }
