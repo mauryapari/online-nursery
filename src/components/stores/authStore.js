@@ -2,7 +2,6 @@
 const firebaseAPI = require('../../firebaseConfig');
 const apiConfig = require('../config');
 const apiKey = firebaseAPI.firebaseConfig.apiKey;
-const toastMixin = require('../assets/js/toast-mixins');
 
 const authStore = {
    state: {
