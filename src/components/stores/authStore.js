@@ -69,20 +69,45 @@ const authStore = {
         })
         .then(data => data.json())
         .then(data => {
-           window.globalFun.util.setCookie('auth-token', data.localId, Number(data.expiresIn), '/');
-           window.globalFun.util.setCookie('user-id', data.idToken, Number(data.expiresIn), '/');
-           data['name'] = payload.name;
-           const newPayload = {
-              orderID: [],
-              cartID: '',
-              wishlistItemID:[],
-              address: {}
+           if(data?.error?.errors && data?.error?.message) {
+              throw data.error;
+           } else {
+              window.globalFun.util.setCookie('auth-token', data.localId, Number(data.expiresIn), '/');
+              window.globalFun.util.setCookie('user-id', data.idToken, Number(data.expiresIn), '/');
+              data['name'] = payload.name;
+              const newPayload = {
+                 orderID: [],
+                 cartID: '',
+                 wishlistItemID:[],
+                 address: {}
+              }
+              context.commit('setUserStatus', true);
+              this.dispatch('removeLocalCartItem');
+              this.dispatch('setUserInfo', data);
+              this.dispatch('setUserDatabaseInfo', { data: newPayload, id: data.localId });
+              this.dispatch('setModalName', '');
+              const modalData = {
+                  action: true,
+                  data: {
+                     title: 'User Signed In',
+                     subtitle: '',
+                     type: 'success',
+                     iconName: 'success'
+                  }
+               }
+               this.dispatch('setToastModalData', modalData);
            }
-           context.commit('setUserStatus', true);
-           this.dispatch('removeLocalCartItem');
-           this.dispatch('setUserInfo', data);
-           this.dispatch('setUserDatabaseInfo', { data: newPayload, id: data.localId });
-           this.dispatch('setModalName', '');
+        }).catch(res => {
+         const modalData = {
+            action: true,
+            data: {
+               title: 'Something Went Wrong',
+               subtitle: res?.message,
+               type: 'error',
+               iconName: 'error'
+            }
+         }
+         this.dispatch('setToastModalData', modalData);
         })
       },
       logIn(context, payload) {
@@ -94,26 +119,34 @@ const authStore = {
                   returnSecureToken: true
             })
          })
-         .then(res => {
-            if(res.status === 200) {
-               const data = res.json();
+         .then(data => data.json())
+         .then(data => {
+            if(data?.error?.errors && data?.error?.message) {
+               throw data.error;
+            } else {
                window.globalFun.util.setCookie('auth-token', data.localId, Number(data.expiresIn), '/');
                window.globalFun.util.setCookie('user-id', data.idToken, Number(data.expiresIn), '/');
                context.commit('setUserStatus', true);
                this.dispatch('removeLocalCartItem');
                this.dispatch('getUserInfo', data.idToken);
                this.dispatch('setModalName', '');
-            } else {
-               throw res;
+               const modalData = {
+                  action: true,
+                  data: {
+                     title: 'User Logged In',
+                     subtitle: '',
+                     type: 'success',
+                     iconName: 'success'
+                  }
+               }
+               this.dispatch('setToastModalData', modalData);
             }
          }).catch(res => {
-            console.log('error',res);
-            const data = res.json();
             const modalData = {
                action: true,
                data: {
-                  title: 'wrong',
-                  subtitle: 'wrong',
+                  title: 'Something Went Wrong',
+                  subtitle: res?.message,
                   type: 'error',
                   iconName: 'error'
                }
@@ -144,7 +177,7 @@ const authStore = {
         })
         .then(data => data.json())
         .then(() => {
-         this.dispatch('getUserInfo', payload.idToken);
+            this.dispatch('getUserInfo', payload.idToken);
          })
       }, 
       getUserInfo(context, id) {
@@ -156,9 +189,9 @@ const authStore = {
         })
         .then(data => data.json())
         .then(data => {
-         data['idToken'] = id;
-         context.commit('setUserInfo', data);
-         this.dispatch('getCartDetailsFromUser', data.users[0].localId);
+            data['idToken'] = id;
+            context.commit('setUserInfo', data);
+            this.dispatch('getCartDetailsFromUser', data.users[0].localId);
         })
       },
       removeUserInfo(context) {
@@ -174,9 +207,6 @@ const authStore = {
             address: payload.data.address,
             cartID: generatedCartID,
          };
-         // for(let key in userDetails) {
-         //    userDetails[key] = payload[key]
-         // }
          fetch(apiConfig.API.databaseURL + `users/${payload.id}.json`, {
             method: 'PUT',
             headers: {
@@ -190,20 +220,6 @@ const authStore = {
             context.commit('setDatabaseInfo', {data: data, id: payload.id });
          });
       },
-      // setUserDatabaseInfo(context, payload) {
-      //    const id = context?.state?.UUID;
-      //    fetch(apiConfig.API.databaseURL + `users/${id}.json`, {
-      //       method: 'PUT',
-      //       headers: {
-      //          'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify(payload),
-      //    })
-      //    .then(data => data.json())
-      //    .then(data => {
-      //       context.commit('setDatabaseInfo', {data: data, id: id});
-      //    });
-      // },
       getCartDetailsFromUser(context, id) {
          fetch(apiConfig.API.databaseURL + `users.json?orderBy="$key"&equalTo="${id}"&print=pretty`)
          .then(data => data.json())

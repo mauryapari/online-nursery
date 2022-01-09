@@ -5,7 +5,7 @@
          <p class="toast__title">{{title}}</p>
          <p class="toast__subtitle">{{subtitle}}</p>
       </div>
-      <button class="toast__close-btn">
+      <button class="toast__close-btn" @click="closeModal">
          <span class="icon icon-twitter"></span>
       </button>
    </div>
@@ -44,6 +44,11 @@ export default {
       isInfo() {
          return this.type === 'info' 
       }
+   },
+   methods: {
+      closeModal() {
+         this.$store.dispatch('setToastModalData', { action: false, data: {} })
+      }
    }
 }
 </script>
@@ -52,7 +57,6 @@ export default {
 .toast {
    visibility: hidden;
    max-width: 450px;
-   height: 50px;
    margin: auto;
    color: #fff;
    text-align: center;
@@ -66,6 +70,7 @@ export default {
    display: flex;
    justify-content: space-between;
    align-items: center;
+   padding: 10px;
    
    @include element(success) {
       background-color: $brand-green;   
@@ -76,7 +81,7 @@ export default {
    }
 
    @include element(info) {
-      background-color: $brand-grey-100;   
+      background-color: $brand-grey-500;   
    }
     
    @include element(close-btn) {
@@ -99,10 +104,12 @@ export default {
 
    @include element(title) {
       font-size: 16px;
+      margin: 10px 0px;
    }
 
    @include element(subtitle) {
       font-size: 14px;
+      margin: 10px 0px;
    }
 
 

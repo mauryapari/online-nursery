@@ -41,8 +41,8 @@
                 <span class="icon icon-cart"></span>
                 <span class="header-section__cart-container">
                     <router-link to="/cart"><span class="icon icon-shopping-bag"></span></router-link>
-                    <span class="header-section__cart-item-count-bg" v-if="getCartItems">
-                        <span class="header-section__cart-item-count">{{getCartItems}}</span>
+                    <span class="header-section__cart-item-count-bg" v-if="getCartItemQuantity">
+                        <span class="header-section__cart-item-count">{{getCartItemQuantity}}</span>
                     </span>
                 </span>
                 <span class="icon icon-paragraph-justify" @click="showMobileNavigation" v-if="areSmallDevices"></span>
@@ -70,6 +70,9 @@
                 isAccountInfoVisible: false
             }
         },
+        watch: {
+            getCartItemQuantity() {}
+        },
         computed: {
             isMobile() {
                 return this.$store.getters?.isMobile;
@@ -87,6 +90,9 @@
                 let name = this.$store?.getters?.getUserDetails?.users;
                     name = name?.length ? name[0]?.displayName : '';
                 return  name;
+            },
+            getCartItemQuantity() {
+                return this.$store?.getters?.getCartItemQuantity;
             }
         },
         methods: {

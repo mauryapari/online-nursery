@@ -1,6 +1,4 @@
-// const firebaseAPI = require('../../firebaseConfig');
 const apiConfig = require('../config');
-// const apiKey = firebaseAPI.firebaseConfig.apiKey;
 
 const cartStore = {
    state: {
@@ -21,6 +19,10 @@ const cartStore = {
       },
       getCartItemObj(state) {
          return state.cartItemsObj;
+      },
+      getCartItemQuantity(state) {
+         const totalQuantity = state.cartItems.reduce((sum, item) => { return sum + item.quantity }, 0);
+         return totalQuantity;
       },
       getTotalCartPrice(state) {
          const totalPrice = state.cartItems.reduce((sum, item) => { return sum + item.totalPrice }, 0);
@@ -81,8 +83,8 @@ const cartStore = {
          if(itemIndex >= 0) {
             const item = state.cartItems[itemIndex]
             obj.quantity+=item?.quantity
-            obj.totalPrice= obj.quantity * item?.itemPrice
-            state.cartItems[itemIndex] = obj;
+            obj.totalPrice= obj.quantity * item?.itemPrice;
+            state.cartItems.splice(itemIndex, 1, obj);
          } else if (itemIndex <0) {
             state.cartItemsID.push(data.itemId);  
             state.cartItems.push(obj);
@@ -152,8 +154,33 @@ const cartStore = {
             body: JSON.stringify(itemOBj)
          })
          .then(data => data.json())
-         .then(() => {
-            this.dispatch('fetchCartItems', cartID);
+         .then((data) => {
+            if(data?.error?.errors && data?.error?.message) {
+               throw data.error;
+            } else {
+               this.dispatch('fetchCartItems', cartID);
+               const modalData = {
+                  action: true,
+                  data: {
+                     title: 'Item Added To Cart',
+                     subtitle: `Total Items ${itemOBj.quantity}`,
+                     type: 'info',
+                     iconName: 'info'
+                  }
+               }
+               this.dispatch('setToastModalData', modalData);
+            }
+         }).catch(()=> {
+            const modalData = {
+               action: true,
+               data: {
+                  title: 'Could not Add Item',
+                  subtitle: '',
+                  type: 'error',
+                  iconName: 'error'
+               }
+            }
+            this.dispatch('setToastModalData', modalData);
          })
       },
       fetchCartItems(context, cartID) {
@@ -171,6 +198,16 @@ const cartStore = {
             quantity: data?.quantity || 1,
             itemName: data?.payload?.itemname
          };
+         const modalData = {
+            action: true,
+            data: {
+               title: 'Item Added To Cart',
+               subtitle: '',
+               type: 'info',
+               iconName: 'info'
+            }
+         }
+         this.dispatch('setToastModalData', modalData);
          context.commit('addToLocalCart', itemOBj)
       },
       removeCartItem(context, id) {
@@ -183,6 +220,16 @@ const cartStore = {
             })
             .then(() => {
                context.commit('removeCartItem',  { isUserLoggedIn: context.getters.getUserLoggedIn, id: id });
+               const modalData = {
+                  action: true,
+                  data: {
+                     title: 'Item Removed From Cart',
+                     subtitle: '',
+                     type: 'info',
+                     iconName: 'info'
+                  }
+               }
+               this.dispatch('setToastModalData', modalData);
             })
          } else {
             fetch(apiConfig.API.databaseURL + `carts/${cartID}.json`, {
@@ -190,21 +237,45 @@ const cartStore = {
             })
             .then(() => {
                context.commit('removeAll', { isUserLoggedIn: context.getters.getUserLoggedIn });
+               const modalData = {
+                  action: true,
+                  data: {
+                     title: 'All Items Removed From Cart',
+                     subtitle: '',
+                     type: 'info',
+                     iconName: 'info'
+                  }
+               }
+               this.dispatch('setToastModalData', modalData);
             })
          }
       },
       removeLocalCartItem(context, id) {
          if(id) {
             context.commit('removeCartItem', { isUserLoggedIn: context.getters.getUserLoggedIn, id: id });
+            const modalData = {
+               action: true,
+               data: {
+                  title: 'Item Removed From Cart',
+                  subtitle: '',
+                  type: 'info',
+                  iconName: 'info'
+               }
+            }
+            this.dispatch('setToastModalData', modalData);
             return;
          } 
          context.commit('removeAll', { isUserLoggedIn: context.getters.getUserLoggedIn });
-      },
-      getCartInfo(context, id) {
-
-      },
-      setCartInfo(context) {
-
+         const modalData = {
+            action: true,
+            data: {
+               title: 'All Items Removed From Cart',
+               subtitle: '',
+               type: 'info',
+               iconName: 'info'
+            }
+         }
+         this.dispatch('setToastModalData', modalData);
       },
       isCartAvailable(context) {
          const isUserLoggedIn  = context?.getters?.getUserLoggedIn;
