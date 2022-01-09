@@ -2,6 +2,7 @@
 const firebaseAPI = require('../../firebaseConfig');
 const apiConfig = require('../config');
 const apiKey = firebaseAPI.firebaseConfig.apiKey;
+const toastMixin = require('../assets/js/toast-mixins');
 
 const authStore = {
    state: {
@@ -86,27 +87,40 @@ const authStore = {
         })
       },
       logIn(context, payload) {
-         try {
-            fetch(apiConfig.API.baseURL + apiConfig.API.loginURL + apiKey, {
-               method: 'POST',
-               body: JSON.stringify({
-                   email: payload.email,
-                   password: payload.password,
-                   returnSecureToken: true
-               })
-           })
-           .then(data => data.json())
-           .then(data => {
-              window.globalFun.util.setCookie('auth-token', data.localId, Number(data.expiresIn), '/');
-              window.globalFun.util.setCookie('user-id', data.idToken, Number(data.expiresIn), '/');
-              context.commit('setUserStatus', true);
-              this.dispatch('removeLocalCartItem');
-              this.dispatch('getUserInfo', data.idToken);
-              this.dispatch('setModalName', '');
-           })
-         } catch (error) {
-            console.log(error);
-         }
+         fetch(apiConfig.API.baseURL + apiConfig.API.loginURL + apiKey, {
+            method: 'POST',
+            body: JSON.stringify({
+                  email: payload.email,
+                  password: payload.password,
+                  returnSecureToken: true
+            })
+         })
+         .then(res => {
+            if(res.status === 200) {
+               const data = res.json();
+               window.globalFun.util.setCookie('auth-token', data.localId, Number(data.expiresIn), '/');
+               window.globalFun.util.setCookie('user-id', data.idToken, Number(data.expiresIn), '/');
+               context.commit('setUserStatus', true);
+               this.dispatch('removeLocalCartItem');
+               this.dispatch('getUserInfo', data.idToken);
+               this.dispatch('setModalName', '');
+            } else {
+               throw res;
+            }
+         }).catch(res => {
+            console.log('error',res);
+            const data = res.json();
+            const modalData = {
+               action: true,
+               data: {
+                  title: 'wrong',
+                  subtitle: 'wrong',
+                  type: 'error',
+                  iconName: 'error'
+               }
+            }
+            this.dispatch('setToastModalData', modalData);
+         })
       },
       isUserRegistered(context) {
          if (apiConfig.API.AUTHTOKEN) {

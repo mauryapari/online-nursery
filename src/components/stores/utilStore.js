@@ -1,7 +1,9 @@
 const utilStore = {
    state: {
       isUserModalVisible: false,
-      modalName: ''
+      modalName: '',
+      isToastMessageModalVisible: false,
+      toastModalData: {}
    },
    getters: {
       showUserModal(state) {
@@ -9,6 +11,12 @@ const utilStore = {
       },
       getModalName(state) {
          return state.modalName;
+      },
+      getIsToastModalVisible(state) {
+         return state.isToastMessageModalVisible;
+      },
+      getToastModalData(state) {
+         return state.toastModalData;
       }
    },
    mutations: {
@@ -17,6 +25,12 @@ const utilStore = {
       },
       setModalName(state, payload) {
          state.modalName = payload
+      },
+      setToastModal(state, payload) {
+         state.isToastMessageModalVisible = payload;
+      },
+      setToastModalData(state, payload) {
+         state.toastModalData = payload;
       }
    },
    actions: {
@@ -25,6 +39,10 @@ const utilStore = {
       },
       setModalName(context, payload) {
          context.commit('setModalName', payload)
+      },
+      setToastModalData(context, payload) {
+         context.commit('setToastModalData', payload.data)
+         context.commit('setToastModal', payload.action)
       }
    }
 }

@@ -13,7 +13,7 @@ import store from '../components/stores/index';
 
 const router = new VueRouter({
     routes: [
-        { path:'/', component: HomePage, meta: { breadcrumb: [{ name: 'Home' }]} },
+        { path: '/', component: HomePage, meta: { breadcrumb: [{ name: 'Home' }]} },
         { path: '/account', component: AccountPage, meta: { breadcrumb: [{ name: 'Home', link: '/' }, { name:'Account' }]} },
         { path: '/plant', component: PlantPage, meta: { breadcrumb: [{ name: 'Home', link:'/' }, { name: 'Plants' }]} },
         {   path: '/plant/:id',
