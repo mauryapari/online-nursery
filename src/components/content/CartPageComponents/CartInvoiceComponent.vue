@@ -16,7 +16,8 @@
                <div class="invoice-container__text">Account Payable</div>
                <div class="invoice-container__cost">{{ getTotalCartPrice }}</div>
             </div>
-            <clickables v-if="isCart" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="'#/checkout'">{{'Checkout'}}</clickables>
+            <clickables v-if="showShoppingBtn" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="showBtnText.link">{{showBtnText.name}}</clickables>
+            <clickables v-if="showMyOrderBtn" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="'#/account'">{{'Go To My Orders'}}</clickables>
          </div>
       </template>
    </section-component>
@@ -27,7 +28,11 @@ import Clickables from '../../util-content/clickables/clickables.vue';
 import SectionComponent  from '../../util-content/page-background/SectionComponent.vue';
 export default {
    props: {
-      isCart: {
+      showShoppingBtn: {
+         type: [String, Boolean],
+         default: false
+      },
+      showMyOrderBtn: {
          type: Boolean,
          default: false
       }
@@ -37,7 +42,18 @@ export default {
       getTotalCartPrice() {
          return this.$store?.getters?.getTotalCartPrice;
       },
-
+      showBtnText() {
+         if(this.showShoppingBtn === 'cart') {
+            return {
+               name: 'Checkout',
+               link: '#/checkout'
+            }
+         }
+         return {
+            name: 'Continue Shopping',
+            link: '#/plant'
+         }
+      }
    }
 }
 </script>

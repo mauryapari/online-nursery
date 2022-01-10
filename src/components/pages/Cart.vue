@@ -8,7 +8,7 @@
                   <cart-list-component></cart-list-component>
                </div>
                <div class="cart-page__invoice">
-                  <cart-invoice-component :isCart="true"></cart-invoice-component>
+                  <cart-invoice-component :showShoppingBtn="'cart'"></cart-invoice-component>
                </div>
             </div>
          </div>

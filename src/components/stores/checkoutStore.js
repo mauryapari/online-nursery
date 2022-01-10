@@ -104,7 +104,7 @@ const checkoutStore = {
             };
             this.dispatch('setUserDatabaseInfo', {data: newPayload, id: context?.getters?.getUserUUID});
             this.dispatch('removeCartItem');
-            router.push('/account');
+            router.push('/orderConfirmation');
             context.commit('showPayment');
 
             // context.commit('setDatabaseInfo', {data: data, id: payload.customerID });

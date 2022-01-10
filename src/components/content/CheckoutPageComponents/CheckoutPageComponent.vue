@@ -8,13 +8,12 @@
 </template>
 
 <script>
-import SectionComponent from '../../util-content/page-background/SectionComponent.vue'
 import AddressComponent from './AddressComponent.vue';
 import DeliveryStatus from './DeliveryStatus.vue';
 import Payment from './Payment.vue';
 import ReviewOrder from './ReviewOrder.vue';
 export default {
-  components: { SectionComponent, AddressComponent, DeliveryStatus, ReviewOrder, Payment },
+  components: { AddressComponent, DeliveryStatus, ReviewOrder, Payment },
    
 }
 </script>

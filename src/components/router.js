@@ -9,6 +9,8 @@ import PlantPage from './pages/SearchPage.vue';
 import PlantPdpPage from './pages/Plant.vue';
 import CartPage from './pages/Cart.vue';
 import CheckoutPage from './pages/CheckoutPage.vue';
+import OrderConfirmation from './pages/OrderConfirmation.vue';
+
 import store from '../components/stores/index';
 
 const router = new VueRouter({
@@ -47,6 +49,22 @@ const router = new VueRouter({
                 next();
             }
         }},
+        {path: '/orderConfirmation', component: OrderConfirmation, beforeEnter: (to, from, next)=> {
+            if(store?.getters?.getUserLoggedIn === null) {
+                const watcher = store.watch(() => store.getters.getUserLoggedIn, isLoggedIn => {
+                    watcher();
+                    if (isLoggedIn) next();
+                    else {
+                        next('/');
+                    }
+                });
+            }
+            else if(!store.getters.getUserLoggedIn) {
+                next('/');
+            } else {
+                next();
+            }
+        }}
     ]
 });
 
