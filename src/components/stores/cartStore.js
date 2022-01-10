@@ -61,7 +61,7 @@ const cartStore = {
                   imgSrc: data[key]?.item?.imgpath,
                   itemId: data[key]?.itemId
                }
-               state.cartItems[itemIndex] = obj;
+               state.cartItems.splice(itemIndex, 1, obj);
             }
          }
       },
