@@ -53,8 +53,13 @@ export default {
   components: { SectionComponent, InputComponent },
   computed: {
       getCartItems() {
-         this.cartItems = this.$store?.getters?.getCartData;
-         return this.$store?.getters?.getCartData;
+         return this.$store?.getters?.getLastCartDetails;
+      }
+   },
+   watch: {
+      getCartItems: {
+         deep: true,
+         handler(){}
       }
    }
 }

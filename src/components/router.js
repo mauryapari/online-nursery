@@ -59,7 +59,7 @@ const router = new VueRouter({
                     }
                 });
             }
-            else if(!store.getters.getUserLoggedIn) {
+            else if(!store?.getters?.getLastCartDetails) {
                 next('/');
             } else {
                 next();

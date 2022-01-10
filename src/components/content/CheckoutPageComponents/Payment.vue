@@ -58,7 +58,10 @@ export default {
      },
      getTotalCartPrice() {
         return this.$store?.getters?.getTotalCartPrice;
-     }
+     },
+     getCartItems() {
+         return this.$store?.getters?.getCartData;
+      },
   },
   watch: {
      getDeliveryStatus() {
@@ -68,6 +71,7 @@ export default {
   methods: {
      submitOrder() {
         const orderData = {
+           cartItem: this.getCartItems,
            address: this.getUserAddress,
            customerID: this.getUserUUID,
            paymentType: 'COD',

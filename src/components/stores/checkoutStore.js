@@ -7,7 +7,8 @@ const checkoutStore = {
       showDeliveryStatus: false,
       showReviewDetails: false,
       address: '',
-      showPayment: false
+      showPayment: false,
+      lastCartDetails: ''
    },
    getters: {
       getCheckoutAddress(state) {
@@ -24,6 +25,9 @@ const checkoutStore = {
       },
       getShowPayment(state) {
          return state.showPayment;
+      },
+      getLastCartDetails(state) {
+         return state.lastCartDetails;
       }
    },
    mutations: {
@@ -45,6 +49,9 @@ const checkoutStore = {
          state.showDeliveryStatus = false;
          state.showReviewDetails = false;
          state.showPayment = false;
+      },
+      setLastCartDetails(state, payload) {
+         state.lastCartDetails = payload;
       }
    },
    actions: {
@@ -103,6 +110,7 @@ const checkoutStore = {
                address: payload.address
             };
             this.dispatch('setUserDatabaseInfo', {data: newPayload, id: context?.getters?.getUserUUID});
+            context.commit('setLastCartDetails', payload.cartItem);
             this.dispatch('removeCartItem');
             router.push('/orderConfirmation');
             context.commit('showPayment');

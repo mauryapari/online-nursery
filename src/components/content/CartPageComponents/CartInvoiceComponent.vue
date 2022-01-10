@@ -2,7 +2,7 @@
    <section-component>
       <template slot="page-content">
          <div class="invoice-container">
-            <div class="invoice-container__details">
+            <div class="invoice-container__details" v-if="!showMyOrderBtn">
                <div class="invoice-container__details-item">
                   <div class="invoice-container__text">Item(s) Total</div>
                   <div class="invoice-container__cost">{{ getTotalCartPrice }}</div>
@@ -12,7 +12,7 @@
                   <div class="invoice-container__cost">Free</div>
                </div>
             </div>
-            <div class="invoice-container__details-item">
+            <div class="invoice-container__details-item" v-if="!showMyOrderBtn">
                <div class="invoice-container__text">Account Payable</div>
                <div class="invoice-container__cost">{{ getTotalCartPrice }}</div>
             </div>
