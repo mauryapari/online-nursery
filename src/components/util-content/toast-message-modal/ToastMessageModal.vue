@@ -96,7 +96,7 @@ export default {
 
    @include element(show) {
       visibility: visible;
-      animation: fadein 0.5s, fadeout 0.5s 5s;
+      animation: fadein 0.5s, fadeout 0.5s 4.5s;
    }
 
    @include element(text-container) {

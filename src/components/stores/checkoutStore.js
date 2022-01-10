@@ -109,13 +109,22 @@ const checkoutStore = {
                wishlistItemID: wishlistItemID,
                address: payload.address
             };
+            const modalData = {
+               action: true,
+               data: {
+                  title: 'Order Created',
+                  subtitle: '',
+                  type: 'success',
+                  iconName: 'success'
+               }
+            }
+            this.dispatch('setToastModalData', modalData);
             this.dispatch('setUserDatabaseInfo', {data: newPayload, id: context?.getters?.getUserUUID});
             context.commit('setLastCartDetails', payload.cartItem);
             this.dispatch('removeCartItem');
             router.push('/orderConfirmation');
             context.commit('showPayment');
 
-            // context.commit('setDatabaseInfo', {data: data, id: payload.customerID });
          });
       },
       clearCheckoutPage(context) {

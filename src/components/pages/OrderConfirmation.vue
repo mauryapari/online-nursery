@@ -43,6 +43,11 @@ export default {
       @include modifier(col) {
          align-items: flex-start;
       }
+
+      @include modifier(has-spinner) {
+         display: block;
+         text-align: center;
+      }
    }
 
    @include element(content-details) {

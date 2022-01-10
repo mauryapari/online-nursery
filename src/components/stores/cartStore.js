@@ -163,7 +163,7 @@ const cartStore = {
                   action: true,
                   data: {
                      title: 'Item Added To Cart',
-                     subtitle: `Total Items ${itemOBj.quantity}`,
+                     subtitle: '',
                      type: 'info',
                      iconName: 'info'
                   }

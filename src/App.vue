@@ -41,9 +41,13 @@ import ToastMessageModal from './components/util-content/toast-message-modal/Toa
               }
           },
           getToastModalData() {
-              setTimeout(()=> {
-                  this.$store.dispatch('setToastModalData', { action: false, data: {} })
-              }, 5000);
+            if (this.callTimer) {
+                clearTimeout(this.callTimer);
+                this.callTimer = null;
+            }
+            this.callTimer = setTimeout(()=> {
+                this.$store.dispatch('setToastModalData', { action: false, data: {} })
+            }, 5000);
           }
       },
       mounted() {
