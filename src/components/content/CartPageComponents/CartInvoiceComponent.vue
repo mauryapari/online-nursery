@@ -17,7 +17,7 @@
                <div class="invoice-container__cost">{{ getTotalCartPrice }}</div>
             </div>
             <clickables v-if="showShoppingBtn" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="showBtnText.link">{{showBtnText.name}}</clickables>
-            <clickables v-if="showMyOrderBtn" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="'#/account'">{{'Go To My Orders'}}</clickables>
+            <clickables v-if="showMyOrderBtn" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="'#/account/orders'">{{'Go To My Orders'}}</clickables>
          </div>
       </template>
    </section-component>

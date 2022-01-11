@@ -6,7 +6,7 @@ import CartStore from './cartStore';
 import UtilStore from './utilStore';
 import AuthStore from './authStore';
 import checkoutStore from './checkoutStore';
-
+import userAccountStore from './userAccountStore';
 Vue.use(Vuex);
 
 const storeModules = {
@@ -15,7 +15,8 @@ const storeModules = {
     CartStore,
     UtilStore,
     AuthStore,
-    checkoutStore
+    checkoutStore,
+    userAccountStore
 };
 
 const vueXStore = new Vuex.Store({
