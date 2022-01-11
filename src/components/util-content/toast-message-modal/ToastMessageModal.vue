@@ -71,6 +71,7 @@ export default {
    justify-content: space-between;
    align-items: center;
    padding: 10px;
+   box-shadow: 0 2px 10px rgb(0 0 0 / 25%);
    
    @include element(success) {
       background-color: $brand-green;   

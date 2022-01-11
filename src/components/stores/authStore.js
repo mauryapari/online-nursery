@@ -31,7 +31,7 @@ const authStore = {
          return state?.userDatabaseInfo?.orderID;
       },
       getUserAddress(state) {
-         return state?.userDatabaseInfo?.address;
+         return state?.userDatabaseInfo?.address || null;
       },
       getWishlistID(state) {
          return state?.userDatabaseInfo?.wishlistItemID;

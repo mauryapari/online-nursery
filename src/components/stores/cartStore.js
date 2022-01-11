@@ -266,16 +266,6 @@ const cartStore = {
             return;
          } 
          context.commit('removeAll', { isUserLoggedIn: context.getters.getUserLoggedIn });
-         const modalData = {
-            action: true,
-            data: {
-               title: 'All Items Removed From Cart',
-               subtitle: '',
-               type: 'info',
-               iconName: 'info'
-            }
-         }
-         this.dispatch('setToastModalData', modalData);
       },
       isCartAvailable(context) {
          const isUserLoggedIn  = context?.getters?.getUserLoggedIn;

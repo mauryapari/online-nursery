@@ -32,7 +32,7 @@
                     <span class="header-section__log-in">Hi {{ this.getUserName }}
                         <span class="header-section__account-navigation" v-if="isAccountInfoVisible">
                             <ul class="header-section__mobile-navigation-list">
-                                <li><a href="#" class="header-section__mobile-navigation-list-item">Account</a></li>
+                                <li><router-link class="header-section__mobile-navigation-list-item" to="/account">Account</router-link></li>
                                 <li><a href="#" class="header-section__mobile-navigation-list-item" @click="logout">Sign Out</a></li>
                             </ul>
                         </span>
