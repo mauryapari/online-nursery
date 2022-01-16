@@ -2,16 +2,23 @@ const apiConfig = require('../config');
 
 const userAccountStore = {
    state: {
-      usersOrderData: []
+      usersOrderData: [],
+      currentData: {}
    },
    getters: {
       getUserOrderData(state) {
          return state.usersOrderData;
+      },
+      getSelectedOrderData(state) {
+         return state.currentData;
       }
    },
    mutations: {
       setUserOrders(state, data) {
          state.usersOrderData = data
+      },
+      setCurrentOrderData(state, data) {
+         state.currentData = data
       }
    },
    actions: {
@@ -23,10 +30,22 @@ const userAccountStore = {
                promises.push(fetch(apiConfig.API.databaseURL + `orders/${item}.json`).then(resp => resp.json()))
             })
             const data = await Promise.all(promises);
-            context.commit('setUserOrders', data);
+            let newData = data.map((item, index)=>({...item, orderID: payload[index]}));
+            console.log(newData);
+            context.commit('setUserOrders', newData);
          } else {
             context.commit('setUserOrders', [])
          }
+      },
+      setCurrentOrderData(context, payload) {
+         fetch(apiConfig.API.databaseURL + `orders.json?orderBy="$key"&equalTo="${payload}"`)
+         .then(data => data.json())
+         .then(data => {
+            const orderID = Object.keys(data);
+            let newData = data[orderID[0]];
+            newData.orderID = orderID[0];
+            context.commit('setCurrentOrderData', newData);
+         })
       }
    }
 }

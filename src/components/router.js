@@ -13,7 +13,7 @@ import OrderConfirmation from './pages/OrderConfirmation.vue';
 import UserProfile from '../components/content/AccountPageComponents/UserProfile.vue';
 import UserOrder from '../components/content/AccountPageComponents/UserOrders.vue';
 import UserAddress from '../components/content/AccountPageComponents/UserAddress.vue';
-
+import UserOrderDetails from '../components/content/AccountPageComponents/UserOrderDetails.vue'
 import store from '../components/stores/index';
 
 const router = new VueRouter({
@@ -45,13 +45,19 @@ const router = new VueRouter({
                 component: UserOrder,
                 meta: { breadcrumb: [{ name: 'Home', link: '/' }, { name:'Account', link: '/account' },  {name: 'Orders'}]}
             }, {
+                path:'orders/:id',
+                name:'orders',
+                component: UserOrderDetails,
+                meta: { breadcrumb: [{ name: 'Home', link: '/' }, { name:'Account', link: '/account' },  {name: 'Orders', link: '/account/orders'}]}
+            },{
                 path: 'address',
                 component: UserAddress,
                 meta: { breadcrumb: [{ name: 'Home', link: '/' }, { name:'Account', link: '/account' },  {name: 'Address'}]}
             }],
-            meta: { breadcrumb: [{ name: 'Home', link: '/' }, { name:'Account' }]} },
+            meta: { breadcrumb: [{ name: 'Home', link: '/' }, { name:'Account' }]}
+        },
         { path: '/plant', component: PlantPage, meta: { breadcrumb: [{ name: 'Home', link:'/' }, { name: 'Plants' }]} },
-        {   path: '/plant/:id',
+        { path: '/plant/:id',
             name:'plant',
             component: PlantPdpPage,
             meta: { 
@@ -82,7 +88,7 @@ const router = new VueRouter({
                 next();
             }
         }},
-        {path: '/orderConfirmation', component: OrderConfirmation, beforeEnter: (to, from, next)=> {
+        { path: '/orderConfirmation', component: OrderConfirmation, beforeEnter: (to, from, next)=> {
             if(store?.getters?.getUserLoggedIn === null) {
                 const watcher = store.watch(() => store.getters.getUserLoggedIn, isLoggedIn => {
                     watcher();

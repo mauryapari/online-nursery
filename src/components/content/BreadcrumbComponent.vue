@@ -34,10 +34,14 @@ export default {
         updateList() {
             this.breadcrumbList = this.$route.meta.breadcrumb;
             const id = this.$route?.params?.id;
+            const routeName = this.$route?.name;
             if(id) {
-                const data = window?.globalFun?.util?.getPlantDetail(id);
+                let data = ''
+                if(routeName === 'plant') {
+                    data = window?.globalFun?.util?.getPlantDetail(id);
+                }
                 const obj = {
-                    name: data?.itemname,
+                    name: data?.itemname || id,
                     type: 'ID'
                 }
                 const itemIndex = this.breadcrumbList.findIndex(item => item.type === 'ID');

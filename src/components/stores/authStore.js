@@ -19,7 +19,7 @@ const authStore = {
          return state.userDetails;
       },
       getUserName(state) {
-         return state.userDetails?.users[0]?.displayName;
+         return state.userDetails?.users?.length && state.userDetails?.users[0]?.displayName;
       },
       getUserUUID(state) {
          return state.UUID;
