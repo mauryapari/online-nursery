@@ -1,7 +1,7 @@
 <template>
    <div class="checkout-step">
       <div class="checkout-step__icon-container accordian-container__icon-container">
-         <span class="icon icon-shopping-bag"></span>
+         <span class="icon icon-map-marker"></span>
       </div>   
       <section-component>
          <template slot="page-content">

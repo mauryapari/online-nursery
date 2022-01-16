@@ -13,23 +13,23 @@
                <div class="account-page__options">
                   <ul  class="account-page__options-list">
                      <li class="account-page__options-item">
-                        <span class="icon icon-twitter"></span>
+                        <span class="icon icon-user"></span>
                         <router-link to="/account/profile">Profile</router-link>
                      </li>
                      <li class="account-page__options-item">
-                        <span class="icon icon-twitter"></span>
+                        <span class="icon icon-credit-card"></span>
                         <router-link to="/account/orders">Orders</router-link>
                      </li>
                      <li class="account-page__options-item">
-                        <span class="icon icon-twitter"></span>
+                        <span class="icon icon-map-marker"></span>
                         <router-link to="/account/address">Address</router-link>
                      </li>
                      <li class="account-page__options-item">
-                        <span class="icon icon-twitter"></span>
+                        <span class="icon icon-heart"></span>
                         <router-link to="/">Wishlist</router-link>
                      </li>
                      <li class="account-page__options-item">
-                        <span class="icon icon-twitter"></span>
+                        <span class="icon icon-key"></span>
                         <router-link to="/">Change Password</router-link>
                      </li>
                   </ul>

@@ -27,7 +27,7 @@
                            <div class="account-page__order-amount">
                               <div class="account-page__amount-info">
                                  <span class="label-txt">TOTAL AMOUNT: </span>
-                                 <span class="label-value"><i class="icon icon-style"></i>{{totalCal(item, 'totalPrice')}}</span>
+                                 <span class="label-value"><i class="icon icon-rupee"></i>{{totalCal(item, 'totalPrice')}}</span>
                               </div>
                               <div class="account-page__item-length-info">
                                  <span class="label-txt">Total Item: </span>

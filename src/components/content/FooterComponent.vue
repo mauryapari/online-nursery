@@ -33,7 +33,7 @@
       <h3 class="footer__header">Contact us</h3>
       <div class="footer__underline"></div>
         <ul>
-          <li><i class="icon icon-marker" aria-hidden="true"></i>Malad West, Mumbai, Maharashtra, 400064</li>
+          <li><i class="icon icon-map-marker" aria-hidden="true"></i>Malad West, Mumbai, Maharashtra, 400064</li>
           <li><a href="tel:+91-8888888888"><i class="icon icon-phone" aria-hidden="true"></i>+91-8888888888</a></li>
           <li><a href="mailto:contact@us.com"><i class="icon icon-envelope" aria-hidden="true"></i>contact@us.com</a></li>
         </ul> 
@@ -44,7 +44,7 @@
     Copyright &copy; Plant Hub 2020.
       <div class="footer__social-media">
          <a href="#"><i class="icon icon-instagram"></i></a>
-         <a href="#"><i class="icon icon-facebook2"></i></a>
+         <a href="#"><i class="icon icon-facebook"></i></a>
          <a href="#"><i class="icon icon-twitter"></i></a>
       </div> 
   </div>

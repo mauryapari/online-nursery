@@ -92,7 +92,7 @@ const authStore = {
                      title: 'User Signed In',
                      subtitle: '',
                      type: 'success',
-                     iconName: 'success'
+                     iconName: 'check'
                   }
                }
                this.dispatch('setToastModalData', modalData);
@@ -104,7 +104,7 @@ const authStore = {
                title: 'Something Went Wrong',
                subtitle: res?.message,
                type: 'error',
-               iconName: 'error'
+               iconName: 'warning'
             }
          }
          this.dispatch('setToastModalData', modalData);
@@ -136,7 +136,7 @@ const authStore = {
                      title: 'User Logged In',
                      subtitle: '',
                      type: 'success',
-                     iconName: 'success'
+                     iconName: 'check'
                   }
                }
                this.dispatch('setToastModalData', modalData);
@@ -148,7 +148,7 @@ const authStore = {
                   title: 'Something Went Wrong',
                   subtitle: res?.message,
                   type: 'error',
-                  iconName: 'error'
+                  iconName: 'warning'
                }
             }
             this.dispatch('setToastModalData', modalData);

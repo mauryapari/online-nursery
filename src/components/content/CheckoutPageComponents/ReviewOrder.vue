@@ -46,7 +46,7 @@
                            <div class="cart-list__item-quantity">
                               <p v-html="item && item.quantity"></p>
                            </div>
-                           <div class="cart-list__item-amount"><p>{{item.totalPrice}}</p></div>
+                           <div class="cart-list__item-amount"><p><i class="icon icon-rupee"></i>{{item.totalPrice}}</p></div>
                         </div>
                      </template>
                   </div>

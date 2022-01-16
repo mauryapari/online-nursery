@@ -6,7 +6,7 @@
          <p class="toast__subtitle">{{subtitle}}</p>
       </div>
       <button class="toast__close-btn" @click="closeModal">
-         <span class="icon icon-twitter"></span>
+         <span class="icon icon-close"></span>
       </button>
    </div>
 </template>
@@ -91,6 +91,7 @@ export default {
       background: transparent;
 
       .icon {
+         font-size: 20px;
          color: $white;
       }
    }
@@ -113,6 +114,11 @@ export default {
       margin: 10px 0px;
    }
 
+   .icon-check ,
+   .icon-warning {
+      font-size: 18px;
+      margin-left: 25px;
+   }
 
 
 }

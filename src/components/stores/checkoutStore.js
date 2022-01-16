@@ -115,7 +115,7 @@ const checkoutStore = {
                   title: 'Order Created',
                   subtitle: '',
                   type: 'success',
-                  iconName: 'success'
+                  iconName: 'check'
                }
             }
             this.dispatch('setToastModalData', modalData);

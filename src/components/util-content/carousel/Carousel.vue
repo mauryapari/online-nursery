@@ -1,8 +1,8 @@
 <template>
     <div class="carousel" :class="{container: isContainerReq}">
-        <span @click="prev" class="icon icon-cart"></span>
+        <span @click="next" class="icon icon-chevron-left"></span>
             <slot></slot>
-        <span @click="next" class="icon icon-forward"></span>
+        <span @click="prev" class="icon icon-chevron-right"></span>
     </div>
 </template>
 
@@ -44,11 +44,11 @@ export default {
         }
         box-shadow: 0 2px 8px 0 rgb(0 0 0 / 30%);
     }
-    .icon-forward {
-        right: 50px;
-    }
-    .icon-cart {
+    .icon-chevron-left {
         left: 50px;
+    }
+    .icon-chevron-right {
+        right: 50px;
     }
 }
 </style>

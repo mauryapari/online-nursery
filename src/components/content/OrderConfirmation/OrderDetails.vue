@@ -8,7 +8,7 @@
          <div class="order-page__content order-page__content--col" v-else>
             <div class="order-page__data-point">
                <div class="order-page__icon-container">
-                  <span class="icon icon-twitter"></span>
+                  <span class="icon icon-map-marker"></span>
                </div>
                <div class="order-page__details-container">
                   <div class="order-page__details-header">Delivery Address</div>
@@ -19,7 +19,7 @@
             </div>
             <div class="order-page__data-point">
                <div class="order-page__icon-container">
-                  <span class="icon icon-twitter"></span>
+                  <span class="icon icon-calendar"></span>
                </div>
                <div class="order-page__details-container">
                   <div class="order-page__details-header">Delivery Schedule</div>
@@ -33,7 +33,7 @@
             </div>
             <div class="order-page__data-point">
                <div class="order-page__icon-container">
-                  <span class="icon icon-twitter"></span>
+                  <span class="icon icon-credit-card"></span>
                </div>
                <div class="order-page__details-container">
                   <div class="order-page__details-header">Payment Method</div>

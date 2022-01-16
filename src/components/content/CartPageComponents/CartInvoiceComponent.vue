@@ -5,7 +5,7 @@
             <div class="invoice-container__details" v-if="!showMyOrderBtn">
                <div class="invoice-container__details-item">
                   <div class="invoice-container__text">Item(s) Total</div>
-                  <div class="invoice-container__cost">{{ getTotalCartPrice }}</div>
+                  <div class="invoice-container__cost"><i class="icon icon-rupee"></i>{{ getTotalCartPrice }}</div>
                </div>
                <div class="invoice-container__details-item">
                   <div class="invoice-container__text">Delivery Charges</div>
@@ -14,7 +14,7 @@
             </div>
             <div class="invoice-container__details-item" v-if="!showMyOrderBtn">
                <div class="invoice-container__text">Account Payable</div>
-               <div class="invoice-container__cost">{{ getTotalCartPrice }}</div>
+               <div class="invoice-container__cost"><i class="icon icon-rupee"></i>{{ getTotalCartPrice }}</div>
             </div>
             <clickables v-if="showShoppingBtn" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="showBtnText.link">{{showBtnText.name}}</clickables>
             <clickables v-if="showMyOrderBtn" class="invoice-container__btn" :btnSize="'lg'" :btnType="'secondary'" :isLink="true" :href="'#/account/orders'">{{'Go To My Orders'}}</clickables>

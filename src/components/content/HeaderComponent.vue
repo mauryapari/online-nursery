@@ -38,7 +38,7 @@
                         </span>
                     </span>
                 </span>
-                <span class="icon icon-cart"></span>
+                <span class="icon icon-heart"></span>
                 <span class="header-section__cart-container">
                     <router-link to="/cart"><span class="icon icon-shopping-bag"></span></router-link>
                     <span class="header-section__cart-item-count-bg" v-if="getCartItemQuantity">
