@@ -21,8 +21,8 @@
             return reg.test(val);
          },
          
-         telValidation(val) {
-            const numReg = /^[0]?[789]\d{9}$/;
+         telValidation(value) {
+            const numReg = /^[1-9]{1}[0-9]{9}$/;
             return numReg.test(value);
          },
 

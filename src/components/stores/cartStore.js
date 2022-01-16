@@ -177,7 +177,7 @@ const cartStore = {
                   title: 'Could not Add Item',
                   subtitle: '',
                   type: 'error',
-                  iconName: 'error'
+                  iconName: 'warning'
                }
             }
             this.dispatch('setToastModalData', modalData);

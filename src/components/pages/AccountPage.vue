@@ -65,10 +65,11 @@ export default {
     a {
         display: inline-block;
         font-size: 20px;
+        padding: 10px;
         
-    }
-    &:hover {
-        box-shadow: 0 2px 10px rgb(0 0 0 / 25%);
+        &:hover {
+            box-shadow: 0 2px 10px rgb(0 0 0 / 25%);
+        }
     }
   }
 
@@ -319,7 +320,13 @@ export default {
 
     @include element(payment-detail-holder) {
       width: 33.3%;
-     }
+    }
+
+     @include element(options-item) {
+      a {
+          padding: 10px 25px;
+      }
+    }
   }
 
   @include md {

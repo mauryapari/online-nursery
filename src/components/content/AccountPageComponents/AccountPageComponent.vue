@@ -13,24 +13,19 @@
                <div class="account-page__options">
                   <ul  class="account-page__options-list">
                      <li class="account-page__options-item">
-                        <span class="icon icon-user"></span>
-                        <router-link to="/account/profile">Profile</router-link>
+                        <router-link to="/account/profile"><span class="icon icon-user"></span>Profile</router-link>
                      </li>
                      <li class="account-page__options-item">
-                        <span class="icon icon-credit-card"></span>
-                        <router-link to="/account/orders">Orders</router-link>
+                        <router-link to="/account/orders"> <span class="icon icon-credit-card"></span>Orders</router-link>
                      </li>
                      <li class="account-page__options-item">
-                        <span class="icon icon-map-marker"></span>
-                        <router-link to="/account/address">Address</router-link>
+                        <router-link to="/account/address"><span class="icon icon-map-marker"></span>Address</router-link>
                      </li>
                      <li class="account-page__options-item">
-                        <span class="icon icon-heart"></span>
-                        <router-link to="/">Wishlist</router-link>
+                        <router-link to="/"><span class="icon icon-heart"></span>Wishlist</router-link>
                      </li>
                      <li class="account-page__options-item">
-                        <span class="icon icon-key"></span>
-                        <router-link to="/">Change Password</router-link>
+                        <router-link to="/"><span class="icon icon-key"></span>Change Password</router-link>
                      </li>
                   </ul>
                </div>

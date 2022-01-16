@@ -97,6 +97,16 @@ export default {
                 this.itemArray.forEach((item) => {
                     formData[`${item.fieldLabel}`] = item.value
                 })
+                const modalData = {
+                  action: true,
+                  data: {
+                     title: 'Server Error Occured',
+                     subtitle: '',
+                     type: 'error',
+                     iconName: 'warning'
+                  }
+               }
+               this.$store.dispatch('setToastModalData', modalData);
             }
         },
         getInputValue(val) {

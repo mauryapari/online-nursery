@@ -18,7 +18,7 @@
                         </template>
                         <template slot="card-footer">
                             <div class="service-section__card-footer">
-                                <clickables :btnSize="'md'">{{'Enquire Now'}}</clickables>
+                                <clickables :btnSize="'md'" @click.native="scrollMeTo('contact')">{{'Enquire Now'}}</clickables>
                             </div>
                         </template>    
                     </card-container>    
@@ -58,6 +58,21 @@ export default {
               desc: 'Create the perfect background for your life to happen with the perfect selection of houseplants, home decor, home fragrance and gift items for everyone you know.'
           }]
       }
+  },
+  methods: {
+      scrollMeTo(refName) {
+        const element = this.$parent.$children.find((item) => item.$refs[refName]);
+        if(!element) {
+            this.$router.push('/');
+        }
+        var top = element?.$el?.offsetTop;
+
+        window.scrollTo({
+            top: top,
+            behavior: 'smooth'
+        });
+        this.isMobileNavigationVisible = false;
+    },
   }
 }
 </script>
