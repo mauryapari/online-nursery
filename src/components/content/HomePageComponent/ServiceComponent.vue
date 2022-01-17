@@ -43,17 +43,17 @@ export default {
               desc: "Our skilled and experienced team offers a wide range of plants and saplings to our reputed clients as per their requirements and at affordable rates."
           }, {
               src: require('../../../resources/img/flowers.webp'),
-              alt: "img1",
+              alt: "img2",
               title: "Nursery Services",
               desc: 'Looking for beautiful landscape ideas? Count on our plants, garden flowers to be healthy and thriving. We bring you stunning examples of garden design from properties around the world.'
           }, {
               src: require('../../../resources/img/plant-path.webp'),
-              alt: "img1",
+              alt: "img3",
               title: "Landscape Design",
               desc: 'Using the vast industrial knowledge, which we have amassed over the years, we constantly provide various nursery services to our clients as and when requested.'
           }, {
               src: require('../../../resources/img/bush.webp'),
-              alt: "img1",
+              alt: "img4",
               title: "Garden Maintenance",
               desc: 'Create the perfect background for your life to happen with the perfect selection of houseplants, home decor, home fragrance and gift items for everyone you know.'
           }]

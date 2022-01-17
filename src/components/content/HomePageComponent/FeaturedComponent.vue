@@ -13,7 +13,7 @@
                                 <img :src="item.img" :alt="item.alt" class="featured-section__card-img"/>
                             </template>
                             <template slot="card-text">
-                                <p v-html="item.name" class="featured-section__card-title"></p>
+                                <h4 v-html="item.name" class="featured-section__card-title"></h4>
                             </template>
                             <template slot="card-description">
                                 <p v-html="item.price" class="featured-section__card-price"></p>
@@ -38,26 +38,32 @@ export default {
     return {
       itemArray: [{
         img: require('../../../resources/img/Beautiful-Yellow-Daffodils_1499169127126.jpg'),
+        alt:"img 1",
         name: 'Beautiful Yellow Daffodils',
         price: '870'
       }, {
         img: require('../../../resources/img/Campanula-Flowers-Plants_1499169413504.jpg'),
+        alt:"img 2",
         name: 'Campula Flower Plant',
         price: '870'
       }, {
         img: require('../../../resources/img/young-Schefflera-Plant_1499169220643.jpg'),
+        alt:"img 3",
         name: 'Young Schefflera Plant',
         price: '870'
       }, {
         img: require('../../../resources/img/Madagascar-Periwinkle-Flower-Plant_1499169348075.jpg'),
+        alt:"img 4",
         name: 'Madagascar Periwinkle Flower Plant',
         price: '870'
       }, {
         img: require('../../../resources/img/Petunia-Flowering-Plant_1499169561997.jpg'),
+        alt:"img 5",
         name: 'Petunia Flowring Plant',
         price: '870'
       }, {
         img: require('../../../resources/img/Snake-Plant_1499169649515.jpg'),
+        alt:"img 6",
         name: 'Snake Plant',
         price: '870'
       }],

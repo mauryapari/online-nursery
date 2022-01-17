@@ -9,7 +9,7 @@
                             <img :src="item.img" :alt="item.alt" class="categories-section__card-img"/>
                         </template>
                         <template slot="card-text">
-                            <p v-html="item.title" class="categories-section__card-title"></p>
+                            <h4 v-html="item.title" class="categories-section__card-title"></h4>
                         </template>
                         <template slot="card-description">
                             <p v-html="item.description" class="categories-section__card-desc"></p>
@@ -31,25 +31,25 @@ export default {
           itemArray: [{
               id: 1,
               img: require("../../../resources/img/cactus.webp"),
-              alt: 'Cactus',
+              alt: 'Cactus Plants',
               title: 'Cactus & Succulents',
               description: 'Buy the largest collection of cactus and succulents plants online. Our cactus and succulent plants are a true delight for the cactus plants c collectors.'
           }, {
               id: 2,
               img: require("../../../resources/img/bonsai.webp"),
-              alt: 'Bonsai',
+              alt: 'Bonsai-Plants',
               title: 'Bonsai Plants',
               description: 'Browse from a wide variety of bonsai plants which purify the air around you and creates a positive environment.'
           }, {
               id:3,
               img: require('../../../resources/img/flowering-plant.jfif'),
-              alt: 'Flowering Plant',
+              alt: 'Flowering and gardening plants',
               title: 'Flowering Plants',
               description: 'Buy flowering plants, largest online nursery for flowering plants including all flowering plants, lilies n bulbous plants, orchids, plumeria plants.'
           }, {
               id:4,
               img: require('../../../resources/img/cliembers.webp'),
-              alt: 'Cliembers',
+              alt: 'Cliembers Plant',
               title: 'Climbers & Creepers',
               description: 'Opt for climbing plants as they add color to dull fences, walls or trellises, we are offering online services for buying climbers and creeper plants.'
           }]

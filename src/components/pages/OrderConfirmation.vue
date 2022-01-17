@@ -1,23 +1,25 @@
 <template>
    <div>
-      <div class="header-section container">
-        <div class="header-section__navigation-bar">
-            <div class="header-section__logo-wrapper">
-                <router-link to="/" exact><img src="../../resources/img/logo.webp" alt="Company Logo"></router-link>
+      <header>
+         <div class="header-section container">
+         <div class="header-section__navigation-bar">
+               <div class="header-section__logo-wrapper">
+                  <router-link to="/" exact><img src="../../resources/img/logo.webp" alt="Company Logo"></router-link>
+               </div>
+         </div>
+         </div>
+      </header>
+      <div class="container">
+         <div class="checkout-page">
+            <div class="checkout-page__list">
+               <order-confirmation-component></order-confirmation-component>
             </div>
-        </div>
-      </div>
-         <div class="container">
-            <div class="checkout-page">
-               <div class="checkout-page__list">
-                  <order-confirmation-component></order-confirmation-component>
-               </div>
-               <div class="checkout-page__invoice">
-                  <cart-invoice-component :showShoppingBtn="'order'" :showMyOrderBtn="true"></cart-invoice-component>
-               </div>
+            <div class="checkout-page__invoice">
+               <cart-invoice-component :showShoppingBtn="'order'" :showMyOrderBtn="true"></cart-invoice-component>
             </div>
          </div>
-         <footer-component></footer-component>
+      </div>
+      <footer-component></footer-component>
    </div>
 </template>
 

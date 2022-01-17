@@ -9,7 +9,7 @@
             <div class="checkout-step__content" >
                <div class="checkout-step__header">
                   <div class="checkout-step__heading">
-                     Delivery Adddress
+                     <h2>Delivery Adddress</h2>
                   </div>
                   <div class="checkout-step__change-button" v-if="userAddress">
                      <clickables :btnType="'secondary'" :btnSize="'sm'" @click.native="showForm">{{this.btnValue}}</clickables>
@@ -18,6 +18,7 @@
                <div class="checkout-step__body">
                   <form @submit.prevent="submitAddressData" v-if="(!userAddress || isAddressChanging)">
                      <fieldset>
+                        <legend>Enter User Address</legend>
                         <div class="checkout-step__field-wrappers">
                            <input-component
                               :fieldLabel="'name'"

@@ -34,8 +34,8 @@
                                     </div>
                                  </router-link>
                                  <div class="cart-list__product-details">
-                                    <div class="cart-list__product-name"><p v-html="item && item.itemName"></p></div>
-                                    <div class="cart-list__product-price"><p v-html="item.itemPrice"></p></div>
+                                    <div class="cart-list__product-name"><h3 v-html="item && item.itemName"></h3></div>
+                                    <div class="cart-list__product-price"><h4 v-html="item.itemPrice"></h4></div>
                                     <div class="cart-list__options-wrapper">
                                        <div class="cart-list__wishlist">Move to Wishist</div>
                                        <div class="cart-list__remove" @click.prevent="removeItem(item.itemId)">X Remove</div>

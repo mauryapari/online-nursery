@@ -1,12 +1,14 @@
 <template>
    <div>
-      <div class="header-section container">
-        <div class="header-section__navigation-bar">
-            <div class="header-section__logo-wrapper">
-                <router-link to="/" exact><img src="../../resources/img/logo.webp" alt="Company Logo"></router-link>
-            </div>
-        </div>
-      </div>
+      <header>
+         <div class="header-section container">
+         <div class="header-section__navigation-bar">
+               <div class="header-section__logo-wrapper">
+                  <router-link to="/" exact><img src="../../resources/img/logo.webp" alt="Company Logo"></router-link>
+               </div>
+         </div>
+         </div>
+      </header>
          <div class="container">
             <div class="checkout-page">
                <div class="checkout-page__list">
@@ -97,7 +99,9 @@ export default {
       }
 
       @include element(body) {
-       
+       legend {
+          display: none;
+       }
       }
 
       @include element(field-wrappers) {

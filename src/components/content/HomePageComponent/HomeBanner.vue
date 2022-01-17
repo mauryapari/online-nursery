@@ -12,6 +12,7 @@
                 </div>
             </template>
         </carousel>
+        <h1>Best plants</h1>
     </div>
 </template>
 
@@ -66,11 +67,8 @@ export default {
             max-width: 100%;
         }
     }
-    // @include sm {
-    //     .container {
-    //         padding-right: initial;
-    //         padding-left: initial;
-    //     }
-    // }
+    h1 {
+        display: none;
+    }
 }
 </style>

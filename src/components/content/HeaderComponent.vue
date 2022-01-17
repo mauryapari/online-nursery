@@ -40,7 +40,7 @@
                 </span>
                 <span class="icon icon-heart"></span>
                 <span class="header-section__cart-container">
-                    <router-link to="/cart"><span class="icon icon-shopping-bag"></span></router-link>
+                    <router-link to="/cart" aria-label="cart-page-link"><span class="icon icon-shopping-bag"></span></router-link>
                     <span class="header-section__cart-item-count-bg" v-if="getCartItemQuantity">
                         <span class="header-section__cart-item-count">{{getCartItemQuantity}}</span>
                     </span>

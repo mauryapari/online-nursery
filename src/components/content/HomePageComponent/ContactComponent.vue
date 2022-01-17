@@ -4,6 +4,7 @@
         <div class="contact-form__form-wrapper">
             <form @submit.prevent="submitContactData">
                 <fieldset>
+                    <legend>Enter data for you query</legend>
                     <div class="contact-form__field-wrappers">
                         <div class="contact-form__input-container">
                             <template v-for="(item, index) in itemArray">
@@ -17,7 +18,8 @@
                             </template>
                         </div>
                         <div class="contact-form__textarea-container">
-                            <textarea placeholder="Message"></textarea>
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Message"></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -141,6 +143,9 @@ export default {
 .contact-form {
     padding-top: 40px;
     padding-bottom: 40px;
+    legend {
+        display: none;
+    }
     @include element(form-wrapper) {
         max-width: 992px;
         margin-right: auto;
@@ -182,6 +187,9 @@ export default {
         }
     }
     @include element(textarea-container) {
+        label {
+            display: none;
+        }
         textarea {
             background-color: $brand-grey-300;
             border-radius: 8px;

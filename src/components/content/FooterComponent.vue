@@ -43,9 +43,9 @@
   <div class="footer__bottom">
     Copyright &copy; Plant Hub 2020.
       <div class="footer__social-media">
-         <a href="#"><i class="icon icon-instagram"></i></a>
-         <a href="#"><i class="icon icon-facebook"></i></a>
-         <a href="#"><i class="icon icon-twitter"></i></a>
+         <a href="#" aria-label="instagram-link"><i class="icon icon-instagram"></i></a>
+         <a href="#" aria-label="facebook-link"><i class="icon icon-facebook"></i></a>
+         <a href="#" aria-label="twitter-link"><i class="icon icon-twitter"></i></a>
       </div> 
   </div>
 </div>
