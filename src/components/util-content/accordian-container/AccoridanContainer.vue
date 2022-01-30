@@ -28,7 +28,7 @@
          width: 40px;
          height: 40px;
          position: absolute;
-         background: #282c3f;
+         background: $icon-background-color;
          border-radius: 6px;
          box-shadow: 0 2px 8px 0 rgb(40 44 63 / 40%);
          z-index: 2;

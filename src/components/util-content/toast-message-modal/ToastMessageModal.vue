@@ -58,7 +58,7 @@ export default {
    visibility: hidden;
    max-width: 450px;
    margin: auto;
-   color: #fff;
+   color: $white;
    text-align: center;
    border-radius: 5px;
    position: fixed;
