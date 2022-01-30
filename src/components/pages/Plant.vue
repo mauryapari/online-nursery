@@ -31,15 +31,16 @@
                         <div class="plant-detail__delivery-wrapper">
                            <div class="plant-detail__delivery-title">Delivery</div>
                            <div class="plant-detail__delivery-desc">
-                              <div class="plant-detail__pincode-form">
+                              <div class="plant-detail__pincode-form remove-number-stepper">
                                  <input-component 
                                     :showFieldLabel="false"
                                     :fieldLabel="'Pincode'"
                                     :fieldPlaceholder="'Enter Pincode'"
                                     :inputType="'number'"
+                                    :value="this.pincode"
                                     :errorMsg="pincodeErrorMsg"
                                     @onChange="getPincodeValue"></input-component>
-                                 <clickables class="plant-detail__pincode-check" :btnSize="'sm'" :btnType="'tertiary'">{{'Check'}}</clickables>
+                                 <clickables class="plant-detail__pincode-check" :btnSize="'sm'" :btnType="'tertiary'" @click.native="submitPincode">{{'Check'}}</clickables>
                               </div>
                            </div>
                         </div>
@@ -70,12 +71,16 @@ export default {
      return {
         pincodeErrorMsg: '',
         quantity: 1,
-        quanErrorMsg: ''
+        quanErrorMsg: '',
+        pincode: ''
      }
   },
   watch: {
      quantity() {
         this.quanErrorMsg = '';
+     },
+     pincode() {
+        this.pincodeErrorMsg = '';
      }
   },
   computed: {
@@ -103,8 +108,7 @@ export default {
         this.$store.dispatch('setPlantDetail', data); 
      },
      getPincodeValue(data) {
-        // write code to check pincode
-      //   Please Enter a Valid Pincode
+        this.pincode = data.value;
      },
      getQuantity(data) {
         if(data.value < 1) {
@@ -112,6 +116,22 @@ export default {
            return;
         }
         this.quantity = Number(data.value);
+     },
+     submitPincode() {
+        if(this.pincode.length === 6) {
+           const modalData = {
+               action: true,
+               data: {
+                  title: 'Item can be delivered',
+                  subtitle: '',
+                  type: 'success',
+                  iconName: 'check'
+               }
+            }
+            this.$store.dispatch('setToastModalData', modalData);
+        } else {
+           this.pincodeErrorMsg = 'Please enter a correct pincode.'
+        }
      },
      buyProduct() {
         if(this.isUserLoggedIn) {

@@ -59,7 +59,12 @@ export default {
    watch: {
       getCartItems: {
          deep: true,
-         handler(){}
+         immediate:true,
+         handler(oldValue, newValue) {
+            if(oldValue.length <=0) {
+               this.$router.push('/account/orders');
+            }
+         }
       }
    }
 }

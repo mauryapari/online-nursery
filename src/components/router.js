@@ -104,7 +104,10 @@ const router = new VueRouter({
                 next();
             }
         }}
-    ]
+    ],
+    scrollBehavior(to, from) {
+        return { x: 0, y: 0 };
+    },
 });
 
 export default router;

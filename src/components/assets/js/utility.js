@@ -5,7 +5,7 @@
          return window.globalFun;
       }
 
-      const plantData = require('../../../resources/json/smallPlantData.json');
+      const plantData = require('../../../resources/json/plants.json');
       const util = {
          getPlantDetail(id) {
             const index = plantData.findIndex(item => item.variantId.toString() === id);

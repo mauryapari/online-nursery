@@ -8,7 +8,7 @@ const checkoutStore = {
       showReviewDetails: false,
       address: '',
       showPayment: false,
-      lastCartDetails: ''
+      lastCartDetails: []
    },
    getters: {
       getCheckoutAddress(state) {
@@ -75,7 +75,6 @@ const checkoutStore = {
          })
          .then(data => data.json())
          .then(data => {
-            console.log(data);
             context.commit('setDatabaseInfo', {data: data, id: payload.id });
             context.commit('setAddress', payload);
          });

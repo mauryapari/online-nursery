@@ -3,7 +3,7 @@
  * Constants will be used further
 
 /* API ENDPOINTS */
-export const API = {
+export let API = {
    baseURL: 'https://identitytoolkit.googleapis.com/v1/accounts',
    signUpURL: ':signUp?key=',
    loginURL: ':signInWithPassword?key=',

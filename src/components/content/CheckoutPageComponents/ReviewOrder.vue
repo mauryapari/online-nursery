@@ -85,6 +85,14 @@ export default {
    watch: {
       getReviewDetails: {
          handler(){}
+      },
+      getCartItems: {
+         deep: true,
+         handler(oldValue, newValue) {
+            if(newValue.length <=0) {
+               this.$router.push('/');
+            }
+         }
       }
    },
    methods: {

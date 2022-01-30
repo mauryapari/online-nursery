@@ -88,7 +88,6 @@ export default {
       getUserOrderIDs: {
          deep: true,
          handler() {
-            console.log('ran');
             this.fetchUserOrderData();
          }
       },

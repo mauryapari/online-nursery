@@ -25,7 +25,6 @@ export default {
    watch: {
       userAddress: {
          handler() {
-            console.log('changed');
             this.showLoader = false;
          }
       }

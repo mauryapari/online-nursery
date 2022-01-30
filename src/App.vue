@@ -35,19 +35,20 @@ import ToastMessageModal from './components/util-content/toast-message-modal/Toa
       },
       watch: {
           getUserCartID: {
-              immediate: true,
-              handler() {
-                this.$store.dispatch('isCartAvailable');
-              }
-          },
-          getToastModalData() {
-            if (this.callTimer) {
-                clearTimeout(this.callTimer);
-                this.callTimer = null;
+            immediate: true,
+            handler() {
+            this.$store.dispatch('isCartAvailable');
             }
-            this.callTimer = setTimeout(()=> {
-                this.$store.dispatch('setToastModalData', { action: false, data: {} })
-            }, 5000);
+          },
+          getToastModalData: {
+            deep: true,
+            handler(oldValue, newValue) {
+                if(oldValue?.title) {
+                    this.callTimer = setTimeout(()=> {
+                        this.$store.dispatch('setToastModalData', { action: false, data: {} })
+                    }, 5000);
+                }
+            }
           }
       },
       mounted() {

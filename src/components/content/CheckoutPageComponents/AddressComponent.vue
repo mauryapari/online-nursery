@@ -15,7 +15,7 @@
                      <clickables :btnType="'secondary'" :btnSize="'sm'" @click.native="showForm">{{this.btnValue}}</clickables>
                   </div>
                </div>
-               <div class="checkout-step__body">
+               <div class="checkout-step__body remove-number-stepper">
                   <form @submit.prevent="submitAddressData" v-if="(!userAddress || isAddressChanging)">
                      <fieldset>
                         <legend>Enter User Address</legend>
@@ -152,7 +152,6 @@ export default {
         deep: true,
         immediate: true,
         handler(oldValue, newValue) {
-           console.log('watcher',oldValue, newValue);
            for(let key in this.userAddress) {
               this.address[key] = this.userAddress[key]
            }

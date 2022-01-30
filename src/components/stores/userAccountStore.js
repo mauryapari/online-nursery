@@ -26,12 +26,10 @@ const userAccountStore = {
          var promises = [];
          if(payload && payload.length) {
             payload.forEach(item => {
-               console.log(item);
                promises.push(fetch(apiConfig.API.databaseURL + `orders/${item}.json`).then(resp => resp.json()))
             })
             const data = await Promise.all(promises);
             let newData = data.map((item, index)=>({...item, orderID: payload[index]}));
-            console.log(newData);
             context.commit('setUserOrders', newData);
          } else {
             context.commit('setUserOrders', [])

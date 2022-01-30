@@ -9,7 +9,7 @@
                      <div class="account-page__order-id">
                         <div class="account-page__order-id-info">
                            <span class="label-txt">ORDER ID:</span>
-                           <span class="label-value"> #1</span>
+                           <span class="label-value">#{{selectedOrder.orderID}}</span>
                         </div>
                         <div class="account-page__order-date-info">
                            <span class="label-txt">Placed on</span>
@@ -121,7 +121,6 @@ export default {
       }
    },
    mounted() {
-      console.log(this.$route.params.id);
       const id = this.$route?.params?.id;
       if(id) {
          this.$store.dispatch('setCurrentOrderData', id);
