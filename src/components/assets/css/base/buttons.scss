@@ -1,0 +1,60 @@
+.btn {
+    display: inline-block;
+    @include modifier(primary) {
+        padding: 10px 24px;
+        background-color: $brand-light-green;
+        color: $white;
+        border-radius: 30px;
+        &:hover {
+            cursor: pointer;
+            transition: 0.3s;
+            background-color: $brand-green;
+        }
+    }
+
+    @include modifier(secondary) {
+        padding: 10px 24px;
+        background-color: $brand-light-green;
+        color: $white;
+        border-radius: 5px;
+        &:hover {
+            cursor: pointer;
+            background-color: $brand-green;
+        }
+    }
+
+    @include modifier(tertiary) {
+        padding: 10px 24px;
+        background-color: $brand-grey-500;
+        color: $white;
+        &:hover {
+            transition: 0.5s;
+            background-color: $brand-grey-700;
+            cursor: pointer;
+        }
+    }
+
+    @include modifier('transparent') {
+        background-color: transparent;
+        // color: $btn-transparent-text-color;
+        border: rem(2px) solid transparent;
+
+        &:hover, 
+        &:focus {
+            background-color: transparent;
+            // color: $btn-transparent-text-color;
+            border-color: transparent;
+        }
+    }
+
+    @include modifier(md) {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    // large size
+    @include modifier(lg) {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+}

@@ -1,0 +1,24 @@
+html {
+    font-size: $base-font-size;
+}
+
+body, input, textarea, select {
+    @include ralewayRegular;
+}
+
+body {
+    background-color: #f2f4f8;
+}
+
+a {
+    text-decoration: none;
+    color: $brand-grey-700;
+    &:active,
+    &:visited {
+        color: $brand-grey-700;
+    }
+}
+
+img {
+    max-width: 100%;
+}

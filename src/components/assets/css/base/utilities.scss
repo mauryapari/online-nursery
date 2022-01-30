@@ -1,0 +1,59 @@
+.section-padding {
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+.display {
+    display: block;
+}
+.hide {
+    display: none;
+}
+.accordian-container {
+    @include element(icon-container) {
+        position: absolute;
+        &::before {
+          content: '';
+          width: 35px;
+          height: 35px;
+          position: absolute;
+          top: 15px;
+          left: -35px;
+          background: $white;; // #282c3f;
+          border-radius: 6px;
+          box-shadow: 0 2px 8px 0 rgb(40 44 63 / 40%);
+          z-index: 2;
+       }
+
+       .icon {
+           position: relative;
+           top: 25px;
+           left: -25px;
+           z-index: 2;
+       }
+    }
+
+    @include element(placeholder-text) {
+        font-size: 18px;
+        text-transform: uppercase;
+        padding: 35px 25px;
+        font-weight: 700;
+        color: $brand-grey-400;
+    }
+}
+
+.icon-rupee {
+    margin-right: 2px;
+}
+
+.remove-number-stepper {
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    input[type=number] {
+        -moz-appearance:textfield; /* Firefox */
+    }
+}

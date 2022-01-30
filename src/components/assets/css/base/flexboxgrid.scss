@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+.container-fluid, .container {
+    padding-left: $mobile-gutter;
+    padding-right: $mobile-gutter;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container {
+    max-width: $container-max;
+}
+
+@include sm {
+    .container-fluid, .container {
+        padding-left: $tablet-gutter;
+        padding-right: $tablet-gutter;
+    }
+}
+
+@include lg {
+    .container-fluid, .container {
+        padding-left: $desktop-gutter;
+        padding-right: $desktop-gutter;
+    }
+}

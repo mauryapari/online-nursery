@@ -1,0 +1,19 @@
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+$screen-xl-min: 1440px;
+$base-font-size: 16px;
+
+// CONTAINER VARIABLES
+$mobile-gutter: 15px;
+$tablet-gutter: 30px;
+$desktop-gutter: 30px;
+$container-max: 1366px; // 1326 is the main width and 120px is the padding
+
+// FONTS VARIABLES
+$raleway-regular: 'Raleway';
+$raleway-light: 'Raleway light';
+$raleway-bold: 'Raleway bold';
+$raleway-regularttf: '../../../../resources/fonts/raleway/Raleway-Regular.ttf';
+$raleway-lightttf: '../../../../resources/fonts/raleway/Raleway-Light.ttf';
+$raleway-boldttf: '../../../../resources/fonts/raleway/Raleway-Bold.ttf';
