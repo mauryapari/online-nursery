@@ -60,11 +60,13 @@ export default {
     display: flex;
     flex-direction: row;
     margin-top: 15px;
+    flex-wrap: wrap;
 
     @include element(item) {
         font-size: 18px;
         margin-right: 20px;
         &:not(:last-child) {
+            margin-bottom: 15px;
             &::after {
                 margin-left: 10px;
                 content: '>';
